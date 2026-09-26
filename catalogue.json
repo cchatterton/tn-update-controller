@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-09-26T04:55:29.037306+00:00",
+  "published_at": "2026-09-26T04:56:56.912218+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -353,14 +353,14 @@
       "author": "Techn",
       "description": "One catalogue, background update checks and guided updates for Techn plugins.",
       "beta": false,
-      "version": "0.4.3",
-      "tag": "v0.4.3",
+      "version": "0.4.4",
+      "tag": "v0.4.4",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.4.3\n\n- Promote the controller to Alpha following standards and single-site/multisite verification.\n- Set bundled catalogue readiness to non-beta; retain the 0.4.2 card cleanup and 0.4.1 lifecycle grouping fixes.\n",
-      "sha256": "6ddd3b5bbd2d9ffab99314c5ae7432f97b79a67e288ad9b021a3ea5bc60b91e9"
+      "body": "## 0.4.4\n\n- Remove the redundant Update discovery heading and introductory text from Settings.\n",
+      "sha256": "8316939086d0b82f50236a629079f3b64f492d6050ee798f1adc95c1bfcb7f69"
     },
     {
       "id": "tn-user-management",

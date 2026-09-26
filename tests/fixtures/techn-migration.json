@@ -1,52 +1,52 @@
 {
   "help-guides": {
     "file": "Help Guides/help_guides.php",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "asset": "help-guides.zip"
   },
   "menubot": {
     "file": "menubot/menubot.php",
-    "version": "1.10.1",
+    "version": "1.10.2",
     "asset": "menubot.zip"
   },
   "persona26": {
     "file": "persona26/persona26.php",
-    "version": "0.7.5",
+    "version": "0.7.6",
     "asset": "persona26.zip"
   },
   "tn-authenticator": {
     "file": "tn-authenticator/tn-authenticator.php",
-    "version": "1.6.1",
+    "version": "1.6.2",
     "asset": "tn-authenticator.zip"
   },
   "tn-content-planner": {
     "file": "tn-content-planner/tn-content-planner.php",
-    "version": "0.3.33",
+    "version": "0.3.34",
     "asset": "tn-content-planner.zip"
   },
   "tn-environments": {
     "file": "tn-environments/tn-environments.php",
-    "version": "1.10.1",
+    "version": "1.10.2",
     "asset": "tn-environments.zip"
   },
   "tn-pallet": {
     "file": "tn-pallet/tn-pallet.php",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "asset": "tn-pallet.zip"
   },
   "tn-qrcodes": {
     "file": "tn-qrcodes/tn-qrcodes.php",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "asset": "tn-qrcodes.zip"
   },
   "tn-user-management": {
     "file": "tn-user-management/tn-user-management.php",
-    "version": "1.32.1",
+    "version": "1.32.2",
     "asset": "tn-user-management.zip"
   },
   "tn-wp-migrate-code-diff": {
     "file": "tn-wp-migrate-code-diff/tn-wp-migrate-code-diff.php",
-    "version": "0.11.4",
+    "version": "0.11.5",
     "asset": "tn-wp-migrate-code-diff.zip"
   }
 }

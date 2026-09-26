@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-09-26T02:46:16.432022+00:00",
+  "published_at": "2026-09-26T03:10:10.681233+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -50,14 +50,14 @@
       "name": "Help Guides (Wiki-style)",
       "author": "Techn",
       "description": "Adds Wiki CPT, Help Guides admin menus, screen ID display, and help tabs.",
-      "version": "1.2.2",
-      "tag": "v1.2.2",
+      "version": "1.2.3",
+      "tag": "v1.2.3",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.2.2 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "6283dcd89ae3e4ee1563cfed38ab722d552a9bcc2e11ad699d72ef9d06e5ffaa"
+      "body": "## 1.2.3 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "1ab553534bf1168dedf37b64d6962210a1ab18da0e54f3862798a33b5d693312"
     },
     {
       "id": "menubot",
@@ -69,14 +69,14 @@
       "name": "Menubot",
       "author": "Techn",
       "description": "Make navigating WordPress admin menus easy for power users.",
-      "version": "1.10.1",
-      "tag": "v1.10.1",
+      "version": "1.10.2",
+      "tag": "v1.10.2",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.10.1 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "f5a134cb16960567b5a42977f2501802b8657489a1f2f5e5d35d0b641bd5a856"
+      "body": "## 1.10.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "82929a828835b69b4d467a0fce31f030c1c39d9e8ce7a1bc6db9599a909dc446"
     },
     {
       "id": "persona26",
@@ -88,14 +88,14 @@
       "name": "Persona26",
       "author": "Techn",
       "description": "Visitor profiles, engagement dimensions and personalisation with Independent Analytics and Gravity Forms.",
-      "version": "0.7.5",
-      "tag": "v0.7.5",
+      "version": "0.7.6",
+      "tag": "v0.7.6",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.7.5 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "1d2d997eb3de269da8889cde758ae607d887d272bf359745609b1a734c152da5"
+      "body": "## 0.7.6 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "9c65187e9a795852e2859c42b19ce40581e6fe14b3971d7cd2a67e76bd8d745a"
     },
     {
       "id": "tn-authenticator",
@@ -107,14 +107,14 @@
       "name": "TN Authenticator",
       "author": "Techn",
       "description": "Provides a plug-and-play PIN login page at /login-pin.",
-      "version": "1.6.1",
-      "tag": "v1.6.1",
+      "version": "1.6.2",
+      "tag": "v1.6.2",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.6.1 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "c86d750c3fbf1e52f2313ae61c01ce354c9bc17c333e445d2b653ddc09740a2c"
+      "body": "## 1.6.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "73cfbcb0495309953acbc259a35ba1573731974bdf024ba2dee2ce6993ae0d9e"
     },
     {
       "id": "tn-content-planner",
@@ -126,14 +126,14 @@
       "name": "TN Content Planner",
       "author": "Techn",
       "description": "Plan content by post type, arrange a WBS, and create or update selected WordPress content.",
-      "version": "0.3.33",
-      "tag": "v0.3.33",
+      "version": "0.3.34",
+      "tag": "v0.3.34",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.3.33 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "c14fb375d74918fea548fe54a74631723e3cf5d22f120228daaebff555dc9f98"
+      "body": "## 0.3.34 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "2197cf5dfc1a9c7c767fb8d8233c218152f73e760ee57e5eee78ac17d7e6b067"
     },
     {
       "id": "tn-environments",
@@ -145,14 +145,14 @@
       "name": "TN Environments",
       "author": "Techn",
       "description": "Prompts admins to confirm the environment, adds admin environment styling, and displays a build ID.",
-      "version": "1.10.1",
-      "tag": "v1.10.1",
+      "version": "1.10.2",
+      "tag": "v1.10.2",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.10.1 - 2026-09-26\n\n- Process environment saves before admin output so destination redirects work on WordPress 7; explicitly check save authority.\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "200893864f15219ebb21b8ddefcf5129a184cc226f3de02390fd0625988f7494"
+      "body": "## 1.10.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "305b48980b112f1fdc1ef0ac4c1b3340fb2926d1572fd568616de17ad77cd29d"
     },
     {
       "id": "tn-journey-graph",
@@ -221,14 +221,14 @@
       "name": "TN Pallet",
       "author": "Techn",
       "description": "Manage a named colour palette and generated utility CSS from WordPress admin.",
-      "version": "0.1.13",
-      "tag": "v0.1.13",
+      "version": "0.1.14",
+      "tag": "v0.1.14",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.1.13 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "bba7809764230325595ecc017a021e48685cb08de699571dd5554c2f822d7f9c"
+      "body": "## 0.1.14 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "1fdaf97b8b83cbeceec6ca27ae2a15c381d7624c88da8a6834c026983e973f48"
     },
     {
       "id": "tn-performance-advisor",
@@ -259,14 +259,14 @@
       "name": "TN QR Codes",
       "author": "Techn",
       "description": "Adds QR codes to public post types and allows tracked QR code downloads.",
-      "version": "1.5.1",
-      "tag": "v1.5.1",
+      "version": "1.5.2",
+      "tag": "v1.5.2",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.5.1 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "33d5bbbfff700ba651eb9ba9f4ff4ec81431614c795111f25d41413eb17e59c5"
+      "body": "## 1.5.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "00e60d8e0c634073be0eaf89efd19d9815d8f4f39ae99df667b55bb1c7f169b0"
     },
     {
       "id": "tn-sentinel",
@@ -335,14 +335,14 @@
       "name": "TN Update Controller",
       "author": "Techn",
       "description": "One catalogue, background update checks and guided updates for Techn plugins.",
-      "version": "0.1.1",
-      "tag": "v0.1.1",
+      "version": "0.1.2",
+      "tag": "v0.1.2",
       "requires": "6.5",
-      "requires_php": "8.1",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Adds audited TN User Management 1.8 updater compatibility for the ten-plugin migration batch, retaining exact-file trust. Includes tested controller integration and bulk-migration tooling.",
-      "sha256": "c0f5bfe626a1b257cd1581b88cc038b9a17404506f80b4e87da00921121d14be"
+      "body": "## 0.1.2 - 2026-09-26\n\n- Support PHP 7.4 to match the minimum PHP version for WordPress 7.0.\n- Replace PHP 8-only union return declarations with equivalent PHPDoc types without changing updater behaviour.\n- Align the client installation contract with PHP 7.4 compatibility.\n",
+      "sha256": "11ee17307e06a28eae1396efb8f18aa8f5e65869b0a6771c2c9cefa421d3493b"
     },
     {
       "id": "tn-user-management",
@@ -354,14 +354,14 @@
       "name": "TN User Management",
       "author": "Techn",
       "description": "Email-as-username, one-time username migration, role normalisation, permission sets, and multisite user governance.",
-      "version": "1.32.1",
-      "tag": "v1.32.1",
+      "version": "1.32.2",
+      "tag": "v1.32.2",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.32.1 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "9016b1899c99b181afe29a0be4dcf7e922993ab9a9d7fd7690cbc5531160b000"
+      "body": "## 1.32.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "82ae3a23199a1415c9c8739140433bef491d2b3722a453da83625825784322f7"
     },
     {
       "id": "tn-wp-migrate-code-diff",
@@ -373,14 +373,14 @@
       "name": "WP Migrate - Release Management",
       "author": "Techn",
       "description": "Compares connected WordPress code and content, and creates or installs selective offline releases.",
-      "version": "0.11.4",
-      "tag": "v0.11.4",
+      "version": "0.11.5",
+      "tag": "v0.11.5",
       "requires": "7.0",
-      "requires_php": "8.5",
+      "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.11.4 - 2026-09-26\n\n- Require WordPress 7.0+ and PHP 8.5+ for this release.\n\n- Replace the independent GitHub updater with the version 1 TN Update Controller integration.\n- Add local Install/Activate/Check controller actions and standardise Techn author/repository metadata.\n- Preserve plugin identity, feature code, settings and activation scope; no feature-plugin release discovery runs during page rendering.\n",
-      "sha256": "be13d97eec035f41f6448eae52bca4e98b36bbcd5f38a05986b37046c6c9eb3a"
+      "body": "## 0.11.5 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
+      "sha256": "f87c76342b24e48c453d1caf9cb0b711a309a2572cc57d7d61a467566f83cb8e"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

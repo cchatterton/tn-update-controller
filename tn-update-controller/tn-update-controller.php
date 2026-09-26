@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TN Update Controller
  * Description: One catalogue, background update checks and guided updates for Techn plugins.
- * Version: 0.1.2
+ * Version: 0.2.0
  * Author: Techn
  * Author URI: https://techn.com.au
  * Update URI: https://github.com/cchatterton/tn-update-controller
@@ -14,7 +14,7 @@
  * Text Domain: tn-update-controller
  */
 if (!defined('ABSPATH')) { exit; }
-define('TNUC_VERSION', '0.1.2');
+define('TNUC_VERSION', '0.2.0');
 define('TNUC_API_VERSION', 1);
 define('TNUC_FILE', __FILE__);
 define('TNUC_DIR', __DIR__ . '/');
@@ -43,8 +43,6 @@ function tnuc_boot(): void {
     add_action('admin_enqueue_scripts', 'tnuc_assets');
     add_action('admin_post_tnuc_action', 'tnuc_handle_form');
     add_action('wp_ajax_tnuc_action', 'tnuc_handle_ajax');
-    add_action('admin_notices', 'tnuc_setup_notice');
-    add_action('network_admin_notices', 'tnuc_setup_notice');
     add_filter('plugin_action_links_' . plugin_basename(TNUC_FILE), 'tnuc_settings_link');
     add_filter('network_admin_plugin_action_links_' . plugin_basename(TNUC_FILE), 'tnuc_settings_link');
 }

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-09-26T04:54:32.633435+00:00",
+  "published_at": "2026-09-26T04:55:29.037306+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -352,15 +352,15 @@
       "name": "TN Update Controller",
       "author": "Techn",
       "description": "One catalogue, background update checks and guided updates for Techn plugins.",
-      "beta": true,
-      "version": "0.4.2",
-      "tag": "v0.4.2",
+      "beta": false,
+      "version": "0.4.3",
+      "tag": "v0.4.3",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.4.2\n\n- Remove the catalogue heading/search toolbar.\n- Remove redundant catalogue card status strips, including Not installed, Active and Installed/inactive. Group headings and state-specific actions already convey lifecycle state.\n- Retain version requirements, Beta chips and compatibility warnings.\n",
-      "sha256": "a558c2c8d14feb86f1c5e5abd38d43d2b269eb9afdaa0aa0d8078b3a7721eaa8"
+      "body": "## 0.4.3\n\n- Promote the controller to Alpha following standards and single-site/multisite verification.\n- Set bundled catalogue readiness to non-beta; retain the 0.4.2 card cleanup and 0.4.1 lifecycle grouping fixes.\n",
+      "sha256": "6ddd3b5bbd2d9ffab99314c5ae7432f97b79a67e288ad9b021a3ea5bc60b91e9"
     },
     {
       "id": "tn-user-management",

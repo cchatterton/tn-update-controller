@@ -12,7 +12,10 @@
     "legacy": [
       {
         "path": "functions/github-updater.php",
-        "sha256": "02d992fad489362a25a66e5c7e08f723f8818146ff50b86d1be44f4aa1e19f99"
+        "sha256": "02d992fad489362a25a66e5c7e08f723f8818146ff50b86d1be44f4aa1e19f99",
+        "sha256_alternatives": [
+          "f6b54fdb1fd7c852a848e1b6631e006dcc9746f0986bae65e2d9a0505a20f2d7"
+        ]
       }
     ]
   },

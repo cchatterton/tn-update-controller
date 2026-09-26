@@ -2,10 +2,10 @@
 /** Copy this file into a Techn plugin, require it, then call tnuc_client_register(__FILE__, 'repository-name') from the plugin main file. */
 if (!defined('ABSPATH')) { exit; }
 if (!function_exists('tnuc_client_register')) {
-    function tnuc_client_register(string $main_file, string $repository): void {
+    function tnuc_client_register($main_file, $repository) {
         $GLOBALS['tnuc_clients'][plugin_basename($main_file)] = sanitize_text_field($repository);
     }
-    function tnuc_client_links(array $links, string $file): array {
+    function tnuc_client_links($links, $file) {
         if (!isset($GLOBALS['tnuc_clients'][$file])) { return $links; }
         if (function_exists('tnuc_available') && tnuc_available() && defined('TNUC_API_VERSION') && TNUC_API_VERSION >= 1) { return $links; }
         $links[] = '<a href="' . esc_url('https://github.com/cchatterton/' . $GLOBALS['tnuc_clients'][$file]) . '">GitHub</a>';
@@ -25,9 +25,13 @@ if (!function_exists('tnuc_client_register')) {
         }
         return $links;
     }
-    function tnuc_bootstrap_install(): void {
+    function tnuc_bootstrap_install() {
         if (!current_user_can('install_plugins') || (is_multisite() && !current_user_can('manage_network_plugins'))) { wp_die('You cannot install this controller.'); }
         check_admin_referer('tnuc_bootstrap_install');
+        global $wp_version;
+        if (version_compare(PHP_VERSION, '8.1', '<') || version_compare($wp_version, '6.5', '<')) {
+            wp_die('Techn Update Controller requires WordPress 6.5 and PHP 8.1 or later. This plugin can continue to run without it.');
+        }
         if (!wp_is_file_mod_allowed('tnuc_bootstrap')) { wp_die('File modifications are disabled.'); }
         require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
         require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';

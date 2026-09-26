@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 - 2026-09-26
+
+- Accept explicitly audited alternative legacy updater hashes per file, including TN User Management 1.8 from the initial migration site.
+- Retain exact-file trust and fail closed for any unknown updater implementation.
+- Add ten-plugin migration validation and a bootstrap install compatibility guard.
+
 ## 0.1.0 - 2026-09-26
 
 - Add a Techn-only verified plugin catalogue with Installed, Catalogue and Settings views.

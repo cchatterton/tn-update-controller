@@ -34,3 +34,11 @@ Tests use the adjacent repository catalogue fixtures. `install.php` requires out
 WordPress 6.5 is the declared minimum; full runtime tests used WordPress 7.1.2. PHP 8.1 was syntax-checked. Feature behaviour of all catalogue plugins, every historical legacy updater version, hosting credential-based filesystem transports, host-specific MU code and every possible feature-plugin activation scope were not exhaustively exercised. The guided installer supports direct filesystem writes; native WordPress flows remain the recovery route on credential-based filesystems. The controller is not a backup or rollback service.
 
 Initial feature-plugin catalogue releases still use legacy integration. Their migration status is explicit. Reviewed hashes apply only to the exact inspected updater files. A future plugin release that changes those files needs migration to the client API or a new audited controller registry release. No customer site was changed during these tests.
+
+## 0.1.1 — ten-plugin migration batch
+
+The candidate-package test upgraded all ten selected Techn plugins through the controller's native WordPress upgrader. It covered the actual published TN User Management 1.8 package and the latest previous releases of the other nine, including QR Codes 1.5 (no published 1.4 package was found). One aggregate lookup served all ten, repeated legacy reads added zero metadata requests, each stored test setting survived, activation scope was preserved and all target headers reported Techn Controller API 1.
+
+All ten migrated clients were also loaded together with the controller absent, installed-inactive and network-active. The shared helper registered once, each row had one GitHub and one correct controller action, and unauthorised users had no install/activate/check action. Persona26 integration, 55 Content Planner feature assertions on single-site WordPress and eight standalone WP Migrate suites passed. A native browser check showed consistent By Techn / GitHub / Check for updates links without Visit plugin site. The Environments save/redirect flow was corrected to run before admin output and verified in the browser.
+
+The migration releases require WordPress 7.0+ and PHP 8.5+. Runtime testing used WordPress 7.1.2/PHP 8.5.7. No customer-site deployment has been performed.

@@ -1,6 +1,12 @@
 <?php
 if (!defined('ABSPATH')) { exit; }
 /** Remove only callbacks whose implementation file exactly matches a reviewed release file. */
+function tnuc_legacy_file_matches(string $path, array $legacy): bool {
+    if (!is_file($path)) { return false; }
+    $hash = hash_file('sha256', $path);
+    $approved = array_merge([$legacy['sha256']], $legacy['sha256_alternatives'] ?? []);
+    return in_array($hash, $approved, true);
+}
 function tnuc_suppress_legacy(): void {
     global $wp_filter;
     $plugins = tnuc_plugins(); $approved = [];
@@ -8,7 +14,7 @@ function tnuc_suppress_legacy(): void {
         if (!tnuc_match($entry, $plugins)) { continue; }
         foreach ($entry['legacy'] ?? [] as $legacy) {
             $path = WP_PLUGIN_DIR . '/' . dirname($entry['file']) . '/' . $legacy['path'];
-            if (is_file($path) && hash_equals($legacy['sha256'], hash_file('sha256', $path))) { $approved[wp_normalize_path(realpath($path))] = $entry['id']; }
+            if (tnuc_legacy_file_matches($path, $legacy)) { $approved[wp_normalize_path(realpath($path))] = $entry['id']; }
         }
     }
     if (!$approved) { return; }
@@ -39,7 +45,7 @@ function tnuc_migration_status(array $entry): string {
     if (!$trusted) { return 'Legacy updater needs review'; }
     foreach ($trusted as $item) {
         $path = WP_PLUGIN_DIR . '/' . dirname($entry['file']) . '/' . $item['path'];
-        if (!is_file($path) || !hash_equals($item['sha256'], hash_file('sha256', $path))) { return 'Legacy updater needs review'; }
+        if (!tnuc_legacy_file_matches($path, $item)) { return 'Legacy updater needs review'; }
     }
     return 'Audited legacy updater held inactive while controller runs';
 }

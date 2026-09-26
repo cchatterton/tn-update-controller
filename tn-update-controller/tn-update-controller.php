@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TN Update Controller
  * Description: One catalogue, background update checks and guided updates for Techn plugins.
- * Version: 0.4.2
+ * Version: 0.4.3
  * Author: Techn
  * Author URI: https://techn.com.au
  * Update URI: https://github.com/cchatterton/tn-update-controller
@@ -14,7 +14,7 @@
  * Text Domain: tn-update-controller
  */
 if (!defined('ABSPATH')) { exit; }
-define('TNUC_VERSION', '0.4.2');
+define('TNUC_VERSION', '0.4.3');
 define('TNUC_API_VERSION', 1);
 define('TNUC_FILE', __FILE__);
 define('TNUC_DIR', __DIR__ . '/');

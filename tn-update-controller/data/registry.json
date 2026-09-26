@@ -373,6 +373,6 @@
     "author": "Techn",
     "description": "A cached plugin catalogue, background discovery and guided updates for Techn plugins.",
     "legacy": [],
-    "beta": true
+    "beta": false
   }
 }

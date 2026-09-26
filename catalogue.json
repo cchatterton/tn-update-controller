@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-09-26T03:10:10.681233+00:00",
+  "published_at": "2026-09-26T03:29:33.301502+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -335,14 +335,14 @@
       "name": "TN Update Controller",
       "author": "Techn",
       "description": "One catalogue, background update checks and guided updates for Techn plugins.",
-      "version": "0.1.2",
-      "tag": "v0.1.2",
+      "version": "0.2.0",
+      "tag": "v0.2.0",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.1.2 - 2026-09-26\n\n- Support PHP 7.4 to match the minimum PHP version for WordPress 7.0.\n- Replace PHP 8-only union return declarations with equivalent PHPDoc types without changing updater behaviour.\n- Align the client installation contract with PHP 7.4 compatibility.\n",
-      "sha256": "11ee17307e06a28eae1396efb8f18aa8f5e65869b0a6771c2c9cefa421d3493b"
+      "body": "## 0.2.0 - 2026-09-26\n\n- Split installed and available versions into separate columns; link available versions to release notes and add a GitHub column.\n- Remove per-row checks, update-management text, setup notices, persistent success/history panels and settings recovery/status sections.\n- Simplify catalogue cards by removing repeated brand banners and author labels.\n- Add modal checking feedback and animated, per-plugin update progress with concise completion results and expandable failures.\n- Refresh lists in place; retain interruption recovery and compact access to unresolved results.\n- Add keyboard focus handling, reduced-motion styling, disabled selection explanations and selection-aware update controls.\n- Preserve PHP 7.4 compatibility, separate brand catalogues and network-free metadata rendering.\n",
+      "sha256": "1868f5f469d15879cdd2b56103425cd4c5388f3af4864167c34aafbadeac4dfa"
     },
     {
       "id": "tn-user-management",

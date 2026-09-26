@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-09-26T04:56:56.912218+00:00",
+  "published_at": "2026-09-26T05:01:47.754117+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -353,14 +353,14 @@
       "author": "Techn",
       "description": "One catalogue, background update checks and guided updates for Techn plugins.",
       "beta": false,
-      "version": "0.4.4",
-      "tag": "v0.4.4",
+      "version": "0.4.5",
+      "tag": "v0.4.5",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.4.4\n\n- Remove the redundant Update discovery heading and introductory text from Settings.\n",
-      "sha256": "8316939086d0b82f50236a629079f3b64f492d6050ee798f1adc95c1bfcb7f69"
+      "body": "## 0.4.5\n\n- Support exact localhost allowlist entries alongside domain/subdomain restrictions.\n",
+      "sha256": "f9ceae64c88fb200ed4ed034891a65b12ef2af706ee06bdaf4b30e5630a2ddf8"
     },
     {
       "id": "tn-user-management",

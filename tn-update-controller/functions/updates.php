@@ -10,6 +10,7 @@ function tnuc_project_updates($transient): object {
     $plugins = tnuc_plugins();
     foreach (tnuc_catalogue()['plugins'] ?? [] as $entry) {
         if (!tnuc_match($entry, $plugins)) { continue; }
+        if (!tnuc_domain_allowed($entry)) { unset($transient->response[$entry['file']], $transient->no_update[$entry['file']]); continue; }
         $file = $entry['file']; $update = tnuc_update_object($entry);
         if (version_compare($entry['version'], $plugins[$file]['Version'], '>')) {
             $transient->response[$file] = $update; unset($transient->no_update[$file]);
@@ -24,6 +25,7 @@ function tnuc_plugin_information($result, string $action, $args) {
     foreach (tnuc_registry() as $id => $identity) {
         if (($args->slug ?? '') !== $identity['slug']) { continue; }
         $entry = tnuc_catalogue()['plugins'][$id] ?? null;
+        if ($entry && !tnuc_domain_allowed($entry)) { return new WP_Error('unavailable', 'This plugin is unavailable for this domain.'); }
         if (!$entry) { return new WP_Error('tnuc_no_metadata', 'Open Plugins > Techn Plugins and check the catalogue first.'); }
         return (object) ['name' => $entry['name'], 'slug' => $entry['slug'], 'version' => $entry['version'], 'author' => esc_html($entry['author']), 'homepage' => 'https://github.com/' . $entry['owner'] . '/' . $entry['repo'], 'download_link' => tnuc_compatibility($entry) === '' ? tnuc_package($entry) : '', 'requires' => $entry['requires'], 'requires_php' => $entry['requires_php'], 'sections' => ['description' => '<p>' . esc_html($entry['description']) . '</p>', 'changelog' => '<pre style="white-space:pre-wrap">' . esc_html($entry['body']) . '</pre>']];
     }
@@ -51,9 +53,14 @@ function tnuc_row_meta(array $links, string $file, array $data = [], string $sta
     return $links;
 }
 function tnuc_verify_download($reply, string $package, $upgrader, array $extra = []) {
+    foreach (tnuc_registry() as $identity) {
+        $prefix = 'https://github.com/' . $identity['owner'] . '/' . $identity['repo'] . '/';
+        if (strpos($package, $prefix) === 0 && !tnuc_domain_allowed($identity)) { return new WP_Error('domain', 'This plugin is unavailable for this domain.'); }
+    }
     if ($reply !== false) { return $reply; }
     foreach (tnuc_catalogue()['plugins'] ?? [] as $entry) {
         if ($package !== tnuc_package($entry)) { continue; }
+        if (!tnuc_domain_allowed($entry)) { return new WP_Error('unavailable', 'This plugin is unavailable for this domain.'); }
         $temp = wp_tempnam($entry['asset']);
         if (!$temp) { return new WP_Error('tnuc_temp', 'A temporary package file could not be created.'); }
         $url = $package;

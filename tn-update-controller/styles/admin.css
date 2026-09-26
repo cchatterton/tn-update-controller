@@ -52,3 +52,6 @@
 .tnuc-catalogue-group { margin-top: 1.75rem; }
 .tnuc-catalogue-group > h2 { margin-bottom: .75rem; }
 .tnuc-catalogue-group[hidden] { display: none; }
+
+.tnuc-card-content { position: relative; padding-bottom: 2.25rem; }
+.tnuc-card-content > .tnuc-beta { position: absolute; bottom: 0.5rem; right: 0.75rem; font-size: 0.625rem; padding: 0 0.3rem; }

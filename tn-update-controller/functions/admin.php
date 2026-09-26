@@ -72,7 +72,7 @@ function tnuc_details_link(array $entry): void { echo '<a href="' . esc_url(tnuc
 function tnuc_render_catalogue(array $registry, array $releases, array $plugins): void {
     echo '<div class="tnuc-toolbar"><h2>Plugin catalogue</h2><label>Find a plugin <input type="search" id="tnuc-search" placeholder="Search name or description"></label></div>';
     if (!$releases) { echo '<p class="tnuc-intro">This library lists the plugins recognised by this controller. Refresh the catalogue to load verified releases and enable installation.</p>'; }
-    $labels = ['active' => 'Active plugins', 'available' => 'Available plugins', 'beta' => 'Beta plugins'];
+    $labels = ['active' => 'Active', 'installed' => 'Installed', 'available' => 'Available', 'beta' => 'Beta'];
     foreach (tnuc_catalogue_groups($registry, $releases, $plugins) as $group => $entries) {
     echo '<section class="tnuc-catalogue-group" data-catalogue-group="' . esc_attr($group) . '" aria-labelledby="tnuc-group-' . esc_attr($group) . '"' . (!$entries ? ' hidden' : '') . '><h2 id="tnuc-group-' . esc_attr($group) . '">' . esc_html($labels[$group]) . '</h2><div class="tnuc-grid">';
     foreach ($entries as $id=>$identity) {
@@ -82,7 +82,7 @@ function tnuc_render_catalogue(array $registry, array $releases, array $plugins)
         echo '<article class="tnuc-card" data-search="' . esc_attr(strtolower($e['name'] . ' ' . $e['description'])) . '"><div class="tnuc-card-content"><h3>' . esc_html($e['name']) . '</h3><p class="tnuc-card-description">' . esc_html($e['description']) . '</p><p class="tnuc-card-state">' . ($update ? 'Update available' : ($active ? 'Active' : ($has ? 'Installed · inactive' : 'Not installed'))) . '</p><p class="description">' . (isset($releases[$id]) ? esc_html('Version ' . $e['version'] . ' · WordPress ' . $e['requires'] . '+ · PHP ' . $e['requires_php'] . '+') : 'Release not checked') . '</p>';
         if ($issue) { echo '<p class="tnuc-warning">' . esc_html($issue) . '</p>'; }
         echo '<div class="tnuc-card-actions">';
-        if (!$issue && (!$has || $update)) { echo '<button class="button button-primary" data-install="' . esc_attr($id) . '" data-kind="' . ($has ? 'update' : 'install') . '"' . (!tnuc_authorised($has ? 'update_plugins' : 'install_plugins') ? ' disabled' : '') . '>' . ($has ? 'Update' : 'Install') . '</button>'; }
+        if (!$has) { echo '<button class="button button-primary" data-install="' . esc_attr($id) . '" data-kind="install"' . ($issue || !tnuc_authorised('install_plugins') || !wp_is_file_mod_allowed('tnuc') ? ' disabled' : '') . '>Install</button>'; }
         tnuc_card_actions($e, $has, $conflict);
         if (isset($releases[$id])) { tnuc_details_link($e); }
         echo '</div>' . tnuc_beta_badge($e) . '</div></article>';

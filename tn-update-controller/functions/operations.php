@@ -71,6 +71,14 @@ function tnuc_step_batch(string $id) {
 /** @return array|WP_Error */
 function tnuc_dispatch(string $op, array $input) {
     if (!tnuc_authorised()) { return new WP_Error('permission', 'You cannot manage plugin updates.'); }
+    if ($op === 'view') {
+        $previous = $_GET['tab'] ?? null;
+        $_GET['tab'] = sanitize_key($input['tab'] ?? 'installed');
+        ob_start();
+        try { tnuc_render_admin(); $html = ob_get_contents(); }
+        finally { ob_end_clean(); if ($previous === null) { unset($_GET['tab']); } else { $_GET['tab'] = $previous; } }
+        return ['html' => $html];
+    }
     if ($op === 'plugin_action') { return tnuc_plugin_action(sanitize_text_field($input['plugin_id'] ?? ''), sanitize_key($input['plugin_action'] ?? '')); }
     if ($op === 'check') {
         $id = sanitize_text_field($input['plugin_id'] ?? '');

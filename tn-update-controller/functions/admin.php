@@ -50,7 +50,7 @@ function tnuc_render_admin(): void {
             $issue = !tnuc_match($e, $plugins) ? 'Identity conflict: review before updating.' : ($release ? tnuc_compatibility($release) : '');
             $can_update = isset($updates[$id]) && !$issue && tnuc_authorised() && wp_is_file_mod_allowed('tnuc');
             $reason = $issue ?: (!$release ? 'Not checked' : (!isset($updates[$id]) ? 'Up to date' : (!$can_update ? 'Updates are disabled on this site.' : '')));
-            echo '<tr><th class="check-column"><input type="checkbox" name="tnuc-selected" value="' . esc_attr($id) . '" aria-label="Update ' . esc_attr($e['name']) . '"' . (!$can_update ? ' disabled aria-describedby="tnuc-reason-' . esc_attr($id) . '"' : '') . '></th><td><strong>' . esc_html($e['name']) . '</strong><br><span class="description">' . (is_plugin_active($e['file']) || is_plugin_active_for_network($e['file']) ? 'Active' : 'Inactive') . '</span></td><td>' . esc_html($plugins[$e['file']]['Version']) . '</td><td>';
+            echo '<tr><th class="check-column"><input type="checkbox" name="tnuc-selected" value="' . esc_attr($id) . '" aria-label="Update ' . esc_attr($e['name']) . '"' . (!$can_update ? ' disabled aria-describedby="tnuc-reason-' . esc_attr($id) . '"' : '') . '></th><td><strong>' . esc_html($e['name']) . '</strong> ' . tnuc_beta_badge($release ?? $e) . '<br><span class="description">' . (is_plugin_active($e['file']) || is_plugin_active_for_network($e['file']) ? 'Active' : 'Inactive') . '</span></td><td>' . esc_html($plugins[$e['file']]['Version']) . '</td><td>';
             if ($release) {
                 echo '<a href="' . esc_url(tnuc_release_url($release)) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr($e['name'] . ' ' . $release['version'] . ' release notes (opens in a new tab)') . '">' . esc_html($release['version']) . '</a>';
             } else { echo '—'; }
@@ -70,12 +70,14 @@ function tnuc_details_link(array $entry): void { echo '<a href="' . esc_url(tnuc
 function tnuc_render_catalogue(array $registry, array $releases, array $plugins): void {
     echo '<div class="tnuc-toolbar"><h2>Plugin catalogue</h2><label>Find a plugin <input type="search" id="tnuc-search" placeholder="Search name or description"></label></div>';
     if (!$releases) { echo '<p class="tnuc-intro">This library lists the plugins recognised by this controller. Refresh the catalogue to load verified releases and enable installation.</p>'; }
-    echo '<div class="tnuc-grid">';
-    foreach ($registry as $id=>$identity) {
+    $labels = ['active' => 'Active plugins', 'available' => 'Available plugins', 'beta' => 'Beta plugins'];
+    foreach (tnuc_catalogue_groups($registry, $releases, $plugins) as $group => $entries) {
+    echo '<section class="tnuc-catalogue-group" data-catalogue-group="' . esc_attr($group) . '" aria-labelledby="tnuc-group-' . esc_attr($group) . '"' . (!$entries ? ' hidden' : '') . '><h2 id="tnuc-group-' . esc_attr($group) . '">' . esc_html($labels[$group]) . '</h2><div class="tnuc-grid">';
+    foreach ($entries as $id=>$identity) {
         $e = $releases[$id] ?? $identity; $has = isset($plugins[$e['file']]); $active = $has && (is_plugin_active($e['file']) || is_plugin_active_for_network($e['file']));
         $conflict = $has && !tnuc_match($e, $plugins); $issue = $conflict ? 'Installed plugin identity needs review.' : (isset($releases[$id]) ? tnuc_compatibility($e) : 'Check the catalogue to load this release.');
         $update = $has && isset($releases[$id]) && version_compare($e['version'], $plugins[$e['file']]['Version'], '>');
-        echo '<article class="tnuc-card" data-search="' . esc_attr(strtolower($e['name'] . ' ' . $e['description'])) . '"><div class="tnuc-card-content"><h3>' . esc_html($e['name']) . '</h3><p class="tnuc-card-description">' . esc_html($e['description']) . '</p><p class="tnuc-card-state">' . ($update ? 'Update available' : ($active ? 'Active' : ($has ? 'Installed · inactive' : 'Not installed'))) . '</p><p class="description">' . (isset($releases[$id]) ? esc_html('Version ' . $e['version'] . ' · WordPress ' . $e['requires'] . '+ · PHP ' . $e['requires_php'] . '+') : 'Release not checked') . '</p>';
+        echo '<article class="tnuc-card" data-search="' . esc_attr(strtolower($e['name'] . ' ' . $e['description'])) . '"><div class="tnuc-card-content"><h3>' . esc_html($e['name']) . ' ' . tnuc_beta_badge($e) . '</h3><p class="tnuc-card-description">' . esc_html($e['description']) . '</p><p class="tnuc-card-state">' . ($update ? 'Update available' : ($active ? 'Active' : ($has ? 'Installed · inactive' : 'Not installed'))) . '</p><p class="description">' . (isset($releases[$id]) ? esc_html('Version ' . $e['version'] . ' · WordPress ' . $e['requires'] . '+ · PHP ' . $e['requires_php'] . '+') : 'Release not checked') . '</p>';
         if ($issue) { echo '<p class="tnuc-warning">' . esc_html($issue) . '</p>'; }
         echo '<div class="tnuc-card-actions">';
         if (!$issue && (!$has || $update)) { echo '<button class="button button-primary" data-install="' . esc_attr($id) . '" data-kind="' . ($has ? 'update' : 'install') . '"' . (!tnuc_authorised($has ? 'update_plugins' : 'install_plugins') ? ' disabled' : '') . '>' . ($has ? 'Update' : 'Install') . '</button>'; }
@@ -86,7 +88,9 @@ function tnuc_render_catalogue(array $registry, array $releases, array $plugins)
         if (isset($releases[$id])) { tnuc_details_link($e); }
         echo '</div></div></article>';
     }
-    echo '</div><p id="tnuc-no-results" hidden>No matching plugins.</p>';
+    echo '</div></section>';
+    }
+    echo '<p id="tnuc-no-results" hidden>No matching plugins.</p>';
 }
 function tnuc_render_settings(): void {
     $settings = tnuc_settings();

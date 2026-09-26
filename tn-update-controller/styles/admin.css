@@ -47,3 +47,8 @@
 .tnuc-dialog-actions { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem; }
 @keyframes tnuc-pulse { from { opacity: .6; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .tnuc-dialog .tnuc-progress-active { animation: none; } .tnuc-dialog progress::-webkit-progress-value { transition: none; } .tnuc-dialog .spinner { background-image: none; border: .2rem solid #c3c4c7; border-top-color: #2271b1; border-radius: 50%; box-sizing: border-box; } }
+
+.tnuc-beta { display: inline-block; vertical-align: middle; padding: .1rem .5rem; border: .0625rem solid #c29131; border-radius: 1rem; background: #fff3cf; color: #654500; font-size: .7rem; font-weight: 600; line-height: 1.5; white-space: nowrap; }
+.tnuc-catalogue-group { margin-top: 1.75rem; }
+.tnuc-catalogue-group > h2 { margin-bottom: .75rem; }
+.tnuc-catalogue-group[hidden] { display: none; }

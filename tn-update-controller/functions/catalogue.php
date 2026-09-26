@@ -6,6 +6,24 @@ function tnuc_registry(): array {
     return $registry;
 }
 function tnuc_catalogue(): array { return (array) tnuc_get('catalogue'); }
+/** Readiness is catalogue metadata, separate from activation and GitHub prerelease channels. */
+function tnuc_is_beta(array $entry): bool {
+    if (is_bool($entry['beta'] ?? null)) { return $entry['beta']; }
+    return tnuc_registry()[$entry['id'] ?? '']['beta'] ?? true;
+}
+function tnuc_beta_badge(array $entry): string {
+    return tnuc_is_beta($entry) ? '<span class="tnuc-beta">Beta</span>' : '';
+}
+function tnuc_catalogue_groups(array $registry, array $releases, array $plugins): array {
+    $groups = ['active' => [], 'available' => [], 'beta' => []];
+    foreach ($registry as $id => $identity) {
+        $entry = $releases[$id] ?? $identity;
+        $active = isset($plugins[$identity['file']]) && (is_plugin_active($identity['file']) || is_plugin_active_for_network($identity['file']));
+        $group = $active ? 'active' : (tnuc_is_beta($entry) ? 'beta' : 'available');
+        $groups[$group][$id] = $identity;
+    }
+    return $groups;
+}
 function tnuc_plugins(): array {
     require_once ABSPATH . 'wp-admin/includes/plugin.php';
     return get_plugins();
@@ -44,6 +62,8 @@ function tnuc_validate_catalogue($candidate) {
         foreach ($entry['dependencies'] as $dependency) {
             if (!is_string($dependency) || !preg_match('/^[a-z0-9-]+$/D', $dependency)) { return new WP_Error('catalogue_dependencies', 'A dependency is invalid.'); }
         }
+        if (array_key_exists('beta', $entry) && !is_bool($entry['beta'])) { return new WP_Error('catalogue_beta', 'A catalogue beta status is invalid.'); }
+        $entry['beta'] = $entry['beta'] ?? ($registry[$id]['beta'] ?? true);
         $entry['name'] = $registry[$id]['name'];
         $entry['description'] = sanitize_text_field((string) ($entry['description'] ?? $registry[$id]['description']));
         $entry['body'] = sanitize_textarea_field((string) ($entry['body'] ?? ''));

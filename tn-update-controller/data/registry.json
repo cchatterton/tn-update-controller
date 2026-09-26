@@ -17,7 +17,8 @@
           "f6b54fdb1fd7c852a848e1b6631e006dcc9746f0986bae65e2d9a0505a20f2d7"
         ]
       }
-    ]
+    ],
+    "beta": false
   },
   "persona26": {
     "id": "persona26",
@@ -34,7 +35,8 @@
         "path": "functions/github-updater.php",
         "sha256": "b7292b2554ff9ebbc4ab537f9ca7f53b53e88a351ef1e6e2c09316235096c316"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-journey-graph": {
     "id": "tn-journey-graph",
@@ -51,7 +53,8 @@
         "path": "functions/updater.php",
         "sha256": "e3fe53a07bca94b5705a8d6cd9e9393d368233e171ace81a19a6af9c82962625"
       }
-    ]
+    ],
+    "beta": true
   },
   "tn-tax-manager": {
     "id": "tn-tax-manager",
@@ -68,7 +71,8 @@
         "path": "functions/updater.php",
         "sha256": "1b57f02f91c56dc0366571ec0c2cedca00890606590d7c5edcffcb71bcc7c74d"
       }
-    ]
+    ],
+    "beta": true
   },
   "tn-pallet": {
     "id": "tn-pallet",
@@ -85,7 +89,8 @@
         "path": "includes/class-tn-pallet-github-updater.php",
         "sha256": "0214e4e453b59e1d28b957fd5ff740fabe8c55e1f014ec13e976587db56bd240"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-qrcodes": {
     "id": "tn-qrcodes",
@@ -102,7 +107,8 @@
         "path": "functions/github-updater.php",
         "sha256": "780e87ccbfb4ab9f5f24dd25e71f2223eea7b56ece87dbf8a5d8f32f02ffb7e3"
       }
-    ]
+    ],
+    "beta": false
   },
   "TN-Exploitation-Audit": {
     "id": "TN-Exploitation-Audit",
@@ -119,7 +125,8 @@
         "path": "functions/github-updater.php",
         "sha256": "8e36846e91c73fa5bc40f3e80c731a0b1793f4c83d7352600fd0b57ee4063950"
       }
-    ]
+    ],
+    "beta": true
   },
   "tn-login-with-email": {
     "id": "tn-login-with-email",
@@ -136,7 +143,8 @@
         "path": "functions/github-updater.php",
         "sha256": "81623e03e97b134ca7a3ab0e9fbbeb0e910c41b86828b0c3256e01b2f1e49fe2"
       }
-    ]
+    ],
+    "beta": true
   },
   "clean-my-posts": {
     "id": "clean-my-posts",
@@ -153,7 +161,8 @@
         "path": "functions/github-updater.php",
         "sha256": "96cdd4c3e330818ac7ccec8a5bb1e9c8a79e14bd26610447b377f40456cab6a5"
       }
-    ]
+    ],
+    "beta": true
   },
   "menubot": {
     "id": "menubot",
@@ -170,7 +179,8 @@
         "path": "functions/github-updater.php",
         "sha256": "e70e5c219978b5992f09dabf08a4f6b8bc8134d992e3044cd87d81beb9423656"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-lov": {
     "id": "tn-lov",
@@ -187,7 +197,8 @@
         "path": "functions/github-updater.php",
         "sha256": "16c7045bddd76b7ef3fc47b01428a40bfd5ebfd4fce298ae29ae5d7f7b1817f9"
       }
-    ]
+    ],
+    "beta": true
   },
   "tn-sticky-posts": {
     "id": "tn-sticky-posts",
@@ -204,7 +215,8 @@
         "path": "includes/class-github-updater.php",
         "sha256": "027b9f1075a5116520088835b0afbce4083a07418928584ab608e50ca6c0d7fc"
       }
-    ]
+    ],
+    "beta": true
   },
   "tn-wp-migrate-digital-asset-management": {
     "id": "tn-wp-migrate-digital-asset-management",
@@ -221,7 +233,8 @@
         "path": "functions/updater.php",
         "sha256": "cfaa988900b6b81d333276367bc9d8a3c357659ce1b9aee473d91824774f6a59"
       }
-    ]
+    ],
+    "beta": true
   },
   "tn-content-planner": {
     "id": "tn-content-planner",
@@ -238,7 +251,8 @@
         "path": "functions/updater.php",
         "sha256": "f666da08381e0fc9369ad9b0dbc2be7529b70552c9b80717b3551508a000e06e"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-wp-migrate-code-diff": {
     "id": "tn-wp-migrate-code-diff",
@@ -255,7 +269,8 @@
         "path": "functions/updater.php",
         "sha256": "06c6a84374ad2a42747ce9b379654d766617b00899390a76726ee888ab001d46"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-performance-advisor": {
     "id": "tn-performance-advisor",
@@ -272,7 +287,8 @@
         "path": "functions/github-updater.php",
         "sha256": "e45ba91b4fe33c2021d579be20ddbed6ca6b7d450141717fea92b9b84f88947d"
       }
-    ]
+    ],
+    "beta": true
   },
   "tn-environments": {
     "id": "tn-environments",
@@ -289,7 +305,8 @@
         "path": "functions/github-updater.php",
         "sha256": "06b95ee5b72812e55aeefbd3d1d4824c52f8f8621e8d011b90e706085fcadb82"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-sentinel": {
     "id": "tn-sentinel",
@@ -306,7 +323,8 @@
         "path": "functions/github-updater.php",
         "sha256": "c59bd33e86e1baf4e0d7a1a91ad31294acfb9f046479ae21c7e45ec70e839999"
       }
-    ]
+    ],
+    "beta": true
   },
   "help-guides": {
     "id": "help-guides",
@@ -323,7 +341,8 @@
         "path": "includes/github-updater.php",
         "sha256": "0aab6d53b2aadd5067e1beec26ae2d047e586d89afa7f712db5afefcffeb2f3e"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-authenticator": {
     "id": "tn-authenticator",
@@ -340,7 +359,8 @@
         "path": "functions/github-updater.php",
         "sha256": "ec7a97c7f2e531c791daff76e363ed72d929d890ee07db52fe6b18f253a3915c"
       }
-    ]
+    ],
+    "beta": false
   },
   "tn-update-controller": {
     "id": "tn-update-controller",
@@ -352,6 +372,7 @@
     "name": "TN Update Controller",
     "author": "Techn",
     "description": "A cached plugin catalogue, background discovery and guided updates for Techn plugins.",
-    "legacy": []
+    "legacy": [],
+    "beta": true
   }
 }

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-09-26T04:47:24.289145+00:00",
+  "published_at": "2026-09-26T04:54:32.633435+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -353,14 +353,14 @@
       "author": "Techn",
       "description": "One catalogue, background update checks and guided updates for Techn plugins.",
       "beta": true,
-      "version": "0.4.1",
-      "tag": "v0.4.1",
+      "version": "0.4.2",
+      "tag": "v0.4.2",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.4.1\n\n- Add Installed between Active and Available; keep beta installed plugins in Installed and retain their chip.\n- Active cards offer Deactivate; Installed cards offer Activate and Delete; uninstalled Available/Beta cards offer Install. Updates remain on Updates available.\n- Render refreshed state through authenticated AJAX instead of fetching potentially cached page HTML. Preserve successful action feedback if the refresh fails.\n",
-      "sha256": "84049316f5deffbc3418141398f83894b080a88706ace79d417a407e1d742dfe"
+      "body": "## 0.4.2\n\n- Remove the catalogue heading/search toolbar.\n- Remove redundant catalogue card status strips, including Not installed, Active and Installed/inactive. Group headings and state-specific actions already convey lifecycle state.\n- Retain version requirements, Beta chips and compatibility warnings.\n",
+      "sha256": "a558c2c8d14feb86f1c5e5abd38d43d2b269eb9afdaa0aa0d8078b3a7721eaa8"
     },
     {
       "id": "tn-user-management",

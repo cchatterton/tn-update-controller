@@ -1,0 +1,506 @@
+{
+  "schema": 1,
+  "published_at": "2026-09-26T02:09:51.051247+00:00",
+  "plugins": [
+    {
+      "id": "TN-Exploitation-Audit",
+      "repo": "TN-Exploitation-Audit",
+      "owner": "cchatterton",
+      "file": "tn-exploitation-audit/tn-exploitation-audit.php",
+      "slug": "tn-exploitation-audit",
+      "asset": "tn-exploitation-audit.zip",
+      "name": "TN Exploitation Audit",
+      "author": "Techn",
+      "description": "Admin-only audit tools for detecting exposure to CMS exploitation indicators and collecting safe local evidence.",
+      "version": "0.1.0",
+      "tag": "v0.1.0",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 0.1.0 - 2026-07-09\n\n- Added the initial WordPress admin audit plugin.\n- Added vulnerable component inventory checks for the ACSC 09 July 2026 CMS exploitation advisory list.\n- Added WordPress core checksum review, suspicious file scanning, hardening checks, log snippet analysis, local exports, optional quarantine workflow, and GitHub release updater support.",
+      "sha256": "2682c569a6e07b4e917b338e936f9e1b8d5c4837933bf3cb8d1e8affa8838954",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "8e36846e91c73fa5bc40f3e80c731a0b1793f4c83d7352600fd0b57ee4063950"
+        }
+      ]
+    },
+    {
+      "id": "clean-my-posts",
+      "repo": "clean-my-posts",
+      "owner": "cchatterton",
+      "file": "clean-my-posts/clean-my-posts.php",
+      "slug": "clean-my-posts",
+      "asset": "clean-my-posts.zip",
+      "name": "TN Clean My Posts",
+      "author": "Techn",
+      "description": "Safely previews, backs up, cleans, and restores unwanted WordPress content.",
+      "version": "2.0.0",
+      "tag": "v2.0.0",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 2.0.0 - 2026-08-25\n\n- Replaced four action-oriented Tools pages with one preview-first cleanup screen.\n- Added clear cleanup categories, record counts, and estimated content sizes.\n- Added nonce protection, capability checks, strict selection validation, and confirmation prompts.\n- Added dated backup batches, audit details, configurable retention, explicit restore, and permanent deletion.\n- Added transactional cleanup and restore with a 250-record-per-category request limit.\n- Switched post removal to WordPress deletion APIs so related metadata, comments, terms, hooks, and caches are handled.\n- Added Techn naming, production structure, documentation, release packaging, and native GitHub updates.\n",
+      "sha256": "04f61f0f4056304c983ae9c99e9226bb6be4b3183ab174e191a38c2dd06562c1",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "96cdd4c3e330818ac7ccec8a5bb1e9c8a79e14bd26610447b377f40456cab6a5"
+        }
+      ]
+    },
+    {
+      "id": "help-guides",
+      "repo": "help-guides",
+      "owner": "cchatterton",
+      "file": "Help Guides/help_guides.php",
+      "slug": "Help Guides",
+      "asset": "help-guides.zip",
+      "name": "Help Guides (Wiki-style)",
+      "author": "Techn",
+      "description": "Adds Wiki CPT, Help Guides admin menus, screen ID display, and help tabs.",
+      "version": "1.2.1",
+      "tag": "v1.2.1",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 1.2.1 - 2026-08-25\n\n- Restored the original version 1.1 production runtime, menu structure, labels, branding, field definitions, CSS classes, URLs, and interactions without behavioural changes.\n- Added the plugin version constant and GitHub release metadata.\n- Added the required manifest-first updater with public-redirect and API-last fallbacks, short rate-limit backoff, and generic failure notices.\n- Added reproducible release packaging, documentation, and updater-order tests.\n",
+      "sha256": "6c2988fa3d199d87a795de77caea5e07946815e1bcc9b12fc10b7c015c731983",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "includes/github-updater.php",
+          "sha256": "0aab6d53b2aadd5067e1beec26ae2d047e586d89afa7f712db5afefcffeb2f3e"
+        }
+      ]
+    },
+    {
+      "id": "menubot",
+      "repo": "menubot",
+      "owner": "cchatterton",
+      "file": "menubot/menubot.php",
+      "slug": "menubot",
+      "asset": "menubot.zip",
+      "name": "Menubot",
+      "author": "Techn",
+      "description": "Make navigating WordPress admin menus easy for power users.",
+      "version": "1.10",
+      "tag": "v1.10",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 1.10 - 2026-06-14\n\n- Updated the GitHub release updater to bypass its cached GitHub response during forced WordPress update checks.\n- Improved update visibility immediately after publishing a new GitHub release.",
+      "sha256": "37bab81a3f3fcf5157aa2e22810698d529f3f63f0496d6beed05839da0c87154",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "e70e5c219978b5992f09dabf08a4f6b8bc8134d992e3044cd87d81beb9423656"
+        }
+      ]
+    },
+    {
+      "id": "persona26",
+      "repo": "persona26",
+      "owner": "cchatterton",
+      "file": "persona26/persona26.php",
+      "slug": "persona26",
+      "asset": "persona26.zip",
+      "name": "Persona26",
+      "author": "Techn",
+      "description": "Visitor profiles, engagement dimensions and personalisation with Independent Analytics and Gravity Forms.",
+      "version": "0.7.4",
+      "tag": "v0.7.4",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 0.7.4 - 2026-09-12\n\n- Convert saved JSON definitions, post-type dropdown choices and serialized ACF location rules and taxonomy assignments.\n- Migrate AIOSEO post-type selections and WP Engine cache post-type dictionaries.\n- Move Content Planner plan option names, XP pattern keys and pattern metadata to mapped post types, protecting existing destination plans.\n- Skip references to deleted records, retain valid selections and report the skipped count without blocking migration.\n- Preserve taxonomy identifiers, original relationship metadata and exact rollback data.\n",
+      "sha256": "754e80c2dceb55ce1747742a2820030e101bf26f96c76870ba34afdabb0e147e",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "b7292b2554ff9ebbc4ab537f9ca7f53b53e88a351ef1e6e2c09316235096c316"
+        }
+      ]
+    },
+    {
+      "id": "tn-authenticator",
+      "repo": "tn-authenticator",
+      "owner": "cchatterton",
+      "file": "tn-authenticator/tn-authenticator.php",
+      "slug": "tn-authenticator",
+      "asset": "tn-authenticator.zip",
+      "name": "TN Authenticator",
+      "author": "Techn",
+      "description": "Provides a plug-and-play PIN login page at /login-pin.",
+      "version": "1.6",
+      "tag": "v1.6",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## What\u2019s changed\n\n- Disable WordPress password controls for sessions authenticated with an emailed PIN.\n- Keep native password reset controls available to username/password sessions, including concurrent sessions for the same account.\n- Reject direct profile password-change submissions from PIN-authenticated sessions.\n\nThe attached `tn-authenticator.zip` can be installed directly through the WordPress plugin uploader.",
+      "sha256": "6b31638f5e656ae70da2a5cd5c3b2f3b71a68896ecfcc8c886022b1522ba9f7f",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "ec7a97c7f2e531c791daff76e363ed72d929d890ee07db52fe6b18f253a3915c"
+        }
+      ]
+    },
+    {
+      "id": "tn-content-planner",
+      "repo": "tn-content-planner",
+      "owner": "cchatterton",
+      "file": "tn-content-planner/tn-content-planner.php",
+      "slug": "tn-content-planner",
+      "asset": "tn-content-planner.zip",
+      "name": "TN Content Planner",
+      "author": "Techn",
+      "description": "Plan content by post type, arrange a WBS, and create or update selected WordPress content.",
+      "version": "0.3.32",
+      "tag": "v0.3.32",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "- Add Planned only / Planned and existing toggles to each post-type tab.\n- Planned only hides rows linked to WordPress posts. Each tab remembers its own choice while the planner is open.\n- Combine visibility with the XP Pattern filter, preserve unsaved edits, clear selections on switching, and allow filtering while locked.\n",
+      "sha256": "6acd36bfa7d947d95790161018fe87b09eac0cc82b17d3d3e051e6a03bd64e71",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/updater.php",
+          "sha256": "f666da08381e0fc9369ad9b0dbc2be7529b70552c9b80717b3551508a000e06e"
+        }
+      ]
+    },
+    {
+      "id": "tn-environments",
+      "repo": "tn-environments",
+      "owner": "cchatterton",
+      "file": "tn-environments/tn-environments.php",
+      "slug": "tn-environments",
+      "asset": "tn-environments.zip",
+      "name": "TN Environments",
+      "author": "Techn",
+      "description": "Prompts admins to confirm the environment, adds admin environment styling, and displays a build ID.",
+      "version": "1.10",
+      "tag": "v1.10",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 1.10 - 2026-09-04\n\n- Added a white background and padding to the environment tabs panel.\n- Added a nonce-protected \"Check for updates\" action and result notices to the Plugins screen.\n- Updated GitHub release discovery to use the repository manifest and public redirect before the API fallback.\n- Aligned update caching, failure backoff, metadata, licensing, and WordPress readme files with the current GitHub updater standard.",
+      "sha256": "78c0344596d0fb3c7a267b03a256df6a50c2f041cb3f6becb3c8dff551a6acdd",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "06b95ee5b72812e55aeefbd3d1d4824c52f8f8621e8d011b90e706085fcadb82"
+        }
+      ]
+    },
+    {
+      "id": "tn-journey-graph",
+      "repo": "tn-journey-graph",
+      "owner": "cchatterton",
+      "file": "tn-journey-graph/tn-journey-graph.php",
+      "slug": "tn-journey-graph",
+      "asset": "tn-journey-graph.zip",
+      "name": "TN Journey Graph",
+      "author": "Techn",
+      "description": "Front-end journey exploration for authorised users, powered by completed Independent Analytics sessions.",
+      "version": "0.2.13",
+      "tag": "v0.2.13",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "- Adjusted Journey Explorer panel height and micro-histogram bar spacing.",
+      "sha256": "9a85b4d63a4923b7f13f782c5205972bec441bebdbdd31a2f626d1ea07382835",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/updater.php",
+          "sha256": "e3fe53a07bca94b5705a8d6cd9e9393d368233e171ace81a19a6af9c82962625"
+        }
+      ]
+    },
+    {
+      "id": "tn-login-with-email",
+      "repo": "tn-login-with-email",
+      "owner": "cchatterton",
+      "file": "tn-login-with-email/tn-login-with-email.php",
+      "slug": "tn-login-with-email",
+      "asset": "tn-login-with-email.zip",
+      "name": "TN Login with Email",
+      "author": "Techn",
+      "description": "Allows valid email addresses to be used as usernames in WordPress and Multisite registration.",
+      "version": "1.0.0",
+      "tag": "v1.0.0",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 1.0.0 - 2026-08-16\n\n- Added email-address usernames for standard WordPress and Multisite registration.\n- Preserved plus-addressed usernames through WordPress strict username sanitisation.\n- Added safe support for network, single-site, and individual-site activation contexts.\n- Added native WordPress updates from public GitHub releases.",
+      "sha256": "b7baeeaded0e388cbd4d154242f5fbb6bd0bd3eff7701263b54450c6b8bfcf86",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "81623e03e97b134ca7a3ab0e9fbbeb0e910c41b86828b0c3256e01b2f1e49fe2"
+        }
+      ]
+    },
+    {
+      "id": "tn-lov",
+      "repo": "tn-lov",
+      "owner": "cchatterton",
+      "file": "tn-lov/tn-lov.php",
+      "slug": "tn-lov",
+      "asset": "tn-lov.zip",
+      "name": "TN LOV",
+      "author": "Techn",
+      "description": "Manage reusable, optionally grouped values with native WordPress tools and optional WPML language support.",
+      "version": "2.0.8",
+      "tag": "v2.0.8",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "TN LOV 2.0.8 refines Developer Reference into a compact, balanced row.\n\n- Keeps the developer card narrow\n- Centres the LOV tester between the description and code examples\n- Vertically aligns all three sections\n- Preserves a clean stacked layout on smaller screens",
+      "sha256": "32a4cfd0b9def3f52f34079f3ac5e0577d3cfab14c2b004ded42b6f8e002b2d8",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "16c7045bddd76b7ef3fc47b01428a40bfd5ebfd4fce298ae29ae5d7f7b1817f9"
+        }
+      ]
+    },
+    {
+      "id": "tn-pallet",
+      "repo": "tn-pallet",
+      "owner": "cchatterton",
+      "file": "tn-pallet/tn-pallet.php",
+      "slug": "tn-pallet",
+      "asset": "tn-pallet.zip",
+      "name": "TN Pallet",
+      "author": "Techn",
+      "description": "Manage a named colour palette and generated utility CSS from WordPress admin.",
+      "version": "0.1.12",
+      "tag": "v0.1.12",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 0.1.12\n\n- Fixed generated palette stylesheet URLs using HTTP on HTTPS production pages behind a reverse proxy, which caused browsers to block `palette.css` as mixed content.\n- Preserved the restored v0.1.8 asset hooks while normalising only the public stylesheet URL scheme.",
+      "sha256": "124697094cb02ca5559614432f6c9366c296cbd5f29539128e06bb7eb3a092b5",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "includes/class-tn-pallet-github-updater.php",
+          "sha256": "0214e4e453b59e1d28b957fd5ff740fabe8c55e1f014ec13e976587db56bd240"
+        }
+      ]
+    },
+    {
+      "id": "tn-performance-advisor",
+      "repo": "tn-performance-advisor",
+      "owner": "cchatterton",
+      "file": "tn-performance-advisor/tn-performance-advisor.php",
+      "slug": "tn-performance-advisor",
+      "asset": "tn-performance-advisor.zip",
+      "name": "TN Performance Advisor",
+      "author": "Techn",
+      "description": "Turns a sanitised Query Monitor capture into a prioritised performance action plan using the WordPress AI Client.",
+      "version": "0.1.9",
+      "tag": "v0.1.9",
+      "requires": "7.0",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "body": "Adds a Next recommendation button to the Performance Advisor results page.\n\nEach click recalls OpenAI using the same saved Query Monitor capture and a compact history of every recommendation already shown. The model must return the next distinct, evidence-backed implementation work order without repeating, rephrasing, splitting, or substantially overlapping an earlier result. Exact duplicate results are rejected.\n\nRecommendations are numbered sequentially. Starting a fresh analysis from the admin bar resets the sequence. When no further supported change remains, the page reports that state and removes the Next recommendation button.",
+      "sha256": "830b400abf11f508fa507f38c387623ddd16eed3948371d4dead76b8b1fec386",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "e45ba91b4fe33c2021d579be20ddbed6ca6b7d450141717fea92b9b84f88947d"
+        }
+      ]
+    },
+    {
+      "id": "tn-qrcodes",
+      "repo": "tn-qrcodes",
+      "owner": "cchatterton",
+      "file": "tn-qrcodes/tn-qrcodes.php",
+      "slug": "tn-qrcodes",
+      "asset": "tn-qrcodes.zip",
+      "name": "TN QR Codes",
+      "author": "Techn",
+      "description": "Adds QR codes to public post types and allows tracked QR code downloads.",
+      "version": "1.5",
+      "tag": "v1.5",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 1.5 - 2026-06-14\n\n- Added GitHub release update support for native WordPress plugin updates.\n- Added compliant plugin metadata, version constant, and GitHub repository links.\n- Moved QR logic into a focused function file and kept the main plugin file as a loader.\n- Moved inline admin JavaScript and CSS into dedicated asset files.\n- Improved nonce handling and QR download filename sanitisation.\n- Added release ZIP build script and repository documentation.",
+      "sha256": "5ce29644362fb37e59545f55aa0fd3b45f5d3d3df26aa5ceb63429ae6576b343",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "780e87ccbfb4ab9f5f24dd25e71f2223eea7b56ece87dbf8a5d8f32f02ffb7e3"
+        }
+      ]
+    },
+    {
+      "id": "tn-sentinel",
+      "repo": "tn-sentinel",
+      "owner": "cchatterton",
+      "file": "tn-sentinel/tn-sentinel.php",
+      "slug": "tn-sentinel",
+      "asset": "tn-sentinel.zip",
+      "name": "TN Sentinel",
+      "author": "Techn",
+      "description": "Protects WordPress plugin administration using a paired owner and authenticator approval.",
+      "version": "0.1.5",
+      "tag": "v0.1.5",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "TN Sentinel v0.1.5 fixes an initial-pairing deadlock after updating the standard plugin while an older MU guardian remains installed.\n\nChanges:\n- Detect signed unpaired installations with an older or missing MU guardian.\n- Offer Repair guardian and continue pairing before an owner exists.\n- Protect the repair with the Sentinel capability, WordPress nonce, and explicit acknowledgement.\n- Keep the bundled guardian at v0.1.4 because its enforcement code is unchanged.\n\nAfter updating, open TN Sentinel, select Repair guardian and continue pairing, then complete TOTP pairing.",
+      "sha256": "53c41400d9fd405b678a31aa022263d9954e921179d0ba24b2bb0230403cf641",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "c59bd33e86e1baf4e0d7a1a91ad31294acfb9f046479ae21c7e45ec70e839999"
+        }
+      ]
+    },
+    {
+      "id": "tn-sticky-posts",
+      "repo": "tn-sticky-posts",
+      "owner": "cchatterton",
+      "file": "tn-sticky-posts/tn-sticky-posts.php",
+      "slug": "tn-sticky-posts",
+      "asset": "tn-sticky-posts.zip",
+      "name": "TN Sticky Posts",
+      "author": "Techn",
+      "description": "Centrally manages announcement content for native WordPress sticky posts.",
+      "version": "1.0.6",
+      "tag": "v1.0.6",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 1.0.6 - 2026-07-02\n\n- Added a GitHub release redirect fallback when the GitHub API returns forbidden or rate-limited responses.\n- Verifies the expected release ZIP URL before offering fallback update data.",
+      "sha256": "9ba8ed6cebb31cd268d50b0b6e6cc6be585ac3429ac30e7ca67e0c4ad9df18ec",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "includes/class-github-updater.php",
+          "sha256": "027b9f1075a5116520088835b0afbce4083a07418928584ab608e50ca6c0d7fc"
+        }
+      ]
+    },
+    {
+      "id": "tn-tax-manager",
+      "repo": "tn-tax-manager",
+      "owner": "cchatterton",
+      "file": "tn-tax-manager/tn-tax-manager.php",
+      "slug": "tn-tax-manager",
+      "asset": "tn-tax-manager.zip",
+      "name": "TN Tax Manager",
+      "author": "Techn",
+      "description": "Lightweight front-end taxonomy management with AI suggestions and guided taxonomy cleanup.",
+      "version": "1.0.33",
+      "tag": "v1.0.33",
+      "requires": "7.0",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "body": "\n- Decoded HTML entities in category names before showing current terms, autocomplete options, AI suggestions, and taxonomy wizard labels.\n- Matched add requests against decoded and stored category names so terms such as `Gear & Set ups` do not create duplicates when WordPress stores an encoded label.\n\n",
+      "sha256": "2155502e7dcf9805f04f7b53bbcdf0653657a6ab82aef8b3b7195ca96b289615",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/updater.php",
+          "sha256": "1b57f02f91c56dc0366571ec0c2cedca00890606590d7c5edcffcb71bcc7c74d"
+        }
+      ]
+    },
+    {
+      "id": "tn-user-management",
+      "repo": "tn-user-management",
+      "owner": "cchatterton",
+      "file": "tn-user-management/tn-user-management.php",
+      "slug": "tn-user-management",
+      "asset": "tn-user-management.zip",
+      "name": "TN User Management",
+      "author": "Techn",
+      "description": "Email-as-username, one-time username migration, role normalisation, permission sets, and multisite user governance.",
+      "version": "1.32",
+      "tag": "v1.32",
+      "requires": "6.0",
+      "requires_php": "8.1",
+      "dependencies": [],
+      "body": "## 1.32 - 2026-08-31\n\n- Enforced Skip Confirmation Email for both Add Existing User and Add User on multisite subsite screens.\n- Kept both subsite controls visibly checked and disabled to reflect the enforced server-side behaviour.\n- Updated subsite help text so it no longer promises confirmation or welcome email.",
+      "sha256": "1fa41b8a4412e451cffd2ea21fadf22e120e6ad50b875c07bd1f191c46ec0d32",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/github-updater.php",
+          "sha256": "02d992fad489362a25a66e5c7e08f723f8818146ff50b86d1be44f4aa1e19f99"
+        }
+      ]
+    },
+    {
+      "id": "tn-wp-migrate-code-diff",
+      "repo": "tn-wp-migrate-code-diff",
+      "owner": "cchatterton",
+      "file": "tn-wp-migrate-code-diff/tn-wp-migrate-code-diff.php",
+      "slug": "tn-wp-migrate-code-diff",
+      "asset": "tn-wp-migrate-code-diff.zip",
+      "name": "WP Migrate - Release Management",
+      "author": "Techn",
+      "description": "Compares connected WordPress code and content, and creates or installs selective offline releases.",
+      "version": "0.11.3",
+      "tag": "v0.11.3",
+      "requires": "5.2",
+      "requires_php": "5.6",
+      "dependencies": [],
+      "body": "## WP Migrate - Release Management 0.11.3\n\nFixes the WP Migrate comparison control bar on sites where no WP Migrate update notice is displayed.\n\n### Changed\n\n- The control bar no longer requires `.migrate-notice.warning` as its placement anchor.\n- When an update notice exists, the control bar remains directly beneath it.\n- When no update notice exists, the plugin creates its own slot immediately above the migration form.\n- The fallback responds to WP Migrate's rendered page state and does not add another WordPress menu item.\n",
+      "sha256": "9b1578c3ffab1e7c1587f5fad7ceec8968ddfc2c1b667c9df96039f483d8f1fd",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/updater.php",
+          "sha256": "06c6a84374ad2a42747ce9b379654d766617b00899390a76726ee888ab001d46"
+        }
+      ]
+    },
+    {
+      "id": "tn-wp-migrate-digital-asset-management",
+      "repo": "tn-wp-migrate-digital-asset-management",
+      "owner": "cchatterton",
+      "file": "tn-wp-migrate-digital-asset-management/tn-wp-migrate-digital-asset-management.php",
+      "slug": "tn-wp-migrate-digital-asset-management",
+      "asset": "tn-wp-migrate-digital-asset-management.zip",
+      "name": "WP Migrate - Digital Asset Management",
+      "author": "Techn",
+      "description": "Reconciles non-production WordPress media references with a canonical production Media Library through WP Migrate.",
+      "version": "0.1.0",
+      "tag": "v0.1.0",
+      "requires": "5.2",
+      "requires_php": "5.6",
+      "dependencies": [],
+      "body": "## WP Migrate - Digital Asset Management 0.1.0\n\nInitial MVP release for manually reconciling non-production WordPress media references with a canonical production Media Library.\n\n### Included\n\n- Signed PROD catalogue exchange through the existing WP Migrate connection handshake.\n- Push and Pull preflight checks, PROD environment verification, plugin verification, and protocol compatibility checks.\n- Manual comparison of post content, excerpts, post meta, featured images, and local Media Library assets.\n- Exact upload-URL remapping to PROD for catalogue matches.\n- Local materialisation of missing production-backed featured images.\n- WordPress-native settings UI, explicit Check and Resync actions, multisite PROD subsite targeting, and GitHub-native updates.\n\n### Current boundary\n\nLocal-only assets are reported but are not promoted to PROD in this release. No scheduled or background synchronisation is registered.\n",
+      "sha256": "a929fac3b1e911649b9198423bb7cc99979f8139fa3545fc7b3b08b5787694e8",
+      "controller_api": 0,
+      "legacy": [
+        {
+          "path": "functions/updater.php",
+          "sha256": "cfaa988900b6b81d333276367bc9d8a3c357659ce1b9aee473d91824774f6a59"
+        }
+      ]
+    }
+  ]
+}

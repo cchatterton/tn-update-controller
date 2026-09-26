@@ -1,0 +1,354 @@
+{
+  "tn-user-management": {
+    "id": "tn-user-management",
+    "owner": "cchatterton",
+    "repo": "tn-user-management",
+    "file": "tn-user-management/tn-user-management.php",
+    "slug": "tn-user-management",
+    "asset": "tn-user-management.zip",
+    "name": "TN User Management",
+    "author": "Techn",
+    "description": "Email-as-username, one-time username migration, role normalisation, permission sets, and multisite user governance.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "02d992fad489362a25a66e5c7e08f723f8818146ff50b86d1be44f4aa1e19f99"
+      }
+    ]
+  },
+  "persona26": {
+    "id": "persona26",
+    "owner": "cchatterton",
+    "repo": "persona26",
+    "file": "persona26/persona26.php",
+    "slug": "persona26",
+    "asset": "persona26.zip",
+    "name": "Persona26",
+    "author": "Techn",
+    "description": "Visitor profiles, engagement dimensions and personalisation with Independent Analytics and Gravity Forms.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "b7292b2554ff9ebbc4ab537f9ca7f53b53e88a351ef1e6e2c09316235096c316"
+      }
+    ]
+  },
+  "tn-journey-graph": {
+    "id": "tn-journey-graph",
+    "owner": "cchatterton",
+    "repo": "tn-journey-graph",
+    "file": "tn-journey-graph/tn-journey-graph.php",
+    "slug": "tn-journey-graph",
+    "asset": "tn-journey-graph.zip",
+    "name": "TN Journey Graph",
+    "author": "Techn",
+    "description": "Front-end journey exploration for authorised users, powered by completed Independent Analytics sessions.",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "e3fe53a07bca94b5705a8d6cd9e9393d368233e171ace81a19a6af9c82962625"
+      }
+    ]
+  },
+  "tn-tax-manager": {
+    "id": "tn-tax-manager",
+    "owner": "cchatterton",
+    "repo": "tn-tax-manager",
+    "file": "tn-tax-manager/tn-tax-manager.php",
+    "slug": "tn-tax-manager",
+    "asset": "tn-tax-manager.zip",
+    "name": "TN Tax Manager",
+    "author": "Techn",
+    "description": "Lightweight front-end taxonomy management with AI suggestions and guided taxonomy cleanup.",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "1b57f02f91c56dc0366571ec0c2cedca00890606590d7c5edcffcb71bcc7c74d"
+      }
+    ]
+  },
+  "tn-pallet": {
+    "id": "tn-pallet",
+    "owner": "cchatterton",
+    "repo": "tn-pallet",
+    "file": "tn-pallet/tn-pallet.php",
+    "slug": "tn-pallet",
+    "asset": "tn-pallet.zip",
+    "name": "TN Pallet",
+    "author": "Techn",
+    "description": "Manage a named colour palette and generated utility CSS from WordPress admin.",
+    "legacy": [
+      {
+        "path": "includes/class-tn-pallet-github-updater.php",
+        "sha256": "0214e4e453b59e1d28b957fd5ff740fabe8c55e1f014ec13e976587db56bd240"
+      }
+    ]
+  },
+  "tn-qrcodes": {
+    "id": "tn-qrcodes",
+    "owner": "cchatterton",
+    "repo": "tn-qrcodes",
+    "file": "tn-qrcodes/tn-qrcodes.php",
+    "slug": "tn-qrcodes",
+    "asset": "tn-qrcodes.zip",
+    "name": "TN QR Codes",
+    "author": "Techn",
+    "description": "Adds QR codes to public post types and allows tracked QR code downloads.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "780e87ccbfb4ab9f5f24dd25e71f2223eea7b56ece87dbf8a5d8f32f02ffb7e3"
+      }
+    ]
+  },
+  "TN-Exploitation-Audit": {
+    "id": "TN-Exploitation-Audit",
+    "owner": "cchatterton",
+    "repo": "TN-Exploitation-Audit",
+    "file": "tn-exploitation-audit/tn-exploitation-audit.php",
+    "slug": "tn-exploitation-audit",
+    "asset": "tn-exploitation-audit.zip",
+    "name": "TN Exploitation Audit",
+    "author": "Techn",
+    "description": "Admin-only audit tools for detecting exposure to CMS exploitation indicators and collecting safe local evidence.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "8e36846e91c73fa5bc40f3e80c731a0b1793f4c83d7352600fd0b57ee4063950"
+      }
+    ]
+  },
+  "tn-login-with-email": {
+    "id": "tn-login-with-email",
+    "owner": "cchatterton",
+    "repo": "tn-login-with-email",
+    "file": "tn-login-with-email/tn-login-with-email.php",
+    "slug": "tn-login-with-email",
+    "asset": "tn-login-with-email.zip",
+    "name": "TN Login with Email",
+    "author": "Techn",
+    "description": "Allows valid email addresses to be used as usernames in WordPress and Multisite registration.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "81623e03e97b134ca7a3ab0e9fbbeb0e910c41b86828b0c3256e01b2f1e49fe2"
+      }
+    ]
+  },
+  "clean-my-posts": {
+    "id": "clean-my-posts",
+    "owner": "cchatterton",
+    "repo": "clean-my-posts",
+    "file": "clean-my-posts/clean-my-posts.php",
+    "slug": "clean-my-posts",
+    "asset": "clean-my-posts.zip",
+    "name": "TN Clean My Posts",
+    "author": "Techn",
+    "description": "Safely previews, backs up, cleans, and restores unwanted WordPress content.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "96cdd4c3e330818ac7ccec8a5bb1e9c8a79e14bd26610447b377f40456cab6a5"
+      }
+    ]
+  },
+  "menubot": {
+    "id": "menubot",
+    "owner": "cchatterton",
+    "repo": "menubot",
+    "file": "menubot/menubot.php",
+    "slug": "menubot",
+    "asset": "menubot.zip",
+    "name": "Menubot",
+    "author": "Techn",
+    "description": "Make navigating WordPress admin menus easy for power users.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "e70e5c219978b5992f09dabf08a4f6b8bc8134d992e3044cd87d81beb9423656"
+      }
+    ]
+  },
+  "tn-lov": {
+    "id": "tn-lov",
+    "owner": "cchatterton",
+    "repo": "tn-lov",
+    "file": "tn-lov/tn-lov.php",
+    "slug": "tn-lov",
+    "asset": "tn-lov.zip",
+    "name": "TN LOV",
+    "author": "Techn",
+    "description": "Manage reusable, optionally grouped values with native WordPress tools and optional WPML language support.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "16c7045bddd76b7ef3fc47b01428a40bfd5ebfd4fce298ae29ae5d7f7b1817f9"
+      }
+    ]
+  },
+  "tn-sticky-posts": {
+    "id": "tn-sticky-posts",
+    "owner": "cchatterton",
+    "repo": "tn-sticky-posts",
+    "file": "tn-sticky-posts/tn-sticky-posts.php",
+    "slug": "tn-sticky-posts",
+    "asset": "tn-sticky-posts.zip",
+    "name": "TN Sticky Posts",
+    "author": "Techn",
+    "description": "Centrally manages announcement content for native WordPress sticky posts.",
+    "legacy": [
+      {
+        "path": "includes/class-github-updater.php",
+        "sha256": "027b9f1075a5116520088835b0afbce4083a07418928584ab608e50ca6c0d7fc"
+      }
+    ]
+  },
+  "tn-wp-migrate-digital-asset-management": {
+    "id": "tn-wp-migrate-digital-asset-management",
+    "owner": "cchatterton",
+    "repo": "tn-wp-migrate-digital-asset-management",
+    "file": "tn-wp-migrate-digital-asset-management/tn-wp-migrate-digital-asset-management.php",
+    "slug": "tn-wp-migrate-digital-asset-management",
+    "asset": "tn-wp-migrate-digital-asset-management.zip",
+    "name": "WP Migrate - Digital Asset Management",
+    "author": "Techn",
+    "description": "Reconciles non-production WordPress media references with a canonical production Media Library through WP Migrate.",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "cfaa988900b6b81d333276367bc9d8a3c357659ce1b9aee473d91824774f6a59"
+      }
+    ]
+  },
+  "tn-content-planner": {
+    "id": "tn-content-planner",
+    "owner": "cchatterton",
+    "repo": "tn-content-planner",
+    "file": "tn-content-planner/tn-content-planner.php",
+    "slug": "tn-content-planner",
+    "asset": "tn-content-planner.zip",
+    "name": "TN Content Planner",
+    "author": "Techn",
+    "description": "Plan content by post type, arrange a WBS, and create or update selected WordPress content.",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "f666da08381e0fc9369ad9b0dbc2be7529b70552c9b80717b3551508a000e06e"
+      }
+    ]
+  },
+  "tn-wp-migrate-code-diff": {
+    "id": "tn-wp-migrate-code-diff",
+    "owner": "cchatterton",
+    "repo": "tn-wp-migrate-code-diff",
+    "file": "tn-wp-migrate-code-diff/tn-wp-migrate-code-diff.php",
+    "slug": "tn-wp-migrate-code-diff",
+    "asset": "tn-wp-migrate-code-diff.zip",
+    "name": "WP Migrate - Release Management",
+    "author": "Techn",
+    "description": "Compares connected WordPress code and content, and creates or installs selective offline releases.",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "06c6a84374ad2a42747ce9b379654d766617b00899390a76726ee888ab001d46"
+      }
+    ]
+  },
+  "tn-performance-advisor": {
+    "id": "tn-performance-advisor",
+    "owner": "cchatterton",
+    "repo": "tn-performance-advisor",
+    "file": "tn-performance-advisor/tn-performance-advisor.php",
+    "slug": "tn-performance-advisor",
+    "asset": "tn-performance-advisor.zip",
+    "name": "TN Performance Advisor",
+    "author": "Techn",
+    "description": "Turns a sanitised Query Monitor capture into a prioritised performance action plan using the WordPress AI Client.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "e45ba91b4fe33c2021d579be20ddbed6ca6b7d450141717fea92b9b84f88947d"
+      }
+    ]
+  },
+  "tn-environments": {
+    "id": "tn-environments",
+    "owner": "cchatterton",
+    "repo": "tn-environments",
+    "file": "tn-environments/tn-environments.php",
+    "slug": "tn-environments",
+    "asset": "tn-environments.zip",
+    "name": "TN Environments",
+    "author": "Techn",
+    "description": "Prompts admins to confirm the environment, adds admin environment styling, and displays a build ID.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "06b95ee5b72812e55aeefbd3d1d4824c52f8f8621e8d011b90e706085fcadb82"
+      }
+    ]
+  },
+  "tn-sentinel": {
+    "id": "tn-sentinel",
+    "owner": "cchatterton",
+    "repo": "tn-sentinel",
+    "file": "tn-sentinel/tn-sentinel.php",
+    "slug": "tn-sentinel",
+    "asset": "tn-sentinel.zip",
+    "name": "TN Sentinel",
+    "author": "Techn",
+    "description": "Protects WordPress plugin administration using a paired owner and authenticator approval.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "c59bd33e86e1baf4e0d7a1a91ad31294acfb9f046479ae21c7e45ec70e839999"
+      }
+    ]
+  },
+  "help-guides": {
+    "id": "help-guides",
+    "owner": "cchatterton",
+    "repo": "help-guides",
+    "file": "Help Guides/help_guides.php",
+    "slug": "Help Guides",
+    "asset": "help-guides.zip",
+    "name": "Help Guides (Wiki-style)",
+    "author": "Techn",
+    "description": "Adds Wiki CPT, Help Guides admin menus, screen ID display, and help tabs.",
+    "legacy": [
+      {
+        "path": "includes/github-updater.php",
+        "sha256": "0aab6d53b2aadd5067e1beec26ae2d047e586d89afa7f712db5afefcffeb2f3e"
+      }
+    ]
+  },
+  "tn-authenticator": {
+    "id": "tn-authenticator",
+    "owner": "cchatterton",
+    "repo": "tn-authenticator",
+    "file": "tn-authenticator/tn-authenticator.php",
+    "slug": "tn-authenticator",
+    "asset": "tn-authenticator.zip",
+    "name": "TN Authenticator",
+    "author": "Techn",
+    "description": "Provides a plug-and-play PIN login page at /login-pin.",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "ec7a97c7f2e531c791daff76e363ed72d929d890ee07db52fe6b18f253a3915c"
+      }
+    ]
+  },
+  "tn-update-controller": {
+    "id": "tn-update-controller",
+    "owner": "cchatterton",
+    "repo": "tn-update-controller",
+    "file": "tn-update-controller/tn-update-controller.php",
+    "slug": "tn-update-controller",
+    "asset": "tn-update-controller.zip",
+    "name": "TN Update Controller",
+    "author": "Techn",
+    "description": "A cached plugin catalogue, background discovery and guided updates for Techn plugins.",
+    "legacy": []
+  }
+}

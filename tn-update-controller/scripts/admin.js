@@ -179,18 +179,6 @@
         if (event.target.id === 'tnuc-select-all') root.querySelectorAll('[name="tnuc-selected"]:not(:disabled)').forEach(box => { box.checked = event.target.checked; });
         if (event.target.id === 'tnuc-select-all' || event.target.name === 'tnuc-selected') selection();
     });
-    root.addEventListener('input', event => {
-        if (event.target.id !== 'tnuc-search') return;
-        let visible = 0;
-        root.querySelectorAll('[data-search]').forEach(card => {
-            card.hidden = !card.dataset.search.includes(event.target.value.trim().toLowerCase());
-            if (!card.hidden) visible++;
-        });
-        root.querySelectorAll('[data-catalogue-group]').forEach(group => {
-            group.hidden = !group.querySelector('.tnuc-card:not([hidden])');
-        });
-        document.getElementById('tnuc-no-results').hidden = visible > 0;
-    });
     retry.addEventListener('click', () => { if (!busy && retryAction) void retryAction(); });
     close.addEventListener('click', () => { if (!busy) dialog.close(); });
     dialog.addEventListener('cancel', event => { if (busy) event.preventDefault(); });

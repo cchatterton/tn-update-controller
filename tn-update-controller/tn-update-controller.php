@@ -2,19 +2,19 @@
 /**
  * Plugin Name: TN Update Controller
  * Description: One catalogue, background update checks and guided updates for Techn plugins.
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Techn
  * Author URI: https://techn.com.au
  * Update URI: https://github.com/cchatterton/tn-update-controller
  * Requires at least: 6.5
- * Requires PHP: 8.1
+ * Requires PHP: 7.4
  * Network: true
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: tn-update-controller
  */
 if (!defined('ABSPATH')) { exit; }
-define('TNUC_VERSION', '0.1.1');
+define('TNUC_VERSION', '0.1.2');
 define('TNUC_API_VERSION', 1);
 define('TNUC_FILE', __FILE__);
 define('TNUC_DIR', __DIR__ . '/');

@@ -44,3 +44,7 @@ All ten migrated clients were also loaded together with the controller absent, i
 The migration releases require WordPress 7.0+ and PHP 8.5+. Runtime testing used WordPress 7.1.2/PHP 8.5.7. No customer-site deployment has been performed.
 
 The browser-driven **published** release run also completed ten of ten. It preserved network activation timestamps, site-only Menubot activation, inactive QR Codes state, and saved palette/content-plan/Persona26/environment settings. Repeated post-migration metadata reads remained HTTP-free. See [the release report](TEN-PLUGIN-MIGRATION.md).
+
+## PHP 7.4 correction
+
+See [PHP compatibility validation](PHP-COMPATIBILITY.md) for WordPress 7.0 runtime testing on PHP 7.4.30, 8.1.23 and 8.5.7. This supersedes the earlier PHP minimum and syntax-only compatibility notes above.

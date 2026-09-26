@@ -40,8 +40,11 @@ function tnuc_scheduled_check(): void {
     tnuc_refresh(false);
     tnuc_schedule();
 }
-/** Unique option_name provides atomic acquisition; compare-and-delete protects a replacement owner. */
-function tnuc_lock(string $name, int $ttl = 120): string|false {
+/**
+ * Unique option_name provides atomic acquisition; compare-and-delete protects a replacement owner.
+ * @return string|false
+ */
+function tnuc_lock(string $name, int $ttl = 120) {
     return tnuc_on_main(static function () use ($name, $ttl) {
         global $wpdb;
         $key = 'tnuc_lock_' . $name;

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 - 2026-09-26
+
+- Support PHP 7.4 to match the minimum PHP version for WordPress 7.0.
+- Replace PHP 8-only union return declarations with equivalent PHPDoc types without changing updater behaviour.
+- Align the client installation contract with PHP 7.4 compatibility.
+
 ## 0.1.1 - 2026-09-26
 
 - Accept explicitly audited alternative legacy updater hashes per file, including TN User Management 1.8 from the initial migration site.

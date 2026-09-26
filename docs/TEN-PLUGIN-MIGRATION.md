@@ -1,6 +1,6 @@
 # Techn controller migration — 26 September 2026
 
-Completed the ten-plugin batch. TN Scroll Depth was excluded at your request. All feature releases require **WordPress 7.0+ and PHP 8.5+**.
+Completed the ten-plugin batch. TN Scroll Depth was excluded at your request. The original releases below required **WordPress 7.0+ and PHP 8.5+**. They are superseded by the PHP 7.4 compatibility patch releases; see the PHP compatibility report.
 
 | Plugin | Migration release | Previous package used in bulk test |
 | --- | --- | --- |

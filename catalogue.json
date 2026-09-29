@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-09-26T05:52:06.323889+00:00",
+  "published_at": "2026-09-29T04:03:09.716166+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -97,14 +97,16 @@
       "author": "Techn",
       "description": "Visitor profiles, engagement dimensions and personalisation with Independent Analytics and Gravity Forms.",
       "beta": false,
-      "version": "0.7.6",
-      "tag": "v0.7.6",
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "0.7.7",
+      "tag": "v0.7.7",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 0.7.6 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
-      "sha256": "9c65187e9a795852e2859c42b19ce40581e6fe14b3971d7cd2a67e76bd8d745a"
+      "body": "## 0.7.7 - 2026-09-29\n\n- Allow exact tracked CPT query parameters with published post slugs to select a dimension value.\n- After normal page increments, raise each selected counter to its dimension maximum plus one and sync the persona, localStorage, cookie and body classes.\n- Preserve other counters; ignore invalid selections and skip query updates for persona=get and persona=clear.\n\n",
+      "sha256": "a6bcd6a285b87dc3fee43f3a7a905cc4700959eb4ff14f757904396a09777d67"
     },
     {
       "id": "tn-authenticator",

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1 - 2026-10-03
+
+- Refresh the Techn catalogue during WordPress native forced update checks so newly published plugin releases appear in the standard update flow.
+- Read the published catalogue through GitHub's contents API and decode both API and raw JSON responses to avoid stale raw-content cache results.
+- Force explicit manual catalogue checks to bypass the recent-success cooldown and show installed/latest versions on catalogue cards.
+
 ## 0.5.0 - 2026-09-26
 
 - Read domain restrictions from plugin release headers via the verified catalogue. Show all catalogue plugins on localhost. Accept new approved same-brand catalogue entries without controller releases; keep executable legacy trust bundled.

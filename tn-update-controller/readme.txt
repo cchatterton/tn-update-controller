@@ -3,7 +3,7 @@ Contributors:
 Tags: updates, plugins, catalogue, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -42,7 +42,7 @@ No. Feature plugins continue to operate without it. Legacy updater suppression o
 Only explicitly approved Techn-authored WordPress plugin packages are included. Themes, blocks, unrelated authors and ambiguous packages are excluded. New package identities require a registry update.
 
 = Are checks immediate? =
-Manual checks bypass the normal six-hour interval, but reuse a successful check made within the last minute and respect in-progress checks and remote retry limits.
+Manual checks bypass the normal six-hour interval and the recent-success cooldown, but still respect in-progress checks and remote retry limits.
 
 == External services ==
 
@@ -52,6 +52,11 @@ Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-servi
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.5.1 =
+* Refresh the Techn catalogue during WordPress native forced update checks so newly published plugin releases appear in the standard update flow.
+* Read the published catalogue through GitHub's contents API and decode both API and raw JSON responses to avoid stale raw-content cache results.
+* Force explicit manual catalogue checks to bypass the recent-success cooldown and show installed/latest versions on catalogue cards.
 
 = 0.5.0 =
 * Read domain restrictions from plugin release headers via the verified catalogue. Show all catalogue plugins on localhost. Accept new approved same-brand catalogue entries without controller releases; keep executable legacy trust bundled.

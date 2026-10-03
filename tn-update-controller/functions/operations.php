@@ -83,7 +83,7 @@ function tnuc_dispatch(string $op, array $input) {
     if ($op === 'check') {
         $id = sanitize_text_field($input['plugin_id'] ?? '');
         if ($id && !isset(tnuc_registry()[$id])) { return new WP_Error('unknown', 'Unknown plugin.'); }
-        $result = tnuc_refresh(true); tnuc_schedule(); return $result;
+        $result = tnuc_refresh(true, true); tnuc_schedule(); return $result;
     }
     if ($op === 'start') { return tnuc_start_batch(array_map('sanitize_text_field', (array) ($input['ids'] ?? [])), sanitize_key($input['kind'] ?? 'update')); }
     if ($op === 'step') { return tnuc_step_batch(sanitize_text_field($input['job'] ?? '')); }

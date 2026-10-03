@@ -40,6 +40,11 @@ function tnuc_scheduled_check(): void {
     tnuc_refresh(false);
     tnuc_schedule();
 }
+function tnuc_refresh_on_native_forced_check(): void {
+    if (empty($_GET['force-check']) || !tnuc_authorised()) { return; }
+    tnuc_refresh(true, true);
+    tnuc_schedule();
+}
 /**
  * Unique option_name provides atomic acquisition; compare-and-delete protects a replacement owner.
  * @return string|false

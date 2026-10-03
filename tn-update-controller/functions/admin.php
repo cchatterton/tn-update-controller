@@ -69,6 +69,14 @@ function tnuc_render_dialog(): void {
     echo '<dialog id="tnuc-dialog" class="tnuc-dialog" aria-labelledby="tnuc-dialog-title" aria-describedby="tnuc-dialog-message"><h2 id="tnuc-dialog-title" tabindex="-1">Checking for updates</h2><div class="tnuc-activity"><span class="spinner is-active" aria-hidden="true"></span><p id="tnuc-dialog-message" role="status" aria-live="polite"></p></div><div id="tnuc-progress-area" hidden><progress id="tnuc-progress" max="1" value="0" aria-label="Plugins processed"></progress><p id="tnuc-current"></p></div><details id="tnuc-failures" hidden><summary>Failed plugins</summary><ul></ul></details><div class="tnuc-dialog-actions"><button type="button" class="button" id="tnuc-retry" hidden>Retry</button><button type="button" class="button button-primary" id="tnuc-close" disabled>Close</button></div></dialog>';
 }
 function tnuc_details_link(array $entry): void { echo '<a href="' . esc_url(tnuc_release_url($entry)) . '" target="_blank" rel="noopener noreferrer">Release notes<span class="screen-reader-text"> (opens in a new tab)</span></a>'; }
+function tnuc_catalogue_version_label(array $entry, array $plugins, bool $installed): string {
+    $requirements = 'WordPress ' . $entry['requires'] . '+ · PHP ' . $entry['requires_php'] . '+';
+    if (!$installed || !isset($plugins[$entry['file']])) {
+        return 'Latest ' . $entry['version'] . ' · ' . $requirements;
+    }
+    $installed_version = $plugins[$entry['file']]['Version'] ?: 'unknown';
+    return 'Installed ' . $installed_version . ' · Latest ' . $entry['version'] . ' · ' . $requirements;
+}
 function tnuc_render_catalogue(array $registry, array $releases, array $plugins): void {
     if (!$releases) { echo '<p class="tnuc-intro">This library lists the plugins recognised by this controller. Refresh the catalogue to load verified releases and enable installation.</p>'; }
     $labels = ['active' => 'Active', 'installed' => 'Installed', 'available' => 'Available', 'beta' => 'Beta'];
@@ -77,7 +85,7 @@ function tnuc_render_catalogue(array $registry, array $releases, array $plugins)
     foreach ($entries as $id=>$identity) {
         $e = $releases[$id] ?? $identity; $has = isset($plugins[$e['file']]);
         $conflict = $has && !tnuc_match($e, $plugins); $issue = $conflict ? 'Installed plugin identity needs review.' : (isset($releases[$id]) ? tnuc_compatibility($e) : 'Check the catalogue to load this release.');
-        echo '<article class="tnuc-card" data-search="' . esc_attr(strtolower($e['name'] . ' ' . $e['description'])) . '"><div class="tnuc-card-content"><h3>' . esc_html($e['name']) . '</h3><p class="tnuc-card-description">' . esc_html($e['description']) . '</p><p class="description">' . (isset($releases[$id]) ? esc_html('Version ' . $e['version'] . ' · WordPress ' . $e['requires'] . '+ · PHP ' . $e['requires_php'] . '+') : 'Release not checked') . '</p>';
+        echo '<article class="tnuc-card" data-search="' . esc_attr(strtolower($e['name'] . ' ' . $e['description'])) . '"><div class="tnuc-card-content"><h3>' . esc_html($e['name']) . '</h3><p class="tnuc-card-description">' . esc_html($e['description']) . '</p><p class="description">' . (isset($releases[$id]) ? esc_html(tnuc_catalogue_version_label($e, $plugins, $has)) : 'Release not checked') . '</p>';
         if ($issue) { echo '<p class="tnuc-warning">' . esc_html($issue) . '</p>'; }
         echo '<div class="tnuc-card-actions">';
         if (!$has) { echo '<button class="button button-primary" data-install="' . esc_attr($id) . '" data-kind="install"' . ($issue || !tnuc_authorised('install_plugins') || !wp_is_file_mod_allowed('tnuc') ? ' disabled' : '') . '>Install</button>'; }

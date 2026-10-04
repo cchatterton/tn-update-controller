@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-04T04:05:31.189778+00:00",
+  "published_at": "2026-10-04T04:26:48.983267+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -411,14 +411,14 @@
       "beta": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.7.0",
-      "tag": "v0.7.0",
+      "version": "0.7.1",
+      "tag": "v0.7.1",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Check for updates now scans GitHub directly for newly released plugins and updates to installed plugins. Separate catalogue publication is no longer required for discovery.\n\n- Verify released package ownership, brand, identity, versions, domain restrictions and checksums.\n- Show bounded progress, preserve verified results, and resume interrupted checks only after another explicit click.\n- Keep all ordinary page loads and native update filters free of discovery HTTP. No cron, background polling or automatic checker.\n- Retain reviewed registry exceptions and legacy package identities.\n\nRequires PHP 7.4+ with the ZIP extension. Initial scans can take several minutes. GitHub anonymous quotas may pause a scan until the displayed retry time; an optional server-side GitHub token is documented in README.md.\n\nValidated with both brands on disposable WordPress multisite, live GitHub discovery (including Release Management 0.11.9), PHP 7.4 regressions, package/security tests and browser progress/recovery checks. Customer sites have not been deployed.\n",
-      "sha256": "eec93c1099e024fc2ff9790d019820abde64fa45cc0d73247d23dfea3dbf2f4e"
+      "body": "Routine manual checks now remember repository authorship and compare known stable release versions first. Unchanged plugins require no ZIP download and no release API request.\n\n- Persist other-author/non-plugin exclusions in WordPress for 24 hours; exception changes invalidate the record.\n- Use one lightweight repository listing per page for new discovery, after known plugins.\n- Keep known-plugin updates working when API limits defer new discovery.\n- Batch short transitions to reduce WordPress request overhead.\n- Add Settings \u2192 Recheck all repositories for explicit full asset audits and ignored-repository review.\n- Preserve manual-only behaviour, brand separation, package verification and last-good state.\n\nLocal live repeat-check engine timings: Techn 1.57 seconds, AlphaSys 1.31 seconds. Both used one API listing and zero ZIP downloads. Customer hosting/network overhead varies; initial learning is slower.\n\nRegression tests simulated 15 fresh releases, with 15 listing API calls and 15 changed-package downloads per brand, plus exhausted API quota while a known plugin still updated. PHP 7.4 and browser completion verified. Published tags/assets must remain immutable; use a new version for new package bytes.\n",
+      "sha256": "17eada0c1528cd8d7d11bcc8231f4875f2b9585df05b9ac88ca5c4166f48a1cf"
     },
     {
       "id": "tn-user-management",
@@ -455,14 +455,14 @@
       "beta": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.9",
-      "tag": "v0.11.9",
+      "version": "0.11.10",
+      "tag": "v0.11.10",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## Destination release actions\n\n- Renames the Code comparison Version Status column to Release Actions.\n- Reframes every status as its destination operation: Add to Destination, Remove from Destination, Upgrade in Destination, Downgrade in Destination, No Change, or Review Manually.\n- Keeps existing recommendations, selections, colours, and release-package logic unchanged.",
-      "sha256": "5b2080cf0e4e3f90eeafc3d8ba52c6a153324347fc7c3b1034bb5166b66430c6"
+      "body": "## Must-use plugin matching\n\n- Matches local and remote MU plugins by the same canonical top-level entry under wp-content/mu-plugins.\n- Includes root files and non-empty supporting directories, matching the scope WP Migrate can transfer.\n- Exchanges enriched names and versions through the authenticated WP Migrate connection when both sites run this release.\n- Reports unavailable version metadata as Review Manually instead of a false destination upgrade.\n- Keeps MU plugins unselected in Recommended mode.",
+      "sha256": "ad71b59a2bb776a63312d00d1ee56a1bf0e84e81b5678278420a751b1d490f98"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

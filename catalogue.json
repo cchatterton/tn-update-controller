@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-04T04:26:48.983267+00:00",
+  "published_at": "2026-10-04T05:51:24.380565+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -411,14 +411,14 @@
       "beta": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.7.1",
-      "tag": "v0.7.1",
+      "version": "0.8.0",
+      "tag": "v0.8.0",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Routine manual checks now remember repository authorship and compare known stable release versions first. Unchanged plugins require no ZIP download and no release API request.\n\n- Persist other-author/non-plugin exclusions in WordPress for 24 hours; exception changes invalidate the record.\n- Use one lightweight repository listing per page for new discovery, after known plugins.\n- Keep known-plugin updates working when API limits defer new discovery.\n- Batch short transitions to reduce WordPress request overhead.\n- Add Settings \u2192 Recheck all repositories for explicit full asset audits and ignored-repository review.\n- Preserve manual-only behaviour, brand separation, package verification and last-good state.\n\nLocal live repeat-check engine timings: Techn 1.57 seconds, AlphaSys 1.31 seconds. Both used one API listing and zero ZIP downloads. Customer hosting/network overhead varies; initial learning is slower.\n\nRegression tests simulated 15 fresh releases, with 15 listing API calls and 15 changed-package downloads per brand, plus exhausted API quota while a known plugin still updated. PHP 7.4 and browser completion verified. Published tags/assets must remain immutable; use a new version for new package bytes.\n",
-      "sha256": "17eada0c1528cd8d7d11bcc8231f4875f2b9585df05b9ac88ca5c4166f48a1cf"
+      "body": "Both controllers now create or reuse the shared `github-cchatterton` WordPress database table. Each repository records author, released version, local version, installed state and alpha/beta readiness.\n\nEvery Check for updates fetches fresh GitHub API metadata and adds new repositories. Unchanged release assets reuse verified author/package data across both controllers. Cooldowns, timed ignore lists, stored backoff and the separate full-audit control are removed. Checks remain strictly manual.\n\nFor frequent release testing, configure `GITHUB_CCHATTERTON_TOKEN` server-side in wp-config.php with public-metadata access. Authenticated checks batch up to 100 repositories and their releases per API request. Anonymous REST remains supported but requires per-repository requests and is subject to GitHub's anonymous quota. GitHub can still reject requests; a new explicit click may retry immediately.\n\nValidation: PHP 7.4 and 8.5 integration, security and discovery fixtures; both load orders; separate branded catalogues; local-state updates; fifteen immediate changed releases; new repository discovery; 403 recovery and last-good retention. Live repeat checks covered 58 repositories in 2.21\u20132.40 seconds with one authenticated API request and no ZIP downloads. Timings vary by host.\n",
+      "sha256": "373aafe69b467693fdbaf6ad8f8fe538899a533575329ff1f2105bab82fdf7f1"
     },
     {
       "id": "tn-user-management",

@@ -31,7 +31,7 @@ function tnuc_render_admin(): void {
     if ($notice) { delete_transient('tnuc_notice_' . get_current_user_id()); }
     if ($notice && $notice['error']) { echo '<div class="notice ' . ($notice['error'] ? 'notice-error' : 'notice-success') . '"><p>' . esc_html($notice['message']) . '</p></div>'; }
     echo '<header class="tnuc-header"><span class="tnuc-version" aria-label="Version ' . esc_attr(TNUC_VERSION) . '">v' . esc_html(TNUC_VERSION) . '</span><p class="tnuc-eyebrow">Techn / Plugin library</p><h2>Your plugins. One place.</h2><p>Discover, check and update your Techn plugins.</p><div class="tnuc-header-bottom"><span>' . count($installed) . ' installed · ' . count($updates) . ' updates available</span><button class="button tnuc-primary" data-check="">Check for updates</button></div></header>';
-    echo '<div class="tnuc-status"><span>' . esc_html(tnuc_check_summary()) . '</span><span>' . (tnuc_settings()['mode'] === 'manual' ? 'Manual checks only' : 'Background checks every ' . (int) tnuc_settings()['hours'] . ' hours') . '</span></div>';
+    echo '<div class="tnuc-status"><span>' . esc_html(tnuc_check_summary()) . '</span><span>' . 'Manual checks only' . '</span></div>';
     echo '<nav class="nav-tab-wrapper" aria-label="Plugin library">';
     foreach (['installed'=>'Updates available','catalogue'=>'Catalogue','settings'=>'Settings'] as $key=>$label) { echo '<a class="nav-tab ' . ($key === $tab ? 'nav-tab-active' : '') . '" href="' . esc_url(tnuc_url($key)) . '">' . esc_html($label) . '</a>'; }
     echo '</nav><div id="tnuc-feedback" role="status" aria-live="polite"></div>';
@@ -97,9 +97,5 @@ function tnuc_render_catalogue(array $registry, array $releases, array $plugins)
     }
 }
 function tnuc_render_settings(): void {
-    $settings = tnuc_settings();
-    tnuc_form_start('settings');
-    echo '<table class="form-table"><tr><th scope="row"><label for="tnuc-mode">Check mode</label></th><td><select id="tnuc-mode" name="mode"><option value="scheduled"' . selected($settings['mode'], 'scheduled', false) . '>Scheduled background checks</option><option value="manual"' . selected($settings['mode'], 'manual', false) . '>Manual checks only</option></select><p class="description">Manual mode discovers new releases only when an administrator checks.</p></td></tr><tr><th scope="row"><label for="tnuc-hours">Check interval</label></th><td><select id="tnuc-hours" name="hours">';
-    foreach ([6,12,24] as $hours) { echo '<option value="' . $hours . '"' . selected($settings['hours'], $hours, false) . '>Every ' . $hours . ' hours</option>'; }
-    echo '</select></td></tr></table>'; submit_button('Save settings'); echo '</form>';
+    echo '<h2>Manual checks only</h2><p>Choose Check for updates to refresh available plugins and update status for installed plugins together. No scheduled or background checks run.</p><p>New releases remain unknown until the next successful manual check. Installing or updating a plugin is a separate action.</p>';
 }

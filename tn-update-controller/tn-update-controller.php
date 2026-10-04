@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: TN Update Controller
- * Description: One catalogue, background update checks and guided updates for Techn plugins.
- * Version: 0.5.1
+ * Description: One catalogue, manual update checks and guided updates for Techn plugins.
+ * Version: 0.6.0
  * Author: Techn
  * Author URI: https://techn.com.au
  * Update URI: https://github.com/cchatterton/tn-update-controller
@@ -14,7 +14,7 @@
  * Text Domain: tn-update-controller
  */
 if (!defined('ABSPATH')) { exit; }
-define('TNUC_VERSION', '0.5.1');
+define('TNUC_VERSION', '0.6.0');
 define('TNUC_API_VERSION', 1);
 define('TNUC_FILE', __FILE__);
 define('TNUC_DIR', __DIR__ . '/');
@@ -37,8 +37,7 @@ function tnuc_boot(): void {
     add_filter('plugin_row_meta', 'tnuc_row_meta', PHP_INT_MAX, 4);
     add_filter('upgrader_pre_download', 'tnuc_verify_download', 10, 4);
     add_filter('upgrader_source_selection', 'tnuc_verify_source', 20, 4);
-    add_action('tnuc_scheduled_check', 'tnuc_scheduled_check');
-    add_action('admin_init', 'tnuc_refresh_on_native_forced_check', 1);
+    tnuc_migrate_manual_checks();
     add_action('admin_menu', 'tnuc_menu');
     add_action('network_admin_menu', 'tnuc_menu');
     add_action('admin_enqueue_scripts', 'tnuc_assets');

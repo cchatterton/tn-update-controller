@@ -2,7 +2,7 @@
 
 Controller basename: `tn-update-controller/tn-update-controller.php`. Runtime capability: `defined('TNUC_API_VERSION') && TNUC_API_VERSION >= 1 && function_exists('tnuc_available') && tnuc_available()`.
 
-1. Preserve the existing plugin directory and main filename. Register its exact identity in the controller registry before publishing a client release.
+1. Preserve the existing plugin directory and main filename. Publish a correctly authored stable release ZIP. The publisher discovers its identity by default; add a registry exception only for ambiguous/legacy identity or an explicit override.
 2. Remove independent updater code, hooks, schedules, transient invalidation and forced-check redirects. Old scheduled events should be cleared by a versioned local migration.
 3. Use `Author: Techn`, `Author URI: https://techn.com.au`, and `Update URI: https://github.com/cchatterton/EXACT-REPOSITORY`. Omit `Plugin URI`.
 4. Add `Techn Controller API: 1` to the main plugin header.

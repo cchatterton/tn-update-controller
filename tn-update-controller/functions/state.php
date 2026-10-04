@@ -7,7 +7,7 @@ function tnuc_available(): bool {
 }
 function tnuc_get(string $key, $default = []) { return get_site_option('tnuc_' . $key, $default); }
 function tnuc_put(string $key, $value): void { update_site_option('tnuc_' . $key, $value); }
-function tnuc_settings(): array { return array_merge(['mode' => 'scheduled', 'hours' => 6], (array) tnuc_get('settings')); }
+function tnuc_settings(): array { return ['mode' => 'manual']; }
 function tnuc_url(string $tab = 'installed'): string { return add_query_arg(['page' => 'tnuc', 'tab' => $tab], network_admin_url('plugins.php')); }
 function tnuc_authorised(string $cap = 'update_plugins'): bool {
     return current_user_can($cap) && (!is_multisite() || current_user_can('manage_network_plugins'));
@@ -25,26 +25,20 @@ function tnuc_on_main(callable $callback) {
     if ($switch) { switch_to_blog(get_main_site_id()); }
     try { return $callback(); } finally { if ($switch) { restore_current_blog(); } }
 }
+/** Compatibility shim: old callers can only remove obsolete jobs. */
 function tnuc_schedule(): void {
-    tnuc_on_main(static function () {
-        wp_clear_scheduled_hook('tnuc_scheduled_check');
-        $settings = tnuc_settings();
-        if ($settings['mode'] === 'scheduled') {
-            $at = max(time() + 60, (int) (tnuc_get('check')['next_check'] ?? (time() + 300)));
-            wp_schedule_single_event($at, 'tnuc_scheduled_check');
-        }
-    });
+    tnuc_on_main(static function () { wp_clear_scheduled_hook('tnuc_scheduled_check'); });
 }
-function tnuc_scheduled_check(): void {
-    if (tnuc_settings()['mode'] !== 'scheduled') { return; }
-    tnuc_refresh(false);
+function tnuc_migrate_manual_checks(): void {
+    if (tnuc_get('manual_checks_version', 0) === 1) { return; }
     tnuc_schedule();
+    tnuc_put('settings', ['mode' => 'manual']);
+    $state = (array) tnuc_get('check'); unset($state['next_check']); tnuc_put('check', $state);
+    tnuc_put('manual_checks_version', 1);
 }
-function tnuc_refresh_on_native_forced_check(): void {
-    if (empty($_GET['force-check']) || !tnuc_authorised()) { return; }
-    tnuc_refresh(true, true);
-    tnuc_schedule();
-}
+/** Obsolete entry points deliberately perform no discovery. */
+function tnuc_scheduled_check(): void { tnuc_schedule(); }
+function tnuc_refresh_on_native_forced_check(): void {}
 /**
  * Unique option_name provides atomic acquisition; compare-and-delete protects a replacement owner.
  * @return string|false

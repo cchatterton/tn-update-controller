@@ -127,15 +127,11 @@ function tnuc_validate_catalogue($candidate) {
 function tnuc_refresh(bool $manual = true, bool $force = false) {
     if (!$manual || (defined('DOING_CRON') && DOING_CRON)) { return new WP_Error('manual_only', 'Use Check for updates to refresh available plugins and installed updates.'); }
     $state = (array) tnuc_get('check'); $now = time();
-    if (($state['retry_at'] ?? 0) > $now) { return new WP_Error('backoff', 'A previous check failed. Retry after ' . gmdate('Y-m-d H:i', $state['retry_at']) . ' UTC.'); }
-    if (($state['last_success'] ?? 0) > $now - 60) { return ['message' => 'The catalogue was checked less than a minute ago. Showing those results.']; }
     $lock = tnuc_lock('discovery', 60);
     if (!$lock) { return new WP_Error('check_running', 'A catalogue check is already running.'); }
     try {
         // Recheck after atomic acquisition: another worker may have just completed.
         $state = (array) tnuc_get('check');
-        if (($state['retry_at'] ?? 0) > time()) { return new WP_Error('backoff', 'The remote service is in backoff. Please retry later.'); }
-        if (($state['last_success'] ?? 0) > time() - 60) { return ['message' => 'Using the recently completed catalogue check.']; }
         $state['last_attempt'] = $now; $state['job_id'] = wp_generate_uuid4(); $state['status'] = 'running'; tnuc_put('check', $state);
         $catalogue_url = $force ? add_query_arg('tnuc_cache_bust', (string) $now, TNUC_CATALOGUE_URL) : TNUC_CATALOGUE_URL;
         $response = wp_safe_remote_get($catalogue_url, ['timeout' => 8, 'redirection' => 0, 'limit_response_size' => 1048576, 'headers' => ['Accept' => 'application/json', 'User-Agent' => 'TN-Update-Controller/' . TNUC_VERSION]]);
@@ -144,13 +140,7 @@ function tnuc_refresh(bool $manual = true, bool $force = false) {
         $validated = $candidate ? tnuc_validate_catalogue($candidate) : new WP_Error('catalogue_http', 'The catalogue could not be refreshed. Previous results are preserved.');
         if (is_wp_error($validated)) {
             $failures = min(8, (int) ($state['failures'] ?? 0) + 1);
-            $retry = $now + min(DAY_IN_SECONDS, 600 * (2 ** ($failures - 1))) + wp_rand(0, 60);
-            if (!is_wp_error($response)) {
-                $after = wp_remote_retrieve_header($response, 'retry-after');
-                $reset = wp_remote_retrieve_header($response, 'x-ratelimit-reset');
-                $retry = max($retry, is_numeric($after) ? $now + (int) $after : (int) strtotime((string) $after), is_numeric($reset) ? (int) $reset : 0);
-            }
-            $state = array_merge($state, ['status' => 'failed', 'failures' => $failures, 'http_code' => $code, 'error' => $validated->get_error_message(), 'retry_at' => $retry]);
+            $state = array_merge($state, ['status' => 'failed', 'failures' => $failures, 'http_code' => $code, 'error' => $validated->get_error_message(), 'retry_at' => 0]);
             tnuc_put('check', $state);
             return $validated;
         }

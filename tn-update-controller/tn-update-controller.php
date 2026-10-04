@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TN Update Controller
  * Description: One catalogue, manual update checks and guided updates for Techn plugins.
- * Version: 0.6.0
+ * Version: 0.7.0
  * Author: Techn
  * Author URI: https://techn.com.au
  * Update URI: https://github.com/cchatterton/tn-update-controller
@@ -14,12 +14,12 @@
  * Text Domain: tn-update-controller
  */
 if (!defined('ABSPATH')) { exit; }
-define('TNUC_VERSION', '0.6.0');
+define('TNUC_VERSION', '0.7.0');
 define('TNUC_API_VERSION', 1);
 define('TNUC_FILE', __FILE__);
 define('TNUC_DIR', __DIR__ . '/');
 define('TNUC_CATALOGUE_URL', 'https://api.github.com/repos/cchatterton/tn-update-controller/contents/catalogue.json?ref=main');
-foreach (['state', 'catalogue', 'legacy', 'updates', 'operations', 'actions', 'admin'] as $tnuc_module) {
+foreach (['state', 'catalogue', 'discovery', 'legacy', 'updates', 'operations', 'actions', 'admin'] as $tnuc_module) {
     require_once TNUC_DIR . 'functions/' . $tnuc_module . '.php';
 }
 unset($tnuc_module);

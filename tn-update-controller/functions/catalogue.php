@@ -9,7 +9,7 @@ function tnuc_bundled_registry(): array {
         return true;
     });
 }
-/** The approved publisher may add branded identities; executable legacy trust stays bundled. */
+/** Verified released packages may add branded identities; executable legacy trust stays bundled. */
 function tnuc_registry(): array {
     $bundled = tnuc_bundled_registry();
     $registry = tnuc_catalogue() ? [] : $bundled;
@@ -80,7 +80,7 @@ function tnuc_validate_catalogue($candidate) {
     if (!is_array($candidate) || ($candidate['schema'] ?? 0) !== 1 || !is_array($candidate['plugins'] ?? null) || count($candidate['plugins']) > 200 || !is_string($candidate['published_at'] ?? null) || strtotime($candidate['published_at']) === false) {
         return new WP_Error('catalogue_schema', 'The catalogue format is not supported.');
     }
-    $registry = tnuc_registry(); $result = []; $seen = []; $files = [];
+    $registry = array_merge(tnuc_bundled_registry(), tnuc_registry()); $result = []; $seen = []; $files = [];
     foreach ($candidate['plugins'] as $entry) {
         if (!is_array($entry) || !is_string($entry['id'] ?? null) || isset($seen[$entry['id']])) { return new WP_Error('catalogue_entry', 'The catalogue contains duplicate or invalid entries.'); }
         $id = $entry['id']; $seen[$id] = true;
@@ -154,18 +154,8 @@ function tnuc_refresh(bool $manual = true, bool $force = false) {
             tnuc_put('check', $state);
             return $validated;
         }
-        $transient = get_site_transient('update_plugins');
-        // Remove only our withdrawn identities; leave other providers untouched.
-        foreach (tnuc_catalogue()['plugins'] ?? [] as $id => $old) {
-            if (isset($validated['plugins'][$id]) || !is_object($transient)) { continue; }
-            foreach (['response', 'no_update'] as $bucket) {
-                $item = $transient->{$bucket}[$old['file']] ?? null;
-                if (is_object($item) && ($item->id ?? '') === 'https://github.com/' . $old['owner'] . '/' . $old['repo']) { unset($transient->{$bucket}[$old['file']]); }
-            }
-        }
-        tnuc_put('catalogue', $validated);
+        tnuc_store_catalogue($validated);
         tnuc_put('check', ['status' => 'success', 'job_id' => $state['job_id'], 'last_attempt' => $now, 'last_success' => $now, 'failures' => 0, 'retry_at' => 0]);
-        set_site_transient('update_plugins', tnuc_project_updates($transient));
         return ['message' => 'Available plugins and installed plugin update status refreshed.'];
     } finally { tnuc_unlock('discovery', $lock); }
 }
@@ -184,4 +174,18 @@ function tnuc_compatibility(array $entry): string {
         if (!$found) { return 'Requires active plugin: ' . $slug; }
     }
     return '';
+}
+
+function tnuc_store_catalogue(array $validated): void {
+        $transient = get_site_transient('update_plugins');
+        // Remove only our withdrawn identities; leave other providers untouched.
+        foreach (tnuc_catalogue()['plugins'] ?? [] as $id => $old) {
+            if (isset($validated['plugins'][$id]) || !is_object($transient)) { continue; }
+            foreach (['response', 'no_update'] as $bucket) {
+                $item = $transient->{$bucket}[$old['file']] ?? null;
+                if (is_object($item) && ($item->id ?? '') === 'https://github.com/' . $old['owner'] . '/' . $old['repo']) { unset($transient->{$bucket}[$old['file']]); }
+            }
+        }
+        tnuc_put('catalogue', $validated);
+        set_site_transient('update_plugins', tnuc_project_updates($transient));
 }

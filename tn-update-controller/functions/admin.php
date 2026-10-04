@@ -9,10 +9,14 @@ function tnuc_assets(string $hook): void {
     if ($hook !== 'plugins_page_tnuc') { return; }
     wp_enqueue_style('tnuc-admin', plugins_url('styles/admin.css', TNUC_FILE), [], TNUC_VERSION);
     wp_enqueue_script('tnuc-admin', plugins_url('scripts/admin.js', TNUC_FILE), [], TNUC_VERSION, true);
-    wp_localize_script('tnuc-admin', 'tnucAdmin', ['url' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('tnuc_action'), 'names' => array_map(static fn($entry) => $entry['name'], tnuc_registry())]);
+    // Consume only the one-time continuation created by the authorised row/form action.
+    $continuation = get_transient('tnuc_continue_' . get_current_user_id());
+    delete_transient('tnuc_continue_' . get_current_user_id());
+    wp_localize_script('tnuc-admin', 'tnucAdmin', ['continueScan' => $continuation ?: '', 'url' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('tnuc_action'), 'names' => array_map(static fn($entry) => $entry['name'], tnuc_registry())]);
 }
 function tnuc_check_summary(): string {
     $s = tnuc_get('check');
+    if (($s['status'] ?? '') === 'partial') { return 'Check incomplete. ' . ($s['error'] ?? 'Verified results are retained. Check again to resume.'); }
     if (($s['status'] ?? '') === 'failed') { return 'Last check failed. ' . (!empty($s['last_success']) ? 'Showing results from ' . wp_date('j M Y, H:i', $s['last_success']) . '.' : 'No successful check yet.'); }
     if (($s['status'] ?? '') === 'running') { return ($s['last_attempt'] ?? 0) < time() - 60 ? 'Previous check was interrupted. Check again to recover.' : 'A catalogue check is running.'; }
     return !empty($s['last_success']) ? 'Last checked ' . wp_date('j M Y, H:i', $s['last_success']) : 'Never checked. Check the catalogue to discover available releases.';
@@ -30,7 +34,7 @@ function tnuc_render_admin(): void {
     $notice = get_transient('tnuc_notice_' . get_current_user_id());
     if ($notice) { delete_transient('tnuc_notice_' . get_current_user_id()); }
     if ($notice && $notice['error']) { echo '<div class="notice ' . ($notice['error'] ? 'notice-error' : 'notice-success') . '"><p>' . esc_html($notice['message']) . '</p></div>'; }
-    echo '<header class="tnuc-header"><span class="tnuc-version" aria-label="Version ' . esc_attr(TNUC_VERSION) . '">v' . esc_html(TNUC_VERSION) . '</span><p class="tnuc-eyebrow">Techn / Plugin library</p><h2>Your plugins. One place.</h2><p>Discover, check and update your Techn plugins.</p><div class="tnuc-header-bottom"><span>' . count($installed) . ' installed · ' . count($updates) . ' updates available</span><button class="button tnuc-primary" data-check="">Check for updates</button></div></header>';
+    echo '<header class="tnuc-header"><span class="tnuc-version" aria-label="Version ' . esc_attr(TNUC_VERSION) . '">v' . esc_html(TNUC_VERSION) . '</span><p class="tnuc-eyebrow">Techn / Plugin library</p><h2>Your plugins. One place.</h2><p>Discover released Techn plugins directly from GitHub.</p><div class="tnuc-header-bottom"><span>' . count($installed) . ' installed · ' . count($updates) . ' updates available</span><button class="button tnuc-primary" data-check="">Check for updates</button></div></header>';
     echo '<div class="tnuc-status"><span>' . esc_html(tnuc_check_summary()) . '</span><span>' . 'Manual checks only' . '</span></div>';
     echo '<nav class="nav-tab-wrapper" aria-label="Plugin library">';
     foreach (['installed'=>'Updates available','catalogue'=>'Catalogue','settings'=>'Settings'] as $key=>$label) { echo '<a class="nav-tab ' . ($key === $tab ? 'nav-tab-active' : '') . '" href="' . esc_url(tnuc_url($key)) . '">' . esc_html($label) . '</a>'; }
@@ -97,5 +101,5 @@ function tnuc_render_catalogue(array $registry, array $releases, array $plugins)
     }
 }
 function tnuc_render_settings(): void {
-    echo '<h2>Manual checks only</h2><p>Choose Check for updates to refresh available plugins and update status for installed plugins together. No scheduled or background checks run.</p><p>New releases remain unknown until the next successful manual check. Installing or updating a plugin is a separate action.</p>';
+    echo '<h2>Manual checks only</h2><p>Choose Check for updates to refresh available plugins and update status for installed plugins together. The scan runs in this window; closing it pauses the check. No scheduled or background checks run.</p><p>New releases remain unknown until the next successful manual check. Installing or updating a plugin is a separate action. GitHub may limit unauthenticated checks; a paused scan can be resumed after its retry time.</p>';
 }

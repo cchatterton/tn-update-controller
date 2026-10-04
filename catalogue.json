@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-04T03:40:14.510424+00:00",
+  "published_at": "2026-10-04T03:53:16.984137+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -455,14 +455,14 @@
       "beta": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.7",
-      "tag": "v0.11.7",
+      "version": "0.11.9",
+      "tag": "v0.11.9",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## Multisite comparison-bar placement\n\n- Places the comparison bar after WP Migrate navigation and before migration content in multisite network admin.\n- Uses the generic WP Migrate content wrapper when the single-site wrapper.migrate anchor is absent.\n- Keeps the server-rendered integration mount hidden; it remains a staging container rather than the visible bar location.",
-      "sha256": "e4046989b59b389814d345340c63f57030f556e13511348af97e4c1059f29bc5"
+      "body": "## Destination release actions\n\n- Renames the Code comparison Version Status column to Release Actions.\n- Reframes every status as its destination operation: Add to Destination, Remove from Destination, Upgrade in Destination, Downgrade in Destination, No Change, or Review Manually.\n- Keeps existing recommendations, selections, colours, and release-package logic unchanged.",
+      "sha256": "5b2080cf0e4e3f90eeafc3d8ba52c6a153324347fc7c3b1034bb5166b66430c6"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

@@ -14,6 +14,10 @@ function tnuc_domain_allowed(array $entry): bool {
     if ($host === 'localhost') { return true; }
     $rule = tnuc_catalogue()['plugins'][$entry['id'] ?? ''] ?? null;
     if (!$rule) {
+        $bundled = tnuc_bundled_registry()[$entry['id'] ?? ''] ?? [];
+        if (array_key_exists('allowed_domains', $bundled)) { $rule = $bundled + ['include_subdomains' => false]; }
+    }
+    if (!$rule) {
         $path = WP_PLUGIN_DIR . '/' . ($entry['file'] ?? '');
         if (!is_file($path)) { return false; } // Load release metadata before advertising uninstalled plugins.
         $headers = get_file_data($path, ['domains' => 'Allowed Domains', 'subdomains' => 'Allow Subdomains']);

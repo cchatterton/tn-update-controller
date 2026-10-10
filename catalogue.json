@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-10T06:06:55.352050+00:00",
+  "published_at": "2026-10-10T06:16:24.924811+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -280,14 +280,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.2.0",
-      "tag": "v0.2.0",
+      "version": "0.2.1",
+      "tag": "v0.2.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Split native Help into sections, CSS examples, class patterns, colour reference, JSON transfer and editor topics, with image help when available.\n- Group existing saved colours using the prefix before the first hyphen without changing identifiers or values. Load the original 12 defaults only when no saved items exist.\n- Add repeatable sections with three automatically named colour cards, horizontal scrolling, plus cards and section removal.\n- Add a permanent JSON editor with copy, download, legacy-array import, validation, previous-save recovery and concurrent-edit protection.\n- Integrate configured WordPress AI connectors for Media Library mockup interpretation and automatic validated JSON/palette saves; retain colours absent from AI responses.\n- Apply Techn Author Branded UI, scoped rem styles, accessible tabs and feedback, nonce/capability checks and atomic CSS publication.\n",
-      "sha256": "8d852b01ef29a7d018636c2c9b8ee469f1259faad05b2d145c02e53f21b2773a"
+      "body": "- Align the header with Content Planner and Persona26: Pallet title without the TN prefix, purpose-led eyebrow, installed version at the top right, and capability chips.\n- Remove the standalone author label from the hero; retain plugin author metadata. Show the AI chip only when image interpretation is available.\n- Keep the header responsive with wrapping chips and preserve all palette data and workflows.\n",
+      "sha256": "4ae934be364c9479e39394f8386b77e8da93951780683f6dfbfbae17d67ec11c"
     },
     {
       "id": "tn-performance-advisor",

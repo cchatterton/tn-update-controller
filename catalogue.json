@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T02:01:06.335138+00:00",
+  "published_at": "2026-10-25T02:01:46.038105+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -187,19 +187,19 @@
       "asset": "tn-display-density.zip",
       "author": "Techn",
       "name": "TN Display Density",
-      "description": "Calibrates desktop display zoom for Windows and macOS.",
+      "description": "Compensates for desktop display scaling on Windows and macOS.",
       "beta": true,
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.0",
-      "tag": "v0.1.0",
+      "version": "0.1.1",
+      "tag": "v0.1.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "# Changelog\n\n## 0.1.0 - 2026-10-25\n\n- Add Windows inverse-DPR compensation and direct macOS zoom setting.\n- Add Settings > Display Density.\n",
-      "sha256": "d5f760e0a5853040d3959a391cbdbfc8b16ccbbc8e234b5998bc7310359057b8"
+      "body": "# Changelog\n\n## 0.1.1 - 2026-10-25\n\n- Clarify the plugin's display-scaling purpose in its metadata and settings screen.\n\n## 0.1.0 - 2026-10-25\n\n- Add Windows inverse-DPR compensation and direct macOS zoom setting.\n- Add Settings > Display Density.\n",
+      "sha256": "048dd32ff0a3c659299378114a52868bbf022c06e30803f6f9623bf5c64b43e3"
     },
     {
       "id": "tn-environments",

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T03:30:20.407983+00:00",
+  "published_at": "2026-10-25T03:31:41.278820+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.5.1",
-      "tag": "v0.5.1",
+      "version": "0.5.2",
+      "tag": "v0.5.2",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Replace per-display frontend/admin checkboxes with one Frontend, WordPress admin, or Both segmented control. Current-display previews now open in the selected area; Both offers separate frontend and admin preview buttons. Existing saved calibration scope is preserved.",
-      "sha256": "da38ae8783fdde33fb08a68403c397917289e4580e81f90d035190ef511cdc86"
+      "body": "Show the current effective display scaling as a small non-clickable DDS item in the WordPress admin bar. The value updates when the display changes and during temporary frontend or admin previews.",
+      "sha256": "6422061e70707c7df98a3b5cdfc4d88dbd4f1446e829e319e5d5446bf5829db6"
     },
     {
       "id": "tn-environments",

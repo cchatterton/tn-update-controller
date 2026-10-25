@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T02:05:30.446537+00:00",
+  "published_at": "2026-10-25T02:20:14.248380+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.2.0",
-      "tag": "v0.2.0",
+      "version": "0.2.1",
+      "tag": "v0.2.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "# Changelog\n\n## 0.2.0 - 2026-10-25\n\n- Add per-display scenario calibration controls for Windows and macOS.\n\n## 0.1.2 - 2026-10-25\n\n- Apply the optional Mac factor only when device pixel ratio drops below Retina range.\n\n## 0.1.1 - 2026-10-25\n\n- Clarify the plugin's display-scaling purpose in its metadata and settings screen.\n\n## 0.1.0 - 2026-10-25\n\n- Add Windows inverse-DPR compensation and direct macOS zoom setting.\n- Add Settings > Display Density.\n",
-      "sha256": "1e94b964c37e81791eb7eaffc83eebe5bff14236810a8f7671b09037e861a2e3"
+      "body": "# Changelog\n\n## 0.2.1 - 2026-10-25\n\n- Remove arbitrary calibration limits while rejecting invalid values and non-positive calculated zoom.\n\n## 0.2.0 - 2026-10-25\n\n- Add per-display scenario calibration controls for Windows and macOS.\n\n## 0.1.2 - 2026-10-25\n\n- Apply the optional Mac factor only when device pixel ratio drops below Retina range.\n\n## 0.1.1 - 2026-10-25\n\n- Clarify the plugin's display-scaling purpose in its metadata and settings screen.\n\n## 0.1.0 - 2026-10-25\n\n- Add Windows inverse-DPR compensation and direct macOS zoom setting.\n- Add Settings > Display Density.\n",
+      "sha256": "8f3bc4957a1ebc3f090acfc3f6d9cc9394eff62f2e0955ee4fd3eac10557df76"
     },
     {
       "id": "tn-environments",

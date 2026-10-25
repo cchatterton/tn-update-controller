@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T03:31:41.278820+00:00",
+  "published_at": "2026-10-25T03:36:35.721522+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.5.2",
-      "tag": "v0.5.2",
+      "version": "0.5.3",
+      "tag": "v0.5.3",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Show the current effective display scaling as a small non-clickable DDS item in the WordPress admin bar. The value updates when the display changes and during temporary frontend or admin previews.",
-      "sha256": "6422061e70707c7df98a3b5cdfc4d88dbd4f1446e829e319e5d5446bf5829db6"
+      "body": "Each display calibration now applies to exactly one area: frontend or WordPress admin. The same display can hold separate values for each area. Existing Both calibrations are split into two saved entries. Saved calibration rows place the area control in its own top-aligned column.",
+      "sha256": "a4486af3aa0d0588eb852f06553a3ecd8d50b699725e8789dca4079908a5cbba"
     },
     {
       "id": "tn-environments",

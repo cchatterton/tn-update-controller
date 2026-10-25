@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T03:08:51.343823+00:00",
+  "published_at": "2026-10-25T03:30:20.407983+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.5.0",
-      "tag": "v0.5.0",
+      "version": "0.5.1",
+      "tag": "v0.5.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Add separate Windows and Mac frontend and WordPress admin defaults. Each current or saved display calibration can now apply to the frontend, admin, or both. Existing calibrations retain the behavior selected by the former global scope setting.",
-      "sha256": "42f53fbe5b7a2db239298c058acbe21053df3f53befd662e645873d4afef14f1"
+      "body": "Replace per-display frontend/admin checkboxes with one Frontend, WordPress admin, or Both segmented control. Current-display previews now open in the selected area; Both offers separate frontend and admin preview buttons. Existing saved calibration scope is preserved.",
+      "sha256": "da38ae8783fdde33fb08a68403c397917289e4580e81f90d035190ef511cdc86"
     },
     {
       "id": "tn-environments",

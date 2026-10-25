@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T03:03:11.696042+00:00",
+  "published_at": "2026-10-25T03:08:51.343823+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.4.2",
-      "tag": "v0.4.2",
+      "version": "0.5.0",
+      "tag": "v0.5.0",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Remove the helper text beneath saved display calibrations so each row stays compact. Current-display and default-setting guidance remains available.",
-      "sha256": "7530af51785228281eff54b23ed9c6bd9718a0890f02da862d78153af8420191"
+      "body": "Add separate Windows and Mac frontend and WordPress admin defaults. Each current or saved display calibration can now apply to the frontend, admin, or both. Existing calibrations retain the behavior selected by the former global scope setting.",
+      "sha256": "42f53fbe5b7a2db239298c058acbe21053df3f53befd662e645873d4afef14f1"
     },
     {
       "id": "tn-environments",

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T02:59:09.312223+00:00",
+  "published_at": "2026-10-25T03:03:11.696042+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.4.1",
-      "tag": "v0.4.1",
+      "version": "0.4.2",
+      "tag": "v0.4.2",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Saved display calibrations now use compact, full-width rows. The repeated table headings, inner calibration card title, and repeated slider instructions are removed. The optional scenario name field is removed from the current-display form; labels on existing saved scenarios remain visible.\n\nThe slider, exact numeric value, Remove checkbox, and saved profile data keep working. Install the ZIP through Plugins > Add New > Upload Plugin to update an existing installation.\n\nPHP and JavaScript tests pass, and the ZIP archive was verified.\n",
-      "sha256": "5977a496b77adc814b705e4f690e0bafbd8b8a5587b196c85c7773daed1adff6"
+      "body": "Remove the helper text beneath saved display calibrations so each row stays compact. Current-display and default-setting guidance remains available.",
+      "sha256": "7530af51785228281eff54b23ed9c6bd9718a0890f02da862d78153af8420191"
     },
     {
       "id": "tn-environments",

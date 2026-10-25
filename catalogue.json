@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-10T06:16:24.924811+00:00",
+  "published_at": "2026-10-25T02:01:06.335138+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -177,6 +177,29 @@
       "controller_api": 1,
       "body": "## 0.3.34 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
       "sha256": "2197cf5dfc1a9c7c767fb8d8233c218152f73e760ee57e5eee78ac17d7e6b067"
+    },
+    {
+      "id": "tn-display-density",
+      "owner": "cchatterton",
+      "repo": "tn-display-density",
+      "file": "tn-display-density/tn-display-density.php",
+      "slug": "tn-display-density",
+      "asset": "tn-display-density.zip",
+      "author": "Techn",
+      "name": "TN Display Density",
+      "description": "Calibrates desktop display zoom for Windows and macOS.",
+      "beta": true,
+      "exclusive": false,
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "0.1.0",
+      "tag": "v0.1.0",
+      "requires": "7.0",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "controller_api": 1,
+      "body": "# Changelog\n\n## 0.1.0 - 2026-10-25\n\n- Add Windows inverse-DPR compensation and direct macOS zoom setting.\n- Add Settings > Display Density.\n",
+      "sha256": "d5f760e0a5853040d3959a391cbdbfc8b16ccbbc8e234b5998bc7310359057b8"
     },
     {
       "id": "tn-environments",

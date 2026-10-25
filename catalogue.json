@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T02:01:46.038105+00:00",
+  "published_at": "2026-10-25T02:02:24.504331+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.1",
-      "tag": "v0.1.1",
+      "version": "0.1.2",
+      "tag": "v0.1.2",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "# Changelog\n\n## 0.1.1 - 2026-10-25\n\n- Clarify the plugin's display-scaling purpose in its metadata and settings screen.\n\n## 0.1.0 - 2026-10-25\n\n- Add Windows inverse-DPR compensation and direct macOS zoom setting.\n- Add Settings > Display Density.\n",
-      "sha256": "048dd32ff0a3c659299378114a52868bbf022c06e30803f6f9623bf5c64b43e3"
+      "body": "# Changelog\n\n## 0.1.2 - 2026-10-25\n\n- Apply the optional Mac factor only when device pixel ratio drops below Retina range.\n\n## 0.1.1 - 2026-10-25\n\n- Clarify the plugin's display-scaling purpose in its metadata and settings screen.\n\n## 0.1.0 - 2026-10-25\n\n- Add Windows inverse-DPR compensation and direct macOS zoom setting.\n- Add Settings > Display Density.\n",
+      "sha256": "2ffa44b941f07268629901e6236282cd3d6d1853b7f79e7cc4234698e51a4448"
     },
     {
       "id": "tn-environments",

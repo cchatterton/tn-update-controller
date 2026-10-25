@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T02:34:26.122596+00:00",
+  "published_at": "2026-10-25T02:59:09.312223+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.4.0",
-      "tag": "v0.4.0",
+      "version": "0.4.1",
+      "tag": "v0.4.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## What changed\n\n- Calibration sliders now move in 0.1 increments; exact numeric entry remains available.\n- Preview the current display value on the site homepage in a separate tab without saving it.\n- Choose frontend-only scaling (default) or include WordPress admin screens.\n",
-      "sha256": "c9bbf5bbfb292bc540bd73cc3ad86ad95755f671224733f56d0dbfe283b0d123"
+      "body": "Saved display calibrations now use compact, full-width rows. The repeated table headings, inner calibration card title, and repeated slider instructions are removed. The optional scenario name field is removed from the current-display form; labels on existing saved scenarios remain visible.\n\nThe slider, exact numeric value, Remove checkbox, and saved profile data keep working. Install the ZIP through Plugins > Add New > Upload Plugin to update an existing installation.\n\nPHP and JavaScript tests pass, and the ZIP archive was verified.\n",
+      "sha256": "5977a496b77adc814b705e4f690e0bafbd8b8a5587b196c85c7773daed1adff6"
     },
     {
       "id": "tn-environments",

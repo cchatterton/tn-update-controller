@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T04:56:52.683620+00:00",
+  "published_at": "2026-10-25T05:04:55.550508+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -348,14 +348,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "1.0.0",
-      "tag": "v1.0.0",
+      "version": "1.0.1",
+      "tag": "v1.0.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Released WordPost Family\u2019s parent, child and sibling editor navigation as TN Post Families.\n- Improved link permissions, native editor URLs, empty state, accessibility and scoped styling.\n- Added Techn Update Controller integration and GitHub release packaging.",
-      "sha256": "d6e9755642acbe12114f2386369b98579de4db5c19d9f6e4438eea0bea5c2c19"
+      "body": "- Show children and siblings by WordPress menu order, using title to break ties.",
+      "sha256": "d056a89a68e3486531060ba249f449e95671d8aae079a01d01e2c76ba7f9648a"
     },
     {
       "id": "tn-qrcodes",

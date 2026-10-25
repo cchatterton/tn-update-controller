@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T04:53:59.346671+00:00",
+  "published_at": "2026-10-25T04:56:52.683620+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -333,6 +333,29 @@
       "controller_api": 1,
       "body": "- Align WordPress 7.0 / PHP 7.4 metadata, GPL/readme packaging and project-authored CSS units with current Codex standards.\n- Remove independent GitHub update checks and delegate updates to Techn Update Controller. Keep Beta readiness and existing feature settings, package identity and domain restrictions.\n- Standardise update headers and controller-aware Install/Activate/Check links.\n\n\nReadiness remains Beta. Update through the matching author controller.\n",
       "sha256": "4c4b7ebb5fd1e84334d8482157303312681ff13395004551dc4be1c4de76401e"
+    },
+    {
+      "id": "tn-post-families",
+      "owner": "cchatterton",
+      "repo": "tn-post-families",
+      "file": "tn-post-families/tn-post-families.php",
+      "slug": "tn-post-families",
+      "asset": "tn-post-families.zip",
+      "author": "Techn",
+      "name": "TN Post Families",
+      "description": "Navigate parent, child and sibling posts in the WordPress editor.",
+      "beta": true,
+      "exclusive": false,
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "1.0.0",
+      "tag": "v1.0.0",
+      "requires": "7.0",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "controller_api": 1,
+      "body": "- Released WordPost Family\u2019s parent, child and sibling editor navigation as TN Post Families.\n- Improved link permissions, native editor URLs, empty state, accessibility and scoped styling.\n- Added Techn Update Controller integration and GitHub release packaging.",
+      "sha256": "d6e9755642acbe12114f2386369b98579de4db5c19d9f6e4438eea0bea5c2c19"
     },
     {
       "id": "tn-qrcodes",

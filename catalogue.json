@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T02:24:13.846376+00:00",
+  "published_at": "2026-10-25T02:34:26.122596+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.3.0",
-      "tag": "v0.3.0",
+      "version": "0.4.0",
+      "tag": "v0.4.0",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## What changed\n\n- Moved Display Density to Appearance with a compact branded header and clear calibration panels.\n- Added drag sliders paired with precise numeric inputs for platform defaults and saved display scenarios.\n- Kept numeric calibration values free of an arbitrary upper limit; the slider range expands to include entered values.\n",
-      "sha256": "2d918a0afd42599ea76b70a3d27052473da8eeee172a6ce768bdf67696350c4e"
+      "body": "## What changed\n\n- Calibration sliders now move in 0.1 increments; exact numeric entry remains available.\n- Preview the current display value on the site homepage in a separate tab without saving it.\n- Choose frontend-only scaling (default) or include WordPress admin screens.\n",
+      "sha256": "c9bbf5bbfb292bc540bd73cc3ad86ad95755f671224733f56d0dbfe283b0d123"
     },
     {
       "id": "tn-environments",

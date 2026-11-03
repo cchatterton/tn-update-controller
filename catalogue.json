@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-03T06:24:06.988829+00:00",
+  "published_at": "2026-11-03T06:49:48.779465+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -504,14 +504,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.13",
-      "tag": "v0.11.13",
+      "version": "0.11.14",
+      "tag": "v0.11.14",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Restores Content comparison in the WP Migrate workflow.\n\n- Adds Compare Content beside Compare Code in the ready-state notice.\n- Uses the established Posts, post-meta, terms, taxonomy, release, install, and rollback workflow.\n- Presents the report as Content comparison.\n- Keeps the permanent Compare navigation tab Code-only.\n- Keeps Database and Options comparison entry points hidden.",
-      "sha256": "64b4ae9c9dd4f68c65e007c408e916ffb6a61ba7ad482d37982419950df6095c"
+      "body": "Makes Content comparison destination-action focused.\n\n- Renames Status to Release Actions.\n- Uses No Change, Update in Destination, Add to Destination, and Remove from Destination.\n- Preserves the separate Source status and Destination status publication columns.",
+      "sha256": "3410442930c5a9b49c2b4fd61d909bcb56c6f4cbf46440a3f9a79c5b6a375e2b"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

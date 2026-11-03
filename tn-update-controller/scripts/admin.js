@@ -40,8 +40,15 @@
         const body = new URLSearchParams({ action: 'tnuc_action', operation, nonce: tnucAdmin.nonce });
         Object.entries(values).forEach(([key, value]) => Array.isArray(value) ? value.forEach(v => body.append(`${key}[]`, v)) : body.set(key, value));
         const response = await fetch(tnucAdmin.url, { method: 'POST', credentials: 'same-origin', body });
+        const responseText = await response.text();
         let result;
-        try { result = await response.json(); } catch (_) { throw new Error('The request was interrupted. Retry to recover the current operation.'); }
+        try { result = JSON.parse(responseText); }
+        catch (_) {
+            const themeOutput = responseText.includes('WP_Post_Lock_Functionality') || responseText.includes('register_rest_lock_guards');
+            throw new Error(themeOutput
+                ? 'The active theme printed PHP code into the controller response. Replace its post_lock.php with a complete PHP file, then reload this page.'
+                : `WordPress returned an invalid controller response (HTTP ${response.status}). Reload this page; if it continues, check the PHP error log.`);
+        }
         if (!response.ok || !result.success) throw new Error(result.data?.message || 'The action could not be completed.');
         return result.data;
     };

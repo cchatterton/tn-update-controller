@@ -97,9 +97,17 @@ function tnuc_dispatch(string $op, array $input) {
     }
     return new WP_Error('operation', 'Unknown action.');
 }
+function tnuc_clean_ajax_output(): void {
+    if (!defined('TNUC_AJAX_BUFFER_LEVEL')) { return; }
+    while (ob_get_level() >= TNUC_AJAX_BUFFER_LEVEL) { ob_end_clean(); }
+}
 function tnuc_handle_ajax(): void {
-    check_ajax_referer('tnuc_action', 'nonce');
+    if (!check_ajax_referer('tnuc_action', 'nonce', false)) {
+        tnuc_clean_ajax_output();
+        wp_send_json_error(['message' => 'Your session expired. Reload this page and try again.'], 403);
+    }
     $result = tnuc_dispatch(sanitize_key($_POST['operation'] ?? ''), wp_unslash($_POST));
+    tnuc_clean_ajax_output();
     if (is_wp_error($result)) { wp_send_json_error(['message' => $result->get_error_message()], 400); }
     wp_send_json_success($result);
 }

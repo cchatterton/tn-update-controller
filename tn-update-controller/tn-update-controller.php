@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TN Update Controller
  * Description: One catalogue, manual update checks and guided updates for Techn plugins.
- * Version: 0.9.2
+ * Version: 0.9.3
  * Author: Techn
  * Author URI: https://techn.com.au
  * Update URI: https://github.com/cchatterton/tn-update-controller
@@ -14,7 +14,7 @@
  * Text Domain: tn-update-controller
  */
 if (!defined('ABSPATH')) { exit; }
-define('TNUC_VERSION', '0.9.2');
+define('TNUC_VERSION', '0.9.3');
 define('TNUC_API_VERSION', 1);
 define('TNUC_FILE', __FILE__);
 define('TNUC_DIR', __DIR__ . '/');
@@ -28,6 +28,12 @@ register_deactivation_hook(__FILE__, 'tnuc_deactivate');
 add_action('plugins_loaded', 'tnuc_boot', PHP_INT_MAX);
 function tnuc_boot(): void {
     if (!tnuc_available()) { return; }
+    // A theme can print output during bootstrap, before admin-ajax.php runs our action.
+    // Capture only this controller's request so its response remains valid JSON.
+    if (wp_doing_ajax() && isset($_REQUEST['action']) && 'tnuc_action' === $_REQUEST['action']) {
+        ob_start();
+        define('TNUC_AJAX_BUFFER_LEVEL', ob_get_level());
+    }
     tnuc_suppress_legacy();
     add_action('init', 'tnuc_suppress_legacy', -999);
     add_action('admin_init', 'tnuc_suppress_legacy', -999);

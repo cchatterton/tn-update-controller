@@ -3,7 +3,7 @@ Contributors:
 Tags: updates, plugins, catalogue, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.9.2
+Stable tag: 0.9.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,10 @@ Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-servi
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.9.3 =
+* Keep controller responses valid when theme bootstrap prints output.
+* Provide clearer messages for malformed responses and expired sessions.
 
 = 0.9.2 =
 * Hide exclusive plugins until manually installed; retain normal activation, deactivation and updates after installation.

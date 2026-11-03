@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.3 - 2026-11-03
+
+- Keep the controller's AJAX responses valid when an active theme prints output during WordPress bootstrap.
+- Explain malformed controller responses and expired sessions with actionable messages.
+
 ## 0.9.2 - 2026-10-10
 
 - Support exclusive plugins: hide uninstalled entries and require manual first installation; preserve installed lifecycle and update management.

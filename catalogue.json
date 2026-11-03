@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-03T05:19:30.279372+00:00",
+  "published_at": "2026-11-03T06:24:06.988829+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -504,14 +504,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.12",
-      "tag": "v0.11.12",
+      "version": "0.11.13",
+      "tag": "v0.11.13",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Adds a reliable Code Compare entry point inside WP Migrate.\n\n- Adds a persistent Compare tab beside What\u2019s New, independent of the optional notice mount.\n- Opens Code comparison when the current WP Migrate connection context is ready; otherwise opens Migrate for configuration.\n- Reinstates the tab after WP Migrate React navigation remounts.\n- Removes Posts, Database, and Options comparison links from the visible UX while retaining their internal implementations.",
-      "sha256": "e16d2d65b15d0be2ff75c6733b1375662d6984d357bea707e146de780edbc32e"
+      "body": "Restores Content comparison in the WP Migrate workflow.\n\n- Adds Compare Content beside Compare Code in the ready-state notice.\n- Uses the established Posts, post-meta, terms, taxonomy, release, install, and rollback workflow.\n- Presents the report as Content comparison.\n- Keeps the permanent Compare navigation tab Code-only.\n- Keeps Database and Options comparison entry points hidden.",
+      "sha256": "64b4ae9c9dd4f68c65e007c408e916ffb6a61ba7ad482d37982419950df6095c"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

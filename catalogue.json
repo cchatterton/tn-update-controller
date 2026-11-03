@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-03T07:43:56.138831+00:00",
+  "published_at": "2026-11-03T21:03:51.595909+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -504,14 +504,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.15",
-      "tag": "v0.11.15",
+      "version": "0.11.16",
+      "tag": "v0.11.16",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Makes Code and Content comparison a Push-only workflow.\n\n- Disables comparison actions and shows guidance while WP Migrate Action is Pull.\n- Prevents the permanent Compare tab from starting in Pull mode.\n- Submits and stores a fixed Push comparison intent.\n- Rejects all non-Push comparison-preparation requests on the server.",
-      "sha256": "2b7bba23ec22e11b6dba4e6a30ba62993b2246ba27edd948a118bdd9cfdce8b6"
+      "body": "- Allow authorised Content releases to update posts protected by Post Lock without interrupting Upload Release.\n- Restore the Post Lock edit guard after each release write and preserve local lock and Best Before metadata.\n- Exclude local lock and Best Before metadata from Content comparison fingerprints.\n- Add regression coverage for locked content updates, parent updates, guard restoration, and release permissions.\n",
+      "sha256": "ccbe6bd74e7e1440676154d58f2b032a5fb25e950d72b7cee9e2babdfc2266e6"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

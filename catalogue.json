@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-10-25T05:04:55.550508+00:00",
+  "published_at": "2026-11-03T05:14:43.429225+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -501,16 +501,17 @@
       "name": "WP Migrate - Release Management",
       "description": "Compares connected WordPress code and content, and creates or installs selective offline releases.",
       "beta": false,
+      "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.10",
-      "tag": "v0.11.10",
+      "version": "0.11.11",
+      "tag": "v0.11.11",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## Must-use plugin matching\n\n- Matches local and remote MU plugins by the same canonical top-level entry under wp-content/mu-plugins.\n- Includes root files and non-empty supporting directories, matching the scope WP Migrate can transfer.\n- Exchanges enriched names and versions through the authenticated WP Migrate connection when both sites run this release.\n- Reports unavailable version metadata as Review Manually instead of a false destination upgrade.\n- Keeps MU plugins unselected in Recommended mode.",
-      "sha256": "ad71b59a2bb776a63312d00d1ee56a1bf0e84e81b5678278420a751b1d490f98"
+      "body": "Fixes Code comparison noise and duplicate must-use-plugin rows.\n\n- Omits WP Migrate and Release Management transport plugins from Code comparison.\n- Collapses same-stem MU-plugin loader files and support directories into one logical row.\n- Preserves both components in release packages, removals, and rollback packages.",
+      "sha256": "1d1e346e5fe0acf376bb78cca53cb8e1a5a630f5864ba3eb2380e84b8c4a5caf"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-03T21:17:41.573631+00:00",
+  "published_at": "2026-11-03T21:38:50.420302+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -504,14 +504,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.17",
-      "tag": "v0.11.17",
+      "version": "0.11.18",
+      "tag": "v0.11.18",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Stop reporting a Content update after installation solely because the destination keeps its own post author.\n- Treat WordPress-generated old-slug and old-date history as destination-local metadata.\n- Require matching Content comparison rules on both connected sites before displaying a comparison, with a clear update instruction when they differ.\n- Add regression coverage for the author mismatch and genuine content differences.\n",
-      "sha256": "1bc7fa98439a032593dea8135fb55942e523b57e01a4951f6a685b26fd79fbba"
+      "body": "- Preserve literal backslashes in decoded Content release metadata when WordPress saves it, including JSON and paths.\n- Show which part of each changed post differs: post fields, metadata, terms, or parent relationship. Comparison still exchanges hashes rather than raw content.\n- Add regression coverage for metadata slash preservation and difference classification.\n",
+      "sha256": "9c4f32e09148bd80e5b5e08da4a1307e09e7ecab72ed6d16ca3a2316a9b18046"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

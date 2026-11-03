@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-03T21:03:51.595909+00:00",
+  "published_at": "2026-11-03T21:17:41.573631+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -504,14 +504,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.16",
-      "tag": "v0.11.16",
+      "version": "0.11.17",
+      "tag": "v0.11.17",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Allow authorised Content releases to update posts protected by Post Lock without interrupting Upload Release.\n- Restore the Post Lock edit guard after each release write and preserve local lock and Best Before metadata.\n- Exclude local lock and Best Before metadata from Content comparison fingerprints.\n- Add regression coverage for locked content updates, parent updates, guard restoration, and release permissions.\n",
-      "sha256": "ccbe6bd74e7e1440676154d58f2b032a5fb25e950d72b7cee9e2babdfc2266e6"
+      "body": "- Stop reporting a Content update after installation solely because the destination keeps its own post author.\n- Treat WordPress-generated old-slug and old-date history as destination-local metadata.\n- Require matching Content comparison rules on both connected sites before displaying a comparison, with a clear update instruction when they differ.\n- Add regression coverage for the author mismatch and genuine content differences.\n",
+      "sha256": "1bc7fa98439a032593dea8135fb55942e523b57e01a4951f6a685b26fd79fbba"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-03T06:55:37.871440+00:00",
+  "published_at": "2026-11-03T07:43:56.138831+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -459,14 +459,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.9.2",
-      "tag": "v0.9.2",
+      "version": "0.9.3",
+      "tag": "v0.9.3",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Exclusive plugins stay hidden from the catalogue until manually installed. Once installed, they retain normal activation, deactivation, deletion and managed updates. The exclusive flag is independent of domain restrictions and beta readiness.\n\nBoth brand controllers and release publishers support the setting. AS Managed Services Reporting and AS Transcript Themes are exclusive, with their former controller domain restrictions removed.\n\nValidated with disposable WordPress lifecycle and native ZIP updates on PHP 7.4 and 8.5, publisher tests, domain policy, admin UI, catalogue grouping, one-request manual checks and controller-first regressions. No customer site was modified.\n",
-      "sha256": "2dc1f93d06da6e81b77c2e35ff9869a64053ac5125c4570abafccd13cefe7fc8"
+      "body": "- Keep the controller's AJAX responses valid when an active theme prints output during WordPress bootstrap.\n- Explain malformed controller responses and expired sessions with actionable messages.\n",
+      "sha256": "f87e138e7fe573aefe57d5ab366c048b2b79ed4bfea99e232cf7635f8f194b53"
     },
     {
       "id": "tn-user-management",

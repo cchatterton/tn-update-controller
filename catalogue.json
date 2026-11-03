@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-03T05:14:43.429225+00:00",
+  "published_at": "2026-11-03T05:19:30.279372+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -504,14 +504,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.11.11",
-      "tag": "v0.11.11",
+      "version": "0.11.12",
+      "tag": "v0.11.12",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Fixes Code comparison noise and duplicate must-use-plugin rows.\n\n- Omits WP Migrate and Release Management transport plugins from Code comparison.\n- Collapses same-stem MU-plugin loader files and support directories into one logical row.\n- Preserves both components in release packages, removals, and rollback packages.",
-      "sha256": "1d1e346e5fe0acf376bb78cca53cb8e1a5a630f5864ba3eb2380e84b8c4a5caf"
+      "body": "Adds a reliable Code Compare entry point inside WP Migrate.\n\n- Adds a persistent Compare tab beside What\u2019s New, independent of the optional notice mount.\n- Opens Code comparison when the current WP Migrate connection context is ready; otherwise opens Migrate for configuration.\n- Reinstates the tab after WP Migrate React navigation remounts.\n- Removes Posts, Database, and Options comparison links from the visible UX while retaining their internal implementations.",
+      "sha256": "e16d2d65b15d0be2ff75c6733b1375662d6984d357bea707e146de780edbc32e"
     },
     {
       "id": "tn-wp-migrate-digital-asset-management",

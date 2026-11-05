@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-05T07:54:17.506931+00:00",
+  "published_at": "2026-11-05T08:23:37.489141+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -348,14 +348,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "1.1.1",
-      "tag": "v1.1.1",
+      "version": "1.1.2",
+      "tag": "v1.1.2",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Add only the matching post type\u2019s top-level items to the existing Children list.\n- Remove the separate post type heading and nested tree introduced in 1.1.0.\n- Show the matching Page in a top-level post type item\u2019s Parent list while preserving real parents for nested items.",
-      "sha256": "3d980a3e6969c0ed7d19573e67e4e791db71ee1504d38c8f64c5eb3bc0935553"
+      "body": "- Show other top-level items of the same custom post type as siblings, ordered by menu order and title.",
+      "sha256": "6fd288c9ceebfebaeb9c9698204461d3023019a01b98bea06c7995339556973e"
     },
     {
       "id": "tn-qrcodes",

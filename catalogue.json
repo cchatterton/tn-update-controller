@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-05T07:29:37.119362+00:00",
+  "published_at": "2026-11-05T07:54:17.506931+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -348,14 +348,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "1.1.0",
-      "tag": "v1.1.0",
+      "version": "1.1.1",
+      "tag": "v1.1.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- On a Page whose slug matches a registered post type, list that type\u2019s top-level items and nested children in menu order.\n- Keep the existing family links and omit items the current user cannot edit.",
-      "sha256": "0e634a246f7a91b11ab478070de50f81a2e7b088462762357bc83920e9f93646"
+      "body": "- Add only the matching post type\u2019s top-level items to the existing Children list.\n- Remove the separate post type heading and nested tree introduced in 1.1.0.\n- Show the matching Page in a top-level post type item\u2019s Parent list while preserving real parents for nested items.",
+      "sha256": "3d980a3e6969c0ed7d19573e67e4e791db71ee1504d38c8f64c5eb3bc0935553"
     },
     {
       "id": "tn-qrcodes",

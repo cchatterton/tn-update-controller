@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-05T08:23:37.489141+00:00",
+  "published_at": "2026-11-05T22:38:01.793841+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -192,14 +192,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.5.6",
-      "tag": "v0.5.6",
+      "version": "0.6.0",
+      "tag": "v0.6.0",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Encode decimal calibration values in preview URLs without a dot, then restore the exact value in JavaScript. This keeps preview links compatible with sites that return a 404 for dotted query values.",
-      "sha256": "081ef4405ddcb52536ed3481e9fcd3b825d816fa0908c75e0ba75a3982e52730"
+      "body": "## Changes\n\n- Keep every WordPress admin screen at native zoom, including the Site Editor, block editor, and WPIDE.\n- Remove admin calibration and preview controls while preserving previously saved admin values in the existing option.\n- Keep frontend display calibration, monitor detection, and frontend preview behaviour.\n\nFrontend CSS zoom remains in use. GoFullPage screenshot compatibility at calibrated zoom is not changed by this release.\n",
+      "sha256": "544236830d8958560f032d1ac0f33c3e72fb9e60009058b54df8d394b221e6ef"
     },
     {
       "id": "tn-environments",

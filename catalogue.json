@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T06:58:02.617936+00:00",
+  "published_at": "2026-11-14T07:02:09.823517+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -505,14 +505,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.9.6",
-      "tag": "v0.9.6",
+      "version": "0.9.7",
+      "tag": "v0.9.7",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Remove the redundant Manual checks only label from the status line.",
-      "sha256": "54d356f9293094dea4e3e6f50bada4d25e2793d19bba34fd9b1c7b74fd89472d"
+      "body": "- Recognise the installed List of Values 1.4 package by its original Chris Chatterton author header for the first Techn-managed beta update.\n- Bound the legacy identity to version 1.4. Later versions must use the Techn author or matching Update URI.\n- Preserve all other controller and plugin identities.\n",
+      "sha256": "83744224e62ae7e94379b0eda512ce8f272da1dc8e55da217afcd5e262352da0"
     },
     {
       "id": "tn-user-management",

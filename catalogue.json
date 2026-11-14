@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T00:38:53.022994+00:00",
+  "published_at": "2026-11-14T00:55:49.458251+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -459,14 +459,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.9.4",
-      "tag": "v0.9.4",
+      "version": "0.9.5",
+      "tag": "v0.9.5",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Remove the unused Settings tab. Manual Check for updates remains in the header.",
-      "sha256": "a88654e219ebc0da513947c1453542540448afd8cf6d66278efdb7344aec4fca"
+      "body": "Remove the redundant GitHub column from Updates available. Available versions still link to release notes.",
+      "sha256": "2bc4f84e82823fd077b38cd832f7f4c96a79170206c12e825b8401b7240d25e2"
     },
     {
       "id": "tn-user-management",

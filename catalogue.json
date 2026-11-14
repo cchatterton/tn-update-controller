@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T06:32:56.428579+00:00",
+  "published_at": "2026-11-14T06:58:02.617936+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -89,6 +89,29 @@
       "controller_api": 0,
       "body": "## 0.1.8 - 2026-06-14\n\n- Made the analytics REST endpoints public and read-only.\n- Removed bearer authentication from the GPT Action OpenAPI schema.\n- Simplified the settings page around the public REST base URL and aggregate-only privacy notes.",
       "sha256": "15abb1be5ae5afff28acab6765ecdf0b31448bfe4a7eb951c04cf17f7dc27c0d"
+    },
+    {
+      "id": "lov",
+      "owner": "cchatterton",
+      "repo": "lov",
+      "file": "lov/lov.php",
+      "slug": "lov",
+      "asset": "lov.zip",
+      "author": "Techn",
+      "name": "List of Values",
+      "description": "Manage ACF-backed lists of values, including keys, images and colours.",
+      "beta": true,
+      "exclusive": false,
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "1.4.2",
+      "tag": "v1.4.2",
+      "requires": "6.0",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "controller_api": 0,
+      "body": "- Clarify the catalogue description for the beta GitHub migration.\n- Preserve the existing List of Values feature code and ACF-backed data.\n\nReadiness: Beta. Feature code standards migration remains pending.\n",
+      "sha256": "890b0967e05e0545398580ba09cfc4fd0a1c198416ff8d13175bfcf3d24aab5a"
     },
     {
       "id": "menubot",

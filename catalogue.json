@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T07:02:09.823517+00:00",
+  "published_at": "2026-11-14T12:10:53.785546+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -45,6 +45,29 @@
       "controller_api": 1,
       "body": "- Align WordPress 7.0 / PHP 7.4 metadata, GPL/readme packaging and project-authored CSS units with current Codex standards.\n- Remove PHP 8-only return declarations while preserving WP_Error handling and cleanup safeguards.\n- Remove independent GitHub update checks and delegate updates to Techn Update Controller. Keep Beta readiness and existing feature settings, package identity and domain restrictions.\n- Standardise update headers and controller-aware Install/Activate/Check links.\n\n\nReadiness remains Beta. Update through the matching author controller.\n",
       "sha256": "49a58d351367dd5ba6f6c1278d3211575c501fd7ffdf27aee0bd715933f3e7ca"
+    },
+    {
+      "id": "fusion-controller",
+      "owner": "cchatterton",
+      "repo": "fusion-controller",
+      "file": "fusion-plugins/fusion-plugins.php",
+      "slug": "fusion-plugins",
+      "asset": "fusion-plugins.zip",
+      "author": "Techn",
+      "name": "Fusion Plugins",
+      "description": "Curated plugin catalogs with convenient updates from the Fusion mirror.",
+      "beta": true,
+      "exclusive": false,
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "0.4.3",
+      "tag": "v0.4.3",
+      "requires": "6.5",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "controller_api": 0,
+      "body": "- Restore WordPress's Installed Plugins label and keep its Add Plugin and optional Plugin File Editor items first.\n- Place Techn Plugins, AlphaSys Plugins and Fusion Plugins next, with the dedicated Other Plugins item last.\n- Remove the duplicate Other Plugins label.\n",
+      "sha256": "57f3ed9ee374a5cdf6754ccd61c04c6c8c2038c90d050867915de0cac7ced015"
     },
     {
       "id": "help-guides",

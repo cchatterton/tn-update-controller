@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T05:45:23.013333+00:00",
+  "published_at": "2026-11-14T05:51:08.296331+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -303,14 +303,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.4",
-      "tag": "v0.1.4",
+      "version": "0.1.5",
+      "tag": "v0.1.5",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Show manual update checks in a modal and refresh the list after completion.",
-      "sha256": "62c8c18d2caf04435283311051e599f441939f337937993b31cfb4f2ff13ae5d"
+      "body": "Move Update selected plugins beside the Updates available heading and use WordPress update_plugins capability for update actions.",
+      "sha256": "bb14b022cfcee878372a1be85d53b7364a3aab9fc1964f006530e5859e9c087b"
     },
     {
       "id": "tn-pallet",

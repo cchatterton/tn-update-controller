@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-05T22:38:01.793841+00:00",
+  "published_at": "2026-11-14T00:38:53.022994+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -459,14 +459,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.9.3",
-      "tag": "v0.9.3",
+      "version": "0.9.4",
+      "tag": "v0.9.4",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Keep the controller's AJAX responses valid when an active theme prints output during WordPress bootstrap.\n- Explain malformed controller responses and expired sessions with actionable messages.\n",
-      "sha256": "f87e138e7fe573aefe57d5ab366c048b2b79ed4bfea99e232cf7635f8f194b53"
+      "body": "Remove the unused Settings tab. Manual Check for updates remains in the header.",
+      "sha256": "a88654e219ebc0da513947c1453542540448afd8cf6d66278efdb7344aec4fca"
     },
     {
       "id": "tn-user-management",

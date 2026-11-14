@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T04:43:51.072551+00:00",
+  "published_at": "2026-11-14T04:45:47.386415+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -303,14 +303,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.2",
-      "tag": "v0.1.2",
+      "version": "0.1.3",
+      "tag": "v0.1.3",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Correct the Techn controller API declaration used by the catalogue publisher.",
-      "sha256": "1530abff063fadf7056fdda5f092ec5b536bd9dba8a5ca8f6f2d165b90dd8ad4"
+      "body": "Prompt for the first manual check before listing available updates.",
+      "sha256": "fe77db1ee69b8477051b1c6e9fe60a16c9e344374972015838cc9a3f86ae82ee"
     },
     {
       "id": "tn-pallet",

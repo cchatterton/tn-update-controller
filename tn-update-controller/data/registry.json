@@ -395,5 +395,24 @@
     "legacy": [],
     "beta": false,
     "reason": "Controller bootstrap identity and reviewed readiness."
+  },
+  "lov": {
+    "id": "lov",
+    "owner": "cchatterton",
+    "repo": "lov",
+    "file": "lov/lov.php",
+    "slug": "lov",
+    "asset": "lov.zip",
+    "name": "List of Values",
+    "author": "Techn",
+    "description": "Manage ACF-backed lists of values, including keys, images and colours.",
+    "legacy_identity": [
+      {
+        "author": "Chris Chatterton",
+        "max_version": "1.4"
+      }
+    ],
+    "beta": true,
+    "reason": "Review the installed 1.4 author identity before first controller-managed update."
   }
 }

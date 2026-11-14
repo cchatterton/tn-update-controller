@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.7 - 2026-11-14
+
+- Recognise the installed List of Values 1.4 package by its original Chris Chatterton author header for the first Techn-managed beta update.
+- Bound this legacy identity to version 1.4 and keep all other plugin identities unchanged.
+
 ## 0.9.6 - 2026-11-14
 
 - Remove the redundant Manual checks only label from the controller status line.

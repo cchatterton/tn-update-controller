@@ -49,7 +49,7 @@ function tnuc_render_admin(): void {
     }
     if ($tab === 'catalogue') { tnuc_render_catalogue($registry, $releases, $plugins); }
     else {
-        echo '<div class="tnuc-toolbar"><h2>Updates available</h2><button class="button button-primary" id="tnuc-update-selected" disabled>Update selected plugins</button></div><div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><td class="check-column"><input type="checkbox" id="tnuc-select-all" aria-label="Select all eligible updates"></td><th scope="col">Plugin</th><th scope="col">Installed</th><th scope="col">Available</th><th scope="col">GitHub</th></tr></thead><tbody>';
+        echo '<div class="tnuc-toolbar"><h2>Updates available</h2><button class="button button-primary" id="tnuc-update-selected" disabled>Update selected plugins</button></div><div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><td class="check-column"><input type="checkbox" id="tnuc-select-all" aria-label="Select all eligible updates"></td><th scope="col">Plugin</th><th scope="col">Installed</th><th scope="col">Available</th></tr></thead><tbody>';
         foreach ($installed as $id => $e) {
             if (!isset($updates[$id])) { continue; }
             $release = $releases[$id] ?? null;
@@ -61,7 +61,7 @@ function tnuc_render_admin(): void {
                 echo '<a href="' . esc_url(tnuc_release_url($release)) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr($e['name'] . ' ' . $release['version'] . ' release notes (opens in a new tab)') . '">' . esc_html($release['version']) . '</a>';
             } else { echo '—'; }
             if ($reason) { echo '<p id="tnuc-reason-' . esc_attr($id) . '" class="' . ($issue ? 'tnuc-warning' : 'description') . '">' . esc_html($reason) . '</p>'; }
-            echo '</td><td><a href="' . esc_url('https://github.com/' . $e['owner'] . '/' . $e['repo']) . '" target="_blank" rel="noopener noreferrer">GitHub<span class="screen-reader-text"> (opens in a new tab)</span></a></td></tr>';
+            echo '</td></tr>';
         }
         echo '</tbody></table></div>';
         if (!$updates) { echo '<p>No updates available in the cached catalogue.</p>'; }

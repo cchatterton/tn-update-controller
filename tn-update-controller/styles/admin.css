@@ -10,7 +10,7 @@
 .tnuc-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0 1rem; }
 .tnuc-toolbar h2 { margin: 0; }
 .tnuc-table-scroll { overflow-x: auto; }
-.tnuc-table-scroll table { min-width: 42rem; }
+.tnuc-table-scroll table { min-width: 35rem; }
 .tnuc-table-scroll td { padding: .9rem .6rem; vertical-align: top; }
 .tnuc-warning { color: #8a4000; }
 .tnuc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1.2rem; margin: 1rem 0 2rem; }

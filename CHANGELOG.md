@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.4 - 2026-11-14
+
+- Remove the unused Settings tab.
+
 ## 0.9.3 - 2026-11-03
 
 - Keep the controller's AJAX responses valid when an active theme prints output during WordPress bootstrap.

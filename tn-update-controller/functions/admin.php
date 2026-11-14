@@ -27,7 +27,7 @@ function tnuc_form_start(string $operation): void {
 }
 function tnuc_render_admin(): void {
     if (!tnuc_authorised()) { wp_die('You cannot manage plugin updates.'); }
-    $tab = sanitize_key($_GET['tab'] ?? 'installed'); if (!in_array($tab, ['installed','catalogue','settings'], true)) { $tab = 'installed'; }
+    $tab = sanitize_key($_GET['tab'] ?? 'installed'); if (!in_array($tab, ['installed','catalogue'], true)) { $tab = 'installed'; }
     $registry = array_filter(tnuc_registry(), 'tnuc_domain_allowed'); $releases = tnuc_catalogue()['plugins'] ?? []; $plugins = tnuc_plugins();
     $installed = array_filter($registry, static fn($e) => isset($plugins[$e['file']]));
     $updates = array_filter($releases, static fn($e) => tnuc_domain_allowed($e) && tnuc_match($e, $plugins) && version_compare($e['version'], $plugins[$e['file']]['Version'], '>'));
@@ -39,7 +39,7 @@ function tnuc_render_admin(): void {
     echo '<header class="tnuc-header"><span class="tnuc-version" aria-label="Version ' . esc_attr(TNUC_VERSION) . '">v' . esc_html(TNUC_VERSION) . '</span><p class="tnuc-eyebrow">Techn / Plugin library</p><h2>Your plugins. One place.</h2><p>Discover released Techn plugins from the published catalogue.</p><div class="tnuc-header-bottom"><span>' . count($installed) . ' installed · ' . count($updates) . ' updates available</span><button class="button tnuc-primary" data-check="">Check for updates</button></div></header>';
     echo '<div class="tnuc-status"><span>' . esc_html(tnuc_check_summary()) . '</span><span>' . 'Manual checks only' . '</span></div>';
     echo '<nav class="nav-tab-wrapper" aria-label="Plugin library">';
-    foreach (['installed'=>'Updates available','catalogue'=>'Catalogue','settings'=>'Settings'] as $key=>$label) { echo '<a class="nav-tab ' . ($key === $tab ? 'nav-tab-active' : '') . '" href="' . esc_url(tnuc_url($key)) . '">' . esc_html($label) . '</a>'; }
+    foreach (['installed'=>'Updates available','catalogue'=>'Catalogue'] as $key=>$label) { echo '<a class="nav-tab ' . ($key === $tab ? 'nav-tab-active' : '') . '" href="' . esc_url(tnuc_url($key)) . '">' . esc_html($label) . '</a>'; }
     echo '</nav><div id="tnuc-feedback" role="status" aria-live="polite"></div>';
     $batch = tnuc_get('batch');
     if (($batch['status'] ?? '') === 'running') {
@@ -47,8 +47,7 @@ function tnuc_render_admin(): void {
     } elseif (($batch['status'] ?? '') === 'partial') {
         echo '<p class="tnuc-resume">Some plugins could not be updated. <button class="button-link" data-results="">View results</button></p>';
     }
-    if ($tab === 'settings') { tnuc_render_settings(); }
-    elseif ($tab === 'catalogue') { tnuc_render_catalogue($registry, $releases, $plugins); }
+    if ($tab === 'catalogue') { tnuc_render_catalogue($registry, $releases, $plugins); }
     else {
         echo '<div class="tnuc-toolbar"><h2>Updates available</h2><button class="button button-primary" id="tnuc-update-selected" disabled>Update selected plugins</button></div><div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><td class="check-column"><input type="checkbox" id="tnuc-select-all" aria-label="Select all eligible updates"></td><th scope="col">Plugin</th><th scope="col">Installed</th><th scope="col">Available</th><th scope="col">GitHub</th></tr></thead><tbody>';
         foreach ($installed as $id => $e) {
@@ -101,10 +100,4 @@ function tnuc_render_catalogue(array $registry, array $releases, array $plugins)
     }
     echo '</div></section>';
     }
-}
-function tnuc_render_settings(): void {
-    echo '<p>Each Check for updates downloads one published catalogue JSON file. No GitHub API token or per-repository scan is needed. If this controller has an update, only that update is listed; update it, then check again.</p>';
-    echo '<h2>Manual checks only</h2><p>Checks run only when requested. There are no scheduled checks or controller waiting periods. Plugin ZIPs are downloaded only when installing or updating. The shared github-cchatterton table retains released/local versions, installation state and alpha/beta.</p>';
-    echo '<p>New plugins and versions become available when their release publishes the updated catalogue.</p>';
-
 }

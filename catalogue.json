@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T04:37:46.878206+00:00",
+  "published_at": "2026-11-14T04:40:40.528844+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -288,6 +288,29 @@
       "controller_api": 1,
       "body": "- Align WordPress 7.0 / PHP 7.4 metadata, GPL/readme packaging and project-authored CSS units with current Codex standards.\n- Add a canonical version watermark to the existing header and verify desktop/narrow-screen reflow.\n- Remove independent GitHub update checks and delegate updates to Techn Update Controller. Keep Beta readiness and existing feature settings, package identity and domain restrictions.\n- Standardise update headers and controller-aware Install/Activate/Check links.\n\n\nReadiness remains Beta. Update through the matching author controller.\n",
       "sha256": "36d022c5d52dbe43d424106ff5fe67dddd8eb7ac519b4fdf2a5d25f53f92c964"
+    },
+    {
+      "id": "tn-other-plugins",
+      "owner": "cchatterton",
+      "repo": "tn-other-plugins",
+      "file": "tn-other-plugins/tn-other-plugins.php",
+      "slug": "tn-other-plugins",
+      "asset": "tn-other-plugins.zip",
+      "author": "Techn",
+      "name": "TN Other Plugins",
+      "description": "Review and update installed plugins outside the Techn, AlphaSys and Fusion catalogues.",
+      "beta": true,
+      "exclusive": false,
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "0.1.1",
+      "tag": "v0.1.1",
+      "requires": "6.5",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "controller_api": 0,
+      "body": "Declare the Techn controller API, add native activation controls to catalogue cards, and align multisite grouping with the controllers.",
+      "sha256": "a2308d179da0ab7d80a085af8f71de9f41b86057f5c6455cc87aef1850015353"
     },
     {
       "id": "tn-pallet",

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T05:58:47.847479+00:00",
+  "published_at": "2026-11-14T06:32:56.428579+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -303,14 +303,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.6",
-      "tag": "v0.1.6",
+      "version": "0.1.7",
+      "tag": "v0.1.7",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Match the Techn update list with one selected update action. Align catalogue card layout and actions with Techn and AlphaSys, including native activation and deletion controls and release notes when available.",
-      "sha256": "f76de9e868531481b2c32f7e4c763cf1581f6e2e432e44fbb95f70a337a2aa9f"
+      "body": "Run selected plugin updates one at a time through the WordPress upgrader while showing progress and results in the modal.",
+      "sha256": "64c777798bbafad2608c925a65913191512aa52dc1673eb77ca5a9ad29b12a88"
     },
     {
       "id": "tn-pallet",

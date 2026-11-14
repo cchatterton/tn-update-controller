@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T00:55:49.458251+00:00",
+  "published_at": "2026-11-14T04:37:46.878206+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -459,14 +459,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.9.5",
-      "tag": "v0.9.5",
+      "version": "0.9.6",
+      "tag": "v0.9.6",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Remove the redundant GitHub column from Updates available. Available versions still link to release notes.",
-      "sha256": "2bc4f84e82823fd077b38cd832f7f4c96a79170206c12e825b8401b7240d25e2"
+      "body": "Remove the redundant Manual checks only label from the status line.",
+      "sha256": "54d356f9293094dea4e3e6f50bada4d25e2793d19bba34fd9b1c7b74fd89472d"
     },
     {
       "id": "tn-user-management",

@@ -52,5 +52,18 @@
 .tnuc-catalogue-group > h2 { margin-bottom: .75rem; }
 .tnuc-catalogue-group[hidden] { display: none; }
 
+.tnuc-subscriptions { background: #fff; border: .0625rem solid #c3c4c7; padding: 1.25rem; margin-top: 1.5rem; }
+.tnuc-subscriptions h2 { margin: 0 0 .5rem; }
+.tnuc-subscriptions p { margin: 0 0 1rem; }
+.tnuc-subscription-fields { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; }
+.tnuc-subscription-fields label { display: flex; flex-direction: column; gap: .35rem; font-weight: 600; }
+.tnuc-subscription-fields select { min-width: 10rem; max-width: 100%; }
+.tnuc-catalogue-toolbar { display: flex; justify-content: space-between; align-items: start; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.tnuc-catalogue-toolbar h2 { margin: 0; }
+.tnuc-catalogue-toolbar form { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.tnuc-catalogue-notice { margin: .5rem 0 0; }
+.tnuc-role { color: #50575e; font-size: .75rem; font-weight: 600; margin: 0 0 .4rem; text-transform: uppercase; letter-spacing: .025rem; }
+.tnuc-wrap select:focus-visible { outline: .15rem solid #2271b1; outline-offset: .15rem; }
+
 .tnuc-card-content { position: relative; padding-bottom: 2.25rem; }
 .tnuc-card-content > .tnuc-beta { position: absolute; bottom: 0.5rem; right: 0.75rem; font-size: 0.625rem; padding: 0 0.3rem; }

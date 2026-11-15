@@ -1,0 +1,200 @@
+{
+  "packages": {
+    "cms-tree-page-view": {
+      "latest": "2.7.0",
+      "versions": {
+        "2.7.0": {
+          "requires": "6.6",
+          "requires_php": "7.4",
+          "sha256": "de5b4535eb915dd8f2aed64384a31bd129b86f3543233185b2bdb9099ed3ac0f",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-cms-tree-page-view-v2.7.0/cms-tree-page-view-2.7.0.zip"
+        }
+      }
+    },
+    "disable-comments": {
+      "latest": "2.9.1",
+      "versions": {
+        "2.9.1": {
+          "requires": "5.0",
+          "requires_php": "7.0",
+          "sha256": "bc9e476f53921404b35207f1661269d57f16978854afb8b7eb403cdcf7193102",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-disable-comments-v2.9.1/disable-comments-2.9.1.zip"
+        }
+      }
+    },
+    "font-awesome": {
+      "latest": "5.2.1",
+      "versions": {
+        "5.2.1": {
+          "requires": "5.8",
+          "requires_php": "7.4",
+          "sha256": "56869e831d2b71f587a8148a32c5c3dea8e12b6c8c09cc238b49bce085a20a8c",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-font-awesome-v5.2.1/font-awesome-5.2.1.zip"
+        }
+      }
+    },
+    "fusion-plugins": {
+      "latest": "0.4.3",
+      "versions": {
+        "0.3.0": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "2347f3640561762872e4214a478b7d61bf3766b6f80afa0214462e8c85ec06e2",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.3.0/fusion-plugins.zip"
+        },
+        "0.3.1": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "d723992bd9ee38a6fc7366aa20d5ec52abb636acbee03fb62b65dd0a2dfd96a8",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.3.1/fusion-plugins.zip"
+        },
+        "0.3.2": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "86b9d3714578a782fcf6f235346635b57d4d7c929ff27bd73665214a70967404",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.3.2/fusion-plugins.zip"
+        },
+        "0.3.3": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "3e50fe943067d75d0bc3240c41ab39bb07788a613d6e41613353eea5b983efad",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.3.3/fusion-plugins.zip"
+        },
+        "0.4.0": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "5234d46decb806b496c38bc80d2820efde193d149083910d46f112b5baad9ed4",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.4.0/fusion-plugins.zip"
+        },
+        "0.4.1": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "745841e55cf5b201d2350468c256ddd7b97bbc547a9818a0069b3d8bb256bc06",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.4.1/fusion-plugins.zip"
+        },
+        "0.4.2": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "7723191ece8a0eae3c96f11b35a3022edb3f8efad2fe462bda5b91d16ab11b4c",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.4.2/fusion-plugins.zip"
+        },
+        "0.4.3": {
+          "requires": "6.5",
+          "requires_php": "7.4",
+          "sha256": "57f3ed9ee374a5cdf6754ccd61c04c6c8c2038c90d050867915de0cac7ced015",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/v0.4.3/fusion-plugins.zip"
+        }
+      }
+    },
+    "query-monitor": {
+      "latest": "4.1.1",
+      "versions": {
+        "4.1.1": {
+          "requires": "6.3",
+          "requires_php": "7.4",
+          "sha256": "d62c6ddb98479df7ac5cd8d111de6f967565aa149c54688fa5482dd3edc8d788",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-query-monitor-v4.1.1/query-monitor-4.1.1.zip"
+        }
+      }
+    },
+    "redirection": {
+      "latest": "5.10.1",
+      "versions": {
+        "5.10.1": {
+          "requires": "6.7",
+          "requires_php": "7.4",
+          "sha256": "f68a4be447ecba00c64e8a39d7517807ed49cc18e77b7a364c20cb31848235b7",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-redirection-v5.10.1/redirection-5.10.1.zip"
+        }
+      }
+    },
+    "search-regex": {
+      "latest": "3.5.1",
+      "versions": {
+        "3.5.1": {
+          "requires": "6.6",
+          "requires_php": "7.4",
+          "sha256": "d1dc4793dc5e01dd0cf1d620ff93ec0d2e341f0a772d075be8edcad04492cde2",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-search-regex-v3.5.1/search-regex-3.5.1.zip"
+        }
+      }
+    },
+    "smtp2go": {
+      "latest": "1.17.1",
+      "versions": {
+        "1.17.1": {
+          "requires": "6.2",
+          "requires_php": "7.4",
+          "sha256": "a13023d855e2c3cb25582e0108f1cc0e14c5af1f470e3f31ed0ff5ec3f4a7dcf",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-smtp2go-v1.17.1/smtp2go-1.17.1.zip"
+        }
+      }
+    },
+    "stream": {
+      "latest": "4.5.0",
+      "versions": {
+        "4.5.0": {
+          "requires": "4.6",
+          "requires_php": "7.4",
+          "sha256": "d52fea8532545bc0b96782dad18c4c4e192e1c74cdc994e88459e2eae502091f",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-stream-v4.5.0/stream-4.5.0.zip"
+        }
+      }
+    },
+    "transients-manager": {
+      "latest": "2.0.7",
+      "versions": {
+        "2.0.7": {
+          "requires": "5.3",
+          "requires_php": "5.6.20",
+          "sha256": "2b1fde7fa77234ff27d59b8ab9b51f1a6ca659a8da7e2eb7ca882c755a59c543",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-transients-manager-v2.0.7/transients-manager-2.0.7.zip"
+        }
+      }
+    },
+    "userway-accessibility-widget": {
+      "latest": "2.6.6",
+      "versions": {
+        "2.6.6": {
+          "requires": "4.7",
+          "sha256": "a2e2a39a1dc3bf59325e6bfda7dda484b621b2102ac0e15e68b006dd05691b67",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-userway-accessibility-widget-v2.6.6/userway-accessibility-widget-2.6.6.zip"
+        }
+      }
+    },
+    "wordfence": {
+      "latest": "9.1.1",
+      "versions": {
+        "9.1.1": {
+          "requires": "4.7",
+          "requires_php": "7.0",
+          "sha256": "51acb206ebaef1756e03112df81c749a70e4086d1a71b6e3426373e393880ad1",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-wordfence-v9.1.1/wordfence-9.1.1.zip"
+        }
+      }
+    },
+    "wp-crontrol": {
+      "latest": "2.0.0",
+      "versions": {
+        "2.0.0": {
+          "requires": "6.6",
+          "requires_php": "7.4",
+          "sha256": "84047d3346432f401044a2627a943524e73c64a1e856292d22fc3f3ccee65cc7",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-wp-crontrol-v2.0.0/wp-crontrol-2.0.0.zip"
+        }
+      }
+    },
+    "wpide": {
+      "latest": "3.6.5",
+      "versions": {
+        "3.6.5": {
+          "requires": "5.9",
+          "requires_php": "7.4.0",
+          "sha256": "674b851bb1f8843022d9b881584bde48a8bbe324edc855185f31b50a3710fa07",
+          "url": "https://github.com/cchatterton/fusion-controller/releases/download/mirror-wpide-v3.6.5/wpide-3.6.5.zip"
+        }
+      }
+    }
+  },
+  "schema": 1
+}

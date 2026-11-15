@@ -1,28 +1,34 @@
 # TN Update Controller
 
-A WordPress plugin library and update coordinator for **Techn-authored plugins from cchatterton on GitHub**. Installable ZIP: [latest release](https://github.com/cchatterton/tn-update-controller/releases/latest/download/tn-update-controller.zip).
+The controller behind **Plugins → Plugin Catalogue**. A site subscribes to one edition of each collection it wants: Techn 26, AlphaSys 26 and Fusion 26 are the initial editions. Installed plugins outside the selected collections appear under Other. Installable ZIP: [latest release](https://github.com/cchatterton/tn-update-controller/releases/latest/download/tn-update-controller.zip).
 
-WordPress 6.5+, PHP 7.4+. On multisite, network activate it. Open **Plugins → Techn Plugins** (Network Admin on multisite).
+WordPress 6.5+, PHP 7.4+. On multisite, network activate it. Open **Plugins → Plugin Catalogue** (Network Admin on multisite).
 
-- **Installed:** version comparisons, update-management status, per-plugin checks and selected bulk updates.
-- **Catalogue:** searchable cards, release notes, install/update/activate actions. Installation leaves new feature plugins inactive.
-**Check for updates** refreshes available plugins and installed update status together.
+- **Updates available:** version comparisons and selected bulk updates from the appropriate package provider.
+- **Catalogue:** site subscriptions, an edition picker, grouped cards, release notes and lifecycle actions. New installs remain inactive.
+**Check for updates** refreshes the public registry, subscribed release feeds and WordPress update state together.
 
 Activation removes obsolete controller schedules. It performs no discovery or plugin upgrades. Review updates and choose **Update selected plugins**. Each update has a separate result and an interrupted batch can be resumed. The controller updates itself last. Existing activation and settings are preserved by native WordPress installation APIs. Keep your normal backup and staging process; a batch is not an atomic transaction or a site rollback service.
 
+## Catalogue registry
+
+The root `catalogue-registry.json` publishes edition membership, status and notices. The bundled copy allows a cold-cache screen to render without HTTP. The controller stores the latest validated copy after an explicit check. Each site saves one edition per collection. A new installation starts unsubscribed; an existing Techn controller installation retains Techn 26 on upgrade. Publishing a new edition never changes an existing site's selection.
+
+Release metadata stays with its package source. Techn and AlphaSys entries use their verified public GitHub release feeds. Fusion entries prefer the verified GitHub mirror and use the site's native WordPress update provider when the mirror has no newer package. Other installed plugins use their existing WordPress provider. A selected catalogue's membership does not install or delete plugins.
+
 ## Ownership and coexistence
 
-Public stable releases from cchatterton with verified Techn package authorship are discovered by default, regardless of repository prefix. Ordinary new plugins need no registry entry. The registry holds reviewed exceptions: ambiguous authors, explicit includes/excludes, domain restrictions, aliases/supersession, legacy compatibility and readiness overrides. Check for updates downloads the public catalogue JSON generated from verified releases. See [discovery and exceptions](docs/DISCOVERY.md). Both controllers retain separate branded catalogues and share the repository index and scan lock.
+The existing Techn release publisher continues to verify Techn-authored packages and publish `catalogue.json`. AlphaSys continues to publish its own release feed; Fusion continues to publish its mirror index. The Plugin Catalogue registry chooses which verified plugin identities belong to each edition. During migration, the separate AlphaSys and Fusion controllers can remain active; retire them only after the shared controller and their client integrations have been checked on the site. See [discovery and exceptions](docs/DISCOVERY.md).
 
 ## Performance
 
-Every explicit Check for updates downloads exactly one public JSON file from `raw.githubusercontent.com`, using a unique freshness query and `Cache-Control: no-cache`. It makes no REST/GraphQL API calls, owner listings, per-plugin lookups or release ZIP inspections. No GitHub token is needed on WordPress sites. Request count stays one as the catalogue grows. Checks are manual only, with no cooldown, automatic retry, cron or page-load HTTP.
+Every explicit Check for updates downloads the registry and selected public release feeds from `raw.githubusercontent.com`, using unique freshness queries and `Cache-Control: no-cache`, then asks WordPress to refresh its existing plugin update state. It makes no GitHub API calls, owner listings or release ZIP inspections. No GitHub token is needed on WordPress sites. Checks are manual only, with no controller cooldown, cron or page-load HTTP.
 
-The controller evaluates its own entry first. If newer, it shows only that update and stops processing other entries; update it explicitly and check again. When current, the same downloaded JSON refreshes available capabilities and installed update status together. Missing/invalid controller metadata or a failed/invalid feed retains the previous snapshot. Native package downloads and checksum/root checks happen only when installing/updating.
+The controller evaluates its own release first. If newer, it shows only that update; update it explicitly and check again. When current, each selected source refreshes independently. A failed or invalid feed retains its previous verified snapshot and is reported as a partial check. Package downloads and checksum/root checks happen only when installing or updating.
 
 The shared, unprefixed `github-cchatterton` table remains a local mirror of verified catalogue records, including author, released version, local version, installed state and alpha/beta. It is not a repository scanner. Existing other-author/non-plugin rows may remain as history. Independent WordPress installations should use separate databases. Normal rendering and native update projections read local state only.
 
-A check is bounded to ten seconds/1 MiB and one request with redirects disabled. Public file delivery can still fail; that is reported without erasing verified results. Update availability depends on catalogue publication, which is part of every plugin release.
+Each public JSON request is bounded to ten seconds and 1 MiB, with redirects disabled. Public file delivery can still fail; that is reported without erasing verified results. Update availability depends on publication by the package source.
 
 ## Existing plugins
 
@@ -32,7 +38,7 @@ A complete migration still requires a new release of each feature plugin removin
 
 ## Release catalogue publishing (required)
 
-Every stable same-brand plugin release, including this controller, must publish its catalogue entry after the GitHub release ZIP is verified. New plugins need no manual registry registration: the publisher verifies ownership, exact package author, identity, requirements, domain/readiness metadata and checksum.
+Every stable Techn plugin release, including this controller, must publish its release entry after the GitHub ZIP is verified. The publisher verifies ownership, exact package author, identity, requirements, domain/readiness metadata and checksum. Inclusion in an annual collection is a separate editorial change to `catalogue-registry.json`; see [registry publishing](docs/CATALOGUE-REGISTRY.md).
 
 From a current checkout of this controller repository, run:
 
@@ -49,7 +55,7 @@ Then fetch the public `https://raw.githubusercontent.com/cchatterton/tn-update-c
 
 ## Build and recovery
 
-Run `bash scripts/build-plugin-zip.sh`. The root ZIP and `dist/tn-update-controller.zip` contain only the plugin directory. Commit the root ZIP, tag matching header/changelog/readme versions, upload the ZIP to the GitHub release, then run the catalogue publisher. Each controller has a separate release. For recovery use the verified official release ZIP via WordPress Upload Plugin or trusted hosting deployment tools.
+Run `bash scripts/build-plugin-zip.sh`. The root ZIP and `dist/tn-update-controller.zip` contain only the plugin directory. Commit the root ZIP, tag matching header/changelog/readme versions, upload the ZIP to the GitHub release, then run the catalogue publisher. For recovery use the verified official release ZIP via WordPress Upload Plugin or trusted hosting deployment tools.
 
 The integration helper is source for feature-plugin migrations, not part of the installed controller ZIP. It resolves the official controller ZIP only after an authorised install action. No WordPress.org listing is assumed; readme Contributors is intentionally blank pending a confirmed WordPress.org username.
 

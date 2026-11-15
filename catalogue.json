@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-15T04:29:40.767044+00:00",
+  "published_at": "2026-11-15T04:50:48.463094+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -528,14 +528,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.4",
-      "tag": "v0.10.4",
+      "version": "0.10.5",
+      "tag": "v0.10.5",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Old Plugins submenu URLs now redirect to the matching catalog after controller updates. In-progress update modals from older controller JavaScript can refresh the new screen. Plugin Catalogs now shows each catalog's Hosted or Mirrored type.",
-      "sha256": "671077d31d96db8133f7039a1a729d880c2baaeef0ee0b19b8892cd91b525bdf"
+      "body": "## What's Changed\n* Publish Techn 25 and 27 readable catalogs by @cchatterton in https://github.com/cchatterton/tn-update-controller/pull/11\n\n\n**Full Changelog**: https://github.com/cchatterton/tn-update-controller/compare/v0.10.4...v0.10.5",
+      "sha256": "5cfec24e8f33d99b676be42bae9abbddd58bdeb68812a9a8f9ace5d761ea4d8e"
     },
     {
       "id": "tn-user-management",

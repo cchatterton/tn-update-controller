@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.1 - 2026-11-15
+
+- Restore WordPress.org update dates, download and rating counts, and release notes on Other plugin cards.
+- Keep the detail lookup confined to explicit checks; ordinary screen rendering reads cached data only.
+
 ## 0.10.0 - 2026-11-15
 
 - Add a published registry of Techn 26, AlphaSys 26 and Fusion 26 with one saved edition per collection on each site.

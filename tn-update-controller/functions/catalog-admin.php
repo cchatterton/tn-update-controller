@@ -122,7 +122,7 @@ function tnuc_hub_render_card(array $item): void {
     echo '<article class="tnuc-card"><div class="tnuc-card-content">';
     if (!empty($entry['role'])) { echo '<p class="tnuc-role">' . esc_html($entry['role']) . '</p>'; }
     echo '<h3>' . esc_html($entry['name']) . '</h3><p class="tnuc-card-description">' . esc_html($entry['description']) . '</p>';
-    $latest = $release['version'] ?? ($update['version'] ?? '');
+    $latest = $release['version'] ?? ($update['version'] ?? ($match['data']['Version'] ?? ''));
     $details = ($match ? 'Installed ' . ($match['data']['Version'] ?? '') : 'Not installed') . ($latest !== '' ? ' · Latest ' . $latest : '');
     echo '<p class="description">' . esc_html($details) . '</p>';
     if ($match && !$release) {
@@ -130,6 +130,11 @@ function tnuc_hub_render_card(array $item): void {
         if (!empty($match['data']['RequiresWP'])) { $requirements[] = 'WordPress ' . $match['data']['RequiresWP'] . '+'; }
         if (!empty($match['data']['RequiresPHP'])) { $requirements[] = 'PHP ' . $match['data']['RequiresPHP'] . '+'; }
         if ($requirements) { echo '<p class="description">' . esc_html(implode(' · ', $requirements)) . '</p>'; }
+    }
+    if ($item['catalog'] === 'other' && $match) {
+        $info = ((array) tnuc_get('hub_other_details'))[$match['file']] ?? [];
+        if (!empty($info['last_updated'])) { echo '<p class="description">Last updated ' . esc_html($info['last_updated']) . '</p>'; }
+        if ($info) { echo '<p class="description">' . esc_html(number_format_i18n((int) ($info['downloaded'] ?? 0))) . ' downloads · ' . esc_html(number_format_i18n((int) ($info['num_ratings'] ?? 0))) . ' ratings</p>'; }
     }
     if (!empty($item['conflict'])) { echo '<p class="tnuc-warning">Plugin identity conflicts with another selected catalogue or the installed plugin. Review before updating.</p>'; }
     if (!empty($item['issue'])) { echo '<p class="tnuc-warning">' . esc_html($item['issue']) . '</p>'; }
@@ -151,7 +156,18 @@ function tnuc_hub_render_card(array $item): void {
         echo '<button type="button" class="button" data-plugin-action="' . esc_attr($action) . '" data-plugin-id="' . esc_attr($key) . '">' . esc_html((is_multisite() ? 'Network ' : '') . ($active ? 'Deactivate' : 'Activate')) . '</button>';
         if (!$active && current_user_can('delete_plugins')) { echo '<button type="button" class="button-link-delete" data-plugin-action="delete" data-plugin-id="' . esc_attr($key) . '">Delete</button>'; }
     }
-    if (!empty($release['notes'])) { echo '<a href="' . esc_url($release['notes']) . '" target="_blank" rel="noopener noreferrer">Release notes<span class="screen-reader-text"> (opens in a new tab)</span></a>'; }
+    $notes = (string) ($release['notes'] ?? '');
+    if ($notes === '' && $item['catalog'] === 'other' && $match) {
+        $info = ((array) tnuc_get('hub_other_details'))[$match['file']] ?? [];
+        $slug = (string) ($info['slug'] ?? tnuc_hub_wporg_slug($match['file']));
+        if ($slug !== '') { $notes = 'https://wordpress.org/plugins/' . rawurlencode($slug) . '/#developers'; }
+        else {
+            $native = tnuc_hub_native_updates()[$match['file']] ?? null;
+            $candidate = is_object($native) ? (string) ($native->url ?? '') : '';
+            if (preg_match('~^https?://~i', $candidate)) { $notes = $candidate; }
+        }
+    }
+    if ($notes !== '') { echo '<a href="' . esc_url($notes) . '" target="_blank" rel="noopener noreferrer">Release notes<span class="screen-reader-text"> (opens in a new tab)</span></a>'; }
     echo '</div>';
     if (!empty($entry['beta'])) { echo '<span class="tnuc-beta">Beta</span>'; }
     echo '</div></article>';

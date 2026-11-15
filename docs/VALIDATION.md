@@ -154,3 +154,5 @@ The following package paths completed in that disposable site:
 Standalone tests cover registry identity validation, source routing, catalogue controls, native and mirrored batches, interrupted-update recognition and checksum rejection. Run `php tests/catalogue-registry.php`, `php tests/catalogue-items.php`, `php tests/catalogue-ui.php`, and `php tests/catalogue-batch.php`. The live published registry URL is verified only after the root registry file is pushed to the release branch/main; the browser error modal was also checked while that URL was not yet published.
 
 The disposable site was then converted to multisite. The controller network activated, retained network-wide subscription state, saved a new selection, and rendered **Plugin Catalogue** in Network Admin. CI syntax and standalone behaviour tests passed on PHP 7.4, 8.1 and 8.5. A full WordPress runtime on PHP 7.4 was not available locally.
+
+For 0.10.1, an explicit check cached WordPress.org details for the installed Other plugins. Classic Editor's download count and release-notes link rendered in Network Admin with zero HTTP requests during page rendering.

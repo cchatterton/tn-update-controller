@@ -97,6 +97,7 @@ function tnuc_hub_check() {
     }
     // Other and native fallback use the site's existing providers.
     wp_update_plugins(['manual_check' => 'plugin-catalogue']);
+    tnuc_hub_refresh_other_details();
     tnuc_put('hub_checked_at', time());
     tnuc_put('hub_check_errors', $errors);
     return ['status' => $errors ? 'partial' : 'complete', 'message' => $errors ? implode(' ', $errors) : 'Selected catalogues and WordPress plugin updates checked.', 'done' => 1, 'total' => 1];
@@ -105,6 +106,32 @@ function tnuc_hub_check() {
 function tnuc_hub_native_updates(): array {
     $state = get_site_transient('update_plugins');
     return is_object($state) && is_array($state->response ?? null) ? $state->response : [];
+}
+
+function tnuc_hub_wporg_slug(string $file): string {
+    $state = get_site_transient('update_plugins');
+    foreach (['response', 'no_update'] as $group) {
+        $items = is_object($state) && is_array($state->$group ?? null) ? $state->$group : [];
+        $item = $items[$file] ?? null;
+        if (!is_object($item)) { continue; }
+        $id = (string) ($item->id ?? '');
+        if (strpos($id, 'w.org/plugins/') === 0 || strpos($id, 'https://wordpress.org/plugins/') === 0) { return sanitize_title((string) ($item->slug ?? dirname($file))); }
+    }
+    return '';
+}
+
+function tnuc_hub_refresh_other_details(): void {
+    require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+    $details = (array) tnuc_get('hub_other_details');
+    foreach (tnuc_hub_items() as $item) {
+        if ($item['catalog'] !== 'other') { continue; }
+        $file = $item['match']['file']; $slug = tnuc_hub_wporg_slug($file);
+        if ($slug === '') { continue; }
+        $info = plugins_api('plugin_information', ['slug' => $slug, 'fields' => ['downloaded' => true, 'last_updated' => true, 'num_ratings' => true, 'sections' => false]]);
+        if (is_wp_error($info) || !is_object($info) || ($info->slug ?? '') !== $slug) { continue; }
+        $details[$file] = ['slug' => $slug, 'last_updated' => (string) ($info->last_updated ?? ''), 'downloaded' => (int) ($info->downloaded ?? 0), 'num_ratings' => (int) ($info->num_ratings ?? 0)];
+    }
+    tnuc_put('hub_other_details', $details);
 }
 
 function tnuc_hub_match(array $entry, array $installed): array {

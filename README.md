@@ -14,7 +14,7 @@ Activation removes obsolete controller schedules. It performs no discovery or pl
 
 The root `catalogue-registry.json` publishes edition membership, status and notices. The bundled copy allows a cold-cache screen to render without HTTP. The controller stores the latest validated copy after an explicit check. Each site saves one edition per collection. A new installation starts unsubscribed; an existing Techn controller installation retains Techn 26 on upgrade. Publishing a new edition never changes an existing site's selection.
 
-Release metadata stays with its package source. Techn and AlphaSys entries use their verified public GitHub release feeds. Fusion entries prefer the verified GitHub mirror and use the site's native WordPress update provider when the mirror has no newer package. Other installed plugins use their existing WordPress provider. A selected catalogue's membership does not install or delete plugins.
+Release metadata stays with its package source. Techn and AlphaSys entries use their verified public GitHub release feeds. Fusion entries prefer the verified GitHub mirror and use the site's native WordPress update provider when the mirror has no newer package. Other installed plugins use their existing WordPress provider; an explicit check also caches WordPress.org details for their cards. A selected catalogue's membership does not install or delete plugins.
 
 ## Ownership and coexistence
 

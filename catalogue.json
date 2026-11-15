@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-15T04:08:21.671265+00:00",
+  "published_at": "2026-11-15T04:29:40.767044+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -528,14 +528,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.3",
-      "tag": "v0.10.3",
+      "version": "0.10.4",
+      "tag": "v0.10.4",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Plugin Catalogs now lists individual catalogs with checkboxes. Every checked edition gets its own Plugins submenu, including Techn 25 and Techn 26 together. Other Plugins and Plugin Catalogs remain the final two submenus. Existing selections migrate automatically; new catalog collections can be published without menu code changes.",
-      "sha256": "cfa1463ce88e857eacb26d7f1597c4d29281e08fe7c43c72472890da377b895c"
+      "body": "Old Plugins submenu URLs now redirect to the matching catalog after controller updates. In-progress update modals from older controller JavaScript can refresh the new screen. Plugin Catalogs now shows each catalog's Hosted or Mirrored type.",
+      "sha256": "671077d31d96db8133f7039a1a729d880c2baaeef0ee0b19b8892cd91b525bdf"
     },
     {
       "id": "tn-user-management",

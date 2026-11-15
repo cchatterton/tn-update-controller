@@ -20,9 +20,9 @@ runtime_assert(count(tnuc_catalogs()) === 5, 'new bundled catalog revision takes
 tnuc_put('catalog_registry', $cached_registry);
 $future_registry = $registry;
 $future_techn = $future_registry['catalogs'][0];
-$future_techn['id'] = 'techn-28'; $future_techn['release'] = '28'; $future_techn['name'] = 'Techn';
+$future_techn['id'] = 'techn-28'; $future_techn['release'] = '28'; $future_techn['year'] = '28'; $future_techn['name'] = 'Techn';
 $future_registry['catalogs'][] = $future_techn;
-$future_registry['revision'] = 3;
+$future_registry['revision'] = 4;
 tnuc_put('catalog_registry', $future_registry);
 runtime_assert(tnuc_default_catalog_selection() === ['techn-28'], 'new installations default to the latest current Techn edition');
 tnuc_put('catalog_registry', $cached_registry);
@@ -74,7 +74,7 @@ runtime_assert(count((array) tnuc_get('as_catalogue')) === 23 && count((array) t
 runtime_assert(isset(tnuc_hub_items()['fusion:disable-comments']), 'Fusion membership remains available after check');
 $two_editions = $registry;
 $two_editions['catalogs'][] = ['id' => 'editorial-26', 'collection' => 'editorial', 'release' => '26', 'name' => 'Editorial', 'status' => 'current', 'plugins' => []];
-$two_editions['revision'] = 3;
+$two_editions['revision'] = 4;
 tnuc_put('catalog_registry', $two_editions);
 runtime_assert(!is_wp_error(tnuc_save_catalog_selection(['techn-25', 'techn-26', 'editorial-26'])), 'two Techn editions and a future catalog can be selected together');
 unset($submenu['plugins.php']);

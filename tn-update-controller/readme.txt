@@ -3,20 +3,20 @@ Contributors:
 Tags: updates, plugins, catalogue, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.9.7
+Stable tag: 0.10.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A cached catalogue, manual update checks and guided installation for Techn plugins.
+A shared plugin catalogue with site subscriptions and guided updates.
 
 == Description ==
 
-Manage verified Techn-authored plugins from cchatterton's GitHub repositories. AlphaSys plugins are managed separately by AS Update Controller. Both controllers can run together.
+Plugin Catalogue lists the editions a site has subscribed to. Techn 26, AlphaSys 26 and Fusion 26 are available initially. An Other view covers installed plugins outside those selections. Publishing a new edition does not change a site's saved subscriptions or uninstall plugins from an older edition.
 
-Plugins > Techn Plugins provides Updates available and Catalogue tabs. Each check downloads one public catalogue JSON file and updates the shared local github-cchatterton table. No GitHub API or token is required. Ordinary page rendering makes no update-metadata requests, even when the cache is empty. Installations and updates use WordPress's native upgrader and verify package checksums.
+Plugins > Plugin Catalogue provides Updates available and Catalogue tabs. The Catalogue tab holds subscription choices and grouped plugin cards. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
 
-Checks are strictly manual. Each check verifies this controller first. If its update is available, only that update is listed and the check stops. Update the controller, then check again. When current, the check refreshes available plugins and installed update status together. Old controller schedules are removed on upgrade. Discovery does not install updates or change WordPress auto-update settings.
+Checks are manual on each site. The separate Fusion mirror publisher may refresh its packages in the background. Each site check verifies this controller first. If its update is available, update it and check again before processing the selected catalogues. Discovery does not install updates or change WordPress auto-update settings.
 
 Reviewed legacy updater files are held inactive while this controller runs. This is a compatibility bridge, not a claim that all plugin repositories have been migrated. Unknown legacy implementations and site-level forced refresh code require review.
 
@@ -26,7 +26,7 @@ On multisite, network activate this controller and use Network Admin. Inactive r
 
 1. Upload tn-update-controller.zip through Plugins > Add Plugin > Upload Plugin.
 2. Activate (network activate on multisite).
-3. Open Plugins > Techn Plugins and check the catalogue.
+3. Open Plugins > Plugin Catalogue, choose editions, and check for updates.
 4. Review installed/available versions and choose Update selected plugins when ready.
 
 Installing or activating the controller does not automatically update other plugins. Batch operations preserve active/inactive state. Test migration on staging and verify recovery arrangements before production rollout.
@@ -42,19 +42,24 @@ No. Feature plugins continue to operate without it. Legacy updater suppression o
 The published catalogue includes verified public stable same-brand releases. Every plugin release must update and publish its catalogue entry. New plugins need no manual registry registration, but will not appear until that publication succeeds.
 
 = Are checks immediate? =
-Each click downloads one public JSON file with a freshness query. No controller cooldown applies. The controller entry is evaluated first; if newer, update it and check again. Otherwise all entries are processed from that same file.
+Each click requests fresh public catalogue metadata and WordPress update state. No controller cooldown applies. The controller entry is evaluated first; if newer, update it and check again.
 
 = What are exclusive plugins? =
 Exclusive plugins are hidden from the catalogue until manually installed. Once installed, they have the same lifecycle and update actions as other plugins. Exclusive is independent of domain restrictions and beta readiness.
 
 == External services ==
 
-GitHub hosts the public catalogue and release packages. An explicit check makes one HTTPS GET to raw.githubusercontent.com, regardless of plugin count. It sends no GitHub token or site inventory. GitHub receives the server IP and normal connection metadata. Explicit installation/update downloads the selected release ZIP from github.com and approved release-asset hosts. Nothing is checked automatically.
+GitHub hosts the catalogue registry, Techn and AlphaSys release feeds, Fusion mirror index and release packages. An explicit check requests the registry and the selected feeds from raw.githubusercontent.com; GitHub receives the server IP and normal connection metadata. GitHub receives no token or site inventory. Installing or updating a GitHub package downloads its ZIP from github.com. Native WordPress updates use the site's existing WordPress.org or vendor update service and may send that service the normal plugin update information. The controller itself makes no scheduled site checks.
 
 Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-service
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.10.0 =
+* Add a published catalogue registry and site subscriptions for Techn 26, AlphaSys 26 and Fusion 26.
+* Show one shared update table and grouped catalogue cards, including Other installed plugins.
+* Use verified GitHub releases, Fusion mirror packages or native WordPress providers according to each plugin's source.
 
 = 0.9.7 =
 * Trust the installed List of Values 1.4 author for a bounded controller-managed beta update.

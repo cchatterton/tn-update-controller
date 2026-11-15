@@ -1,0 +1,163 @@
+{
+  "as-utm-relay": {
+    "file": "as-utm-relay/as-utm-relay.php",
+    "repo": "as-utm-relay",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "a4a2410f4ae94913e425e5a8774fab7ca7906c20af39791620ec65859f6dfa90"
+      }
+    ]
+  },
+  "web-force-connect-27": {
+    "file": "alphasys-web-force-connect-27/alphasys-web-force-connect-27.php",
+    "repo": "web-force-connect-27",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "c614d9fc3485a43997868570d3e0b7ce8e2d6496158d34b8db8bdde92b9e23b2"
+      }
+    ]
+  },
+  "as-local-css": {
+    "file": "as-local-css/as-local-css.php",
+    "repo": "as-local-css",
+    "legacy": [
+      {
+        "path": "includes/github-updater.php",
+        "sha256": "eb732ecbe0aa4f68c36626ef0d457813eadb6f73592393d0483a0bc9505b7fe9"
+      }
+    ]
+  },
+  "as-content-stream": {
+    "file": "as-content-stream/as-content-stream.php",
+    "repo": "as-content-stream",
+    "legacy": [
+      {
+        "path": "includes/class-as-content-stream-github-updater.php",
+        "sha256": "1bb5efd44cc2cb727c9cd2040782823179e027e9cb82faf7888f34e52620da86"
+      }
+    ]
+  },
+  "gf-sf-webhook": {
+    "file": "gf-sf-webhook/gf-sf-webhook.php",
+    "repo": "gf-sf-webhook",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "a0b8f9760bfcc166a60155d5cc441b450209d72ccd41b7ae0569593f6978f2e6"
+      }
+    ]
+  },
+  "as-gated-content": {
+    "file": "as-gated-content/as-gated-content.php",
+    "repo": "as-gated-content",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "c7665d40764cb33142c9a42c340073026ef8f607744ae67b8a38c56fedfd8e6d"
+      }
+    ]
+  },
+  "as-image-governance": {
+    "file": "as-image-governance/as-image-governance.php",
+    "repo": "as-image-governance",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "323156ad923431122dd29d7063a1ba0e38af34824c5a027e8c7324389ea540ae"
+      }
+    ]
+  },
+  "AS-Relevansi": {
+    "file": "as-relevansi/as-relevansi.php",
+    "repo": "AS-Relevansi",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "d5e6c6b78eee1cb1b8c7c6cf6e3a3838937d3191d0290b73b199d9332644de96"
+      }
+    ]
+  },
+  "raiven-connector": {
+    "file": "raiven-connector/raiven-connector.php",
+    "repo": "raiven-connector",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "269243fe91bc08e37ac8fe10cc391222532b079f45ec9c419de4c8c68a290c4d"
+      }
+    ]
+  },
+  "as-shopify-catalog-link": {
+    "file": "as-shopify-catalog-link/as-shopify-catalog-link.php",
+    "repo": "as-shopify-catalog-link",
+    "legacy": [
+      {
+        "path": "includes/class-ascl-github-updater.php",
+        "sha256": "6ced58f1c23b10688d8303c61aaa33e45a5554708bee4ab4b97ca8fc1a88ecbc"
+      }
+    ]
+  },
+  "as-qs-relay": {
+    "file": "as-qs-relay/as-qs-relay.php",
+    "repo": "as-qs-relay",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "6ebc5658b60f042f4f73c62977e50924ce316c1d164642a453272d15d09290a1"
+      }
+    ]
+  },
+  "gravity-forms-data-retention-policy": {
+    "file": "gravity-forms-data-retention-policy/gravity-forms-data-retention-policy.php",
+    "repo": "gravity-forms-data-retention-policy",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "14e720820da00f01e0252981c37a88401ec63ebc0a919ff21fc8325be77afe13"
+      }
+    ]
+  },
+  "wfc-cart": {
+    "file": "wfc-cart/wfc-cart.php",
+    "repo": "wfc-cart",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "ce22b1dd6b6a63430be28a2089682c9b5b904bdd21ccc54e68ae8be674fc6c0d"
+      }
+    ]
+  },
+  "as-transcript-themes": {
+    "file": "as-transcript-themes/as-transcript-themes.php",
+    "repo": "as-transcript-themes",
+    "legacy": [
+      {
+        "path": "functions/updater.php",
+        "sha256": "7aa722d3dae1ab01ab96501e72488b7fbdca9912b43995f6fd9b890c3bec3635"
+      }
+    ]
+  },
+  "as-ms-reporting": {
+    "file": "as-ms-reporting/as-ms-reporting.php",
+    "repo": "as-ms-reporting",
+    "legacy": [
+      {
+        "path": "functions/github-updater.php",
+        "sha256": "0e50f7193bedd0fde671e5a500f114b53f00641de1fc76f619985ea8e731d9e4"
+      }
+    ]
+  },
+  "wp-pattern-import": {
+    "file": "wp-pattern-import/wp-pattern-import.php",
+    "repo": "wp-pattern-import",
+    "legacy": [],
+    "legacy_identity": [
+      {
+        "author": "WP Pattern Import",
+        "max_version": "0.13.0"
+      }
+    ]
+  }
+}

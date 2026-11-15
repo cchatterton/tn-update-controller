@@ -2,9 +2,9 @@
 if (!defined('ABSPATH')) { exit; }
 function tnuc_menu(): void {
     if (is_multisite() && !is_network_admin()) { return; }
-    add_submenu_page('plugins.php', 'Techn Plugins', 'Techn Plugins', 'update_plugins', 'tnuc', 'tnuc_render_admin');
+    add_submenu_page('plugins.php', 'Plugin Catalogue', 'Plugin Catalogue', 'update_plugins', 'tnuc', 'tnuc_hub_render_admin');
 }
-function tnuc_settings_link(array $links): array { array_unshift($links, '<a href="' . esc_url(tnuc_url()) . '">Techn Plugins</a>'); return $links; }
+function tnuc_settings_link(array $links): array { array_unshift($links, '<a href="' . esc_url(tnuc_hub_url()) . '">Plugin Catalogue</a>'); return $links; }
 function tnuc_assets(string $hook): void {
     if ($hook !== 'plugins_page_tnuc') { return; }
     wp_enqueue_style('tnuc-admin', plugins_url('styles/admin.css', TNUC_FILE), [], TNUC_VERSION);

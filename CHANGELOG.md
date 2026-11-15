@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.0 - 2026-11-15
+
+- Add a published registry of Techn 26, AlphaSys 26 and Fusion 26 with one saved edition per collection on each site.
+- Replace the Techn Plugins screen with a shared Plugin Catalogue interface, including Other installed plugins.
+- Check subscribed GitHub releases, Fusion mirror packages and WordPress native update providers; preserve the selected update modal and resumable batch flow.
+- Carry reviewed AlphaSys legacy updater hashes into the single controller for migration from the separate controller.
+
 ## 0.9.7 - 2026-11-14
 
 - Recognise the installed List of Values 1.4 package by its original Chris Chatterton author header for the first Techn-managed beta update.

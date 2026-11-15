@@ -1,5 +1,7 @@
 /dist/
 /.DS_Store
 /tests/results/
+/.playwright-cli/
+/output/playwright/
 
 __pycache__/

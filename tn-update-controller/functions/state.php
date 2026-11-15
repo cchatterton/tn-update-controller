@@ -14,6 +14,7 @@ function tnuc_authorised(string $cap = 'update_plugins'): bool {
 }
 function tnuc_activate(bool $network_wide = false): void {
     if (is_multisite() && !$network_wide) { wp_die(esc_html__('Network activate the controller to manage shared plugin files.', 'tn-update-controller')); }
+    if (tnuc_get('catalog_selection', null) === null) { tnuc_put('catalog_selection', []); }
     tnuc_put('setup_pending', true);
     tnuc_schedule();
 }

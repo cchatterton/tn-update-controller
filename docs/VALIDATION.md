@@ -140,3 +140,17 @@ Browser-tested in disposable WordPress 7.0: successful live checks close the mod
 Added publisher coverage for default false, explicit true and malformed exclusive values. Disposable WordPress tests cover hidden uninstalled entries, denied initial controller installation, manual installation, activation/deactivation, native ZIP upgrade with checksum verification, retained inactive state, deletion/re-hiding and ordinary plugin visibility. Both controllers are exercised. AS exceptions remove domain restrictions, including cold-cache policy on an arbitrary domain. Regression checks cover catalogue grouping, admin UI, one-request manual checks and controller-first processing.
 
 Exclusive lifecycle and native upgrade tests passed on PHP 7.4 and PHP 8.5; domain-policy, grouping, admin UI, manual-check and controller-first regressions passed. Both release publishers passed 16 offline tests.
+# Plugin Catalogue 0.10.0 validation (2026-11-15)
+
+On a disposable WordPress 7.1.2 site with PHP 8.5.7, the controller activated and rendered **Plugins → Plugin Catalogue** with all three editions selected. Normal page rendering made no HTTP requests. An explicit check cached the Techn, AlphaSys and Fusion package feeds. The screen and save-subscription modal were checked at 1440 × 900 and 390 × 844; the install modal retained keyboard focus on Close.
+
+The following package paths completed in that disposable site:
+
+- Fusion mirror: installed Disable Comments 2.9.1 and Query Monitor 4.1.1.
+- AlphaSys GitHub release: installed AS UTM Relay 0.1.1.
+- Techn GitHub release: installed TN QR Codes 1.5.2.
+- Native WordPress provider through Other: updated Classic Editor from 1.6.5 to 1.7.0.
+
+Standalone tests cover registry identity validation, source routing, catalogue controls, native and mirrored batches, interrupted-update recognition and checksum rejection. Run `php tests/catalogue-registry.php`, `php tests/catalogue-items.php`, `php tests/catalogue-ui.php`, and `php tests/catalogue-batch.php`. The live published registry URL is verified only after the root registry file is pushed to the release branch/main; the browser error modal was also checked while that URL was not yet published.
+
+The disposable site was then converted to multisite. The controller network activated, retained network-wide subscription state, saved a new selection, and rendered **Plugin Catalogue** in Network Admin. CI syntax and standalone behaviour tests passed on PHP 7.4, 8.1 and 8.5. A full WordPress runtime on PHP 7.4 was not available locally.

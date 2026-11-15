@@ -21,8 +21,11 @@ $registry = json_decode((string) file_get_contents($root . '/catalogue-registry.
 hub_assert($registry === json_decode((string) file_get_contents(TNUC_DIR . 'data/catalogue-registry.json'), true), 'published and bundled registries match');
 $validated = tnuc_catalog_registry_validate($registry);
 hub_assert(!is_wp_error($validated) && count($validated['catalogs']) === 3, 'published registry has three valid collections');
+hub_assert($validated['catalogs']['techn-26']['type'] === 'hosted' && $validated['catalogs']['alphasys-26']['type'] === 'hosted' && $validated['catalogs']['fusion-26']['type'] === 'mirrored', 'catalog types are published');
 $custom = $registry; $custom['catalogs'][] = ['id' => 'editorial-26', 'collection' => 'editorial', 'year' => '26', 'name' => 'Editorial 26', 'status' => 'current', 'plugins' => []];
 hub_assert(!is_wp_error(tnuc_catalog_registry_validate($custom)), 'registry accepts a future catalog collection');
+$bad = $registry; $bad['catalogs'][0]['type'] = 'unknown';
+hub_assert(is_wp_error(tnuc_catalog_registry_validate($bad)), 'unknown catalog type is rejected');
 $bad = $registry; $bad['catalogs'][0]['plugins'][0]['owner'] = 'untrusted';
 hub_assert(is_wp_error(tnuc_catalog_registry_validate($bad)), 'untrusted GitHub owner is rejected');
 $bad = $registry; $bad['catalogs'][1]['plugins'][0]['source'] = 'arbitrary-url';

@@ -26,6 +26,13 @@ $deny = static function ($pre, $args, $url) use (&$network_calls) { $network_cal
 add_filter('pre_http_request', $deny, 10, 3);
 ob_start(); tnuc_hub_render_registry(); $registry_html = ob_get_clean();
 runtime_assert(strpos($registry_html, 'Plugin Catalogs') !== false && strpos($registry_html, 'Techn 26') !== false && strpos($registry_html, 'AlphaSys 26') !== false && strpos($registry_html, 'Fusion 26') !== false && substr_count($registry_html, 'type="checkbox"') === 3, 'registry lists catalogs with checkboxes');
+runtime_assert(strpos($registry_html, '<th scope="col">Type</th>') !== false && substr_count($registry_html, '>Hosted</td>') === 2 && strpos($registry_html, '>Mirrored</td>') !== false, 'catalog list shows Hosted and Mirrored types');
+runtime_assert(tnuc_legacy_catalog_target('tnuc-techn') === 'tnuc-techn-26' && tnuc_legacy_catalog_target('tnuc-fusion') === 'tnuc-fusion-26' && tnuc_legacy_catalog_target('tn-other-plugins') === 'tnuc-other', 'old plugin page URLs resolve to current screens');
+runtime_assert(tnuc_legacy_catalog_target('tnuc-techn-26') === '' && tnuc_legacy_catalog_target('tnuc-missing-25') === 'tnuc', 'current pages stay put and removed catalog pages return to registry');
+$legacy_view = tnuc_hub_dispatch('view', ['screen' => 'tnuc-techn', 'tab' => 'installed']);
+runtime_assert(!is_wp_error($legacy_view) && $legacy_view['screen'] === 'tnuc-techn-26' && strpos($legacy_view['html'], 'Techn 26 Plugins') !== false, 'old browser session refreshes the new catalog screen after controller update');
+$older_view = tnuc_hub_dispatch('view', ['catalog' => 'fusion-26', 'tab' => 'catalogue']);
+runtime_assert(!is_wp_error($older_view) && $older_view['screen'] === 'tnuc-fusion-26' && strpos($older_view['html'], 'Fusion 26 Plugins') !== false, 'older catalog picker session can complete its refresh');
 $_GET['page'] = 'tnuc-fusion-26'; $_GET['tab'] = 'catalog';
 ob_start(); tnuc_hub_render_admin(); $html = ob_get_clean();
 runtime_assert(strpos($html, 'Fusion 26 Plugins') !== false && strpos($html, '<dialog') !== false && strpos($html, 'id="tnuc-catalog"') === false, 'Fusion screen has shared modal without edition picker');

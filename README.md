@@ -12,7 +12,7 @@ Activation removes obsolete controller schedules. It performs no discovery or pl
 
 ## Catalog registry
 
-The root `catalogue-registry.json` publishes edition membership, status and notices. The bundled copy allows a cold-cache screen to render without HTTP. The controller stores the latest validated copy after an explicit check. Each site saves its checked catalog IDs; multiple editions of the same collection may be selected. A new installation selects the latest current Techn edition; existing empty selections from 0.10.1 receive that default once. Sites can subsequently clear the selection. Publishing a new edition never changes an existing site's selection.
+The root `catalogue-registry.json` publishes edition membership, type, status and notices. The bundled copy allows a cold-cache screen to render without HTTP. The controller stores the latest validated copy after an explicit check. Each site saves its checked catalog IDs; multiple editions of the same collection may be selected. A new installation selects the latest current Techn edition; existing empty selections from 0.10.1 receive that default once. Sites can subsequently clear the selection. Publishing a new edition never changes an existing site's selection.
 
 Release metadata stays with its package source. Techn and AlphaSys entries use their verified public GitHub release feeds. Fusion entries prefer the verified GitHub mirror and use the site's native WordPress update provider when the mirror has no newer package. Other installed plugins use their existing WordPress provider; an explicit check also caches WordPress.org details for their cards. A selected catalog's membership does not install or delete plugins.
 

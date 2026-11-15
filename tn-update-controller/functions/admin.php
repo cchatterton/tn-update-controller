@@ -30,6 +30,31 @@ function tnuc_disable_legacy_plugin_menu_order(): void {
     remove_action('admin_menu', 'tnop_register_menu', PHP_INT_MAX);
     remove_action('network_admin_menu', 'tnop_register_menu', PHP_INT_MAX);
 }
+function tnuc_legacy_catalog_target(string $page): string {
+    if ($page === 'tnuc' || $page === 'tnuc-other') { return ''; }
+    if ($page === 'tn-other-plugins') { return 'tnuc-other'; }
+    $collections = ['tnuc-techn' => 'techn', 'tnuc-alphasys' => 'alphasys', 'tnuc-fusion' => 'fusion', 'asuc' => 'alphasys', 'fusion-plugins' => 'fusion'];
+    if (!isset($collections[$page])) {
+        if (strpos($page, 'tnuc-') !== 0) { return ''; }
+        $id = substr($page, 5);
+        if (in_array($id, tnuc_catalog_selection(), true)) { return ''; }
+        $collections[$page] = tnuc_catalogs()[$id]['collection'] ?? '';
+        if ($collections[$page] === '') { return 'tnuc'; }
+    }
+    $latest = null;
+    foreach (tnuc_selected_catalogs($collections[$page]) as $catalog) {
+        if ($latest === null || (int) $catalog['year'] > (int) $latest['year']) { $latest = $catalog; }
+    }
+    return $latest ? 'tnuc-' . $latest['id'] : 'tnuc';
+}
+function tnuc_redirect_legacy_catalog_page(): void {
+    global $pagenow;
+    if ($pagenow !== 'plugins.php' || !isset($_GET['page']) || !is_string($_GET['page']) || !tnuc_authorised()) { return; }
+    $target = tnuc_legacy_catalog_target(sanitize_key(wp_unslash($_GET['page'])));
+    if ($target === '') { return; }
+    $tab = isset($_GET['tab']) && is_string($_GET['tab']) ? sanitize_key(wp_unslash($_GET['tab'])) : 'installed';
+    wp_safe_redirect(tnuc_hub_url($tab, $target)); exit;
+}
 function tnuc_settings_link(array $links): array { array_unshift($links, '<a href="' . esc_url(tnuc_hub_url()) . '">Plugin Catalogs</a>'); return $links; }
 function tnuc_assets(string $hook): void {
     if ($hook !== 'plugins_page_tnuc') { return; }

@@ -54,6 +54,10 @@ function tnuc_catalog_registry_validate($candidate) {
         }
         $catalog['name'] = sanitize_text_field((string) ($catalog['name'] ?? ucfirst($collection) . ' ' . $year));
         $catalog['notice'] = sanitize_textarea_field((string) ($catalog['notice'] ?? ''));
+        if (!isset($catalog['type'])) {
+            $catalog['type'] = in_array('mirror', array_column($catalog['plugins'], 'source'), true) ? 'mirrored' : 'hosted';
+        }
+        if (!in_array($catalog['type'], ['hosted', 'mirrored'], true)) { return new WP_Error('registry_type', 'A catalog type is invalid.'); }
         $plugins = []; $files = [];
         foreach ($catalog['plugins'] as $plugin) {
             if (!is_array($plugin) || !is_string($plugin['id'] ?? null) || !preg_match('/^[A-Za-z0-9][A-Za-z0-9_-]*$/D', $plugin['id']) || isset($plugins[$plugin['id']])) {

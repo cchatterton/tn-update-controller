@@ -1,22 +1,22 @@
 === TN Update Controller ===
 Contributors:
-Tags: updates, plugins, catalogue, techn
+Tags: updates, plugins, catalog, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.10.1
+Stable tag: 0.10.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A shared plugin catalogue with site subscriptions and guided updates.
+A plugin catalog registry with dedicated collection screens and guided updates.
 
 == Description ==
 
-Plugin Catalogue lists the editions a site has subscribed to. Techn 26, AlphaSys 26 and Fusion 26 are available initially. An Other view covers installed plugins outside those selections. Publishing a new edition does not change a site's saved subscriptions or uninstall plugins from an older edition.
+Plugin Catalogs lists the available editions. The latest Techn edition is selected by default; AlphaSys 26 and Fusion 26 are available initially. Each selected collection gets its own Plugins submenu. Other Plugins is always available and shows installed plugins outside the selected catalogs. Publishing a new edition does not change a site's saved selection or uninstall plugins from an older edition.
 
-Plugins > Plugin Catalogue provides Updates available and Catalogue tabs. The Catalogue tab holds subscription choices and grouped plugin cards. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
+Plugins > Plugin Catalogs holds edition choices. Each selected collection and Other Plugins has Updates available and Catalog tabs, with grouped plugin cards and a modal update flow. Catalog screens contain no edition picker. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
 
-Checks are manual on each site. The separate Fusion mirror publisher may refresh its packages in the background. Each site check verifies this controller first. If its update is available, update it and check again before processing the selected catalogues. Discovery does not install updates or change WordPress auto-update settings.
+Checks are manual on each site. The separate Fusion mirror publisher may refresh its packages in the background. Each site check verifies this controller first. If its update is available, update it and check again before processing the selected catalogs. Discovery does not install updates or change WordPress auto-update settings.
 
 Reviewed legacy updater files are held inactive while this controller runs. This is a compatibility bridge, not a claim that all plugin repositories have been migrated. Unknown legacy implementations and site-level forced refresh code require review.
 
@@ -26,7 +26,7 @@ On multisite, network activate this controller and use Network Admin. Inactive r
 
 1. Upload tn-update-controller.zip through Plugins > Add Plugin > Upload Plugin.
 2. Activate (network activate on multisite).
-3. Open Plugins > Plugin Catalogue, choose editions, and check for updates.
+3. Open Plugins > Plugin Catalogs, choose editions, then use each collection submenu to check for updates.
 4. Review installed/available versions and choose Update selected plugins when ready.
 
 Installing or activating the controller does not automatically update other plugins. Batch operations preserve active/inactive state. Test migration on staging and verify recovery arrangements before production rollout.
@@ -39,29 +39,33 @@ If filesystem credentials are required, use the native WordPress update/upload s
 No. Feature plugins continue to operate without it. Legacy updater suppression only applies while the controller is active.
 
 = Why is a GitHub repository absent? =
-The published catalogue includes verified public stable same-brand releases. Every plugin release must update and publish its catalogue entry. New plugins need no manual registry registration, but will not appear until that publication succeeds.
+The published catalog includes verified public stable same-brand releases. Every plugin release must update and publish its catalog entry. New plugins need no manual registry registration, but will not appear until that publication succeeds.
 
 = Are checks immediate? =
-Each click requests fresh public catalogue metadata and WordPress update state. No controller cooldown applies. The controller entry is evaluated first; if newer, update it and check again.
+Each click requests fresh public catalog metadata and WordPress update state. No controller cooldown applies. The controller entry is evaluated first; if newer, update it and check again.
 
 = What are exclusive plugins? =
-Exclusive plugins are hidden from the catalogue until manually installed. Once installed, they have the same lifecycle and update actions as other plugins. Exclusive is independent of domain restrictions and beta readiness.
+Exclusive plugins are hidden from the catalog until manually installed. Once installed, they have the same lifecycle and update actions as other plugins. Exclusive is independent of domain restrictions and beta readiness.
 
 == External services ==
 
-GitHub hosts the catalogue registry, Techn and AlphaSys release feeds, Fusion mirror index and release packages. An explicit check requests the registry and the selected feeds from raw.githubusercontent.com; GitHub receives the server IP and normal connection metadata. GitHub receives no token or site inventory. Installing or updating a GitHub package downloads its ZIP from github.com. Native WordPress updates use the site's existing WordPress.org or vendor update service and may send that service the normal plugin update information. The controller itself makes no scheduled site checks.
+GitHub hosts the catalog registry, Techn and AlphaSys release feeds, Fusion mirror index and release packages. An explicit check requests the registry and the selected feeds from raw.githubusercontent.com; GitHub receives the server IP and normal connection metadata. GitHub receives no token or site inventory. Installing or updating a GitHub package downloads its ZIP from github.com. Native WordPress updates use the site's existing WordPress.org or vendor update service and may send that service the normal plugin update information. The controller itself makes no scheduled site checks.
 
 Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-service
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
 
+= 0.10.2 =
+* Move edition selection to Plugins > Plugin Catalogs and give each selected catalog its own Plugins submenu.
+* Keep Other Plugins visible for plugins outside selected catalogs, default new sites to the latest Techn catalog, and use Catalog in interface copy.
+
 = 0.10.1 =
 * Restore WordPress.org update dates, download and rating counts, and release notes on Other plugin cards.
 
 = 0.10.0 =
-* Add a published catalogue registry and site subscriptions for Techn 26, AlphaSys 26 and Fusion 26.
-* Show one shared update table and grouped catalogue cards, including Other installed plugins.
+* Add a published catalog registry and site subscriptions for Techn 26, AlphaSys 26 and Fusion 26.
+* Show one shared update table and grouped catalog cards, including Other installed plugins.
 * Use verified GitHub releases, Fusion mirror packages or native WordPress providers according to each plugin's source.
 
 = 0.9.7 =
@@ -91,9 +95,9 @@ Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-
 * Keep failed or incomplete checks visible for review.
 
 = 0.9.0 =
-* Restore one public JSON catalogue request per manual check; remove WordPress-side repository scans and token requirements.
+* Restore one public JSON catalog request per manual check; remove WordPress-side repository scans and token requirements.
 * Keep controller-first evaluation and shared local version/readiness records.
-* Require catalogue publication after every plugin release; add targeted release publishing.
+* Require catalog publication after every plugin release; add targeted release publishing.
 
 = 0.8.1 =
 * Check this controller first; stop and list its update before checking other repositories.
@@ -121,12 +125,12 @@ Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-
 * Refresh available plugins and installed updates together, preserving retry and identity safeguards.
 
 = 0.5.1 =
-* Refresh the Techn catalogue during WordPress native forced update checks so newly published plugin releases appear in the standard update flow.
-* Read the published catalogue through GitHub's contents API and decode both API and raw JSON responses to avoid stale raw-content cache results.
-* Force explicit manual catalogue checks to bypass the recent-success cooldown and show installed/latest versions on catalogue cards.
+* Refresh the Techn catalog during WordPress native forced update checks so newly published plugin releases appear in the standard update flow.
+* Read the published catalog through GitHub's contents API and decode both API and raw JSON responses to avoid stale raw-content cache results.
+* Force explicit manual catalog checks to bypass the recent-success cooldown and show installed/latest versions on catalog cards.
 
 = 0.5.0 =
-* Read domain restrictions from plugin release headers via the verified catalogue. Show all catalogue plugins on localhost. Accept new approved same-brand catalogue entries without controller releases; keep executable legacy trust bundled.
+* Read domain restrictions from plugin release headers via the verified catalog. Show all catalog plugins on localhost. Accept new approved same-brand catalog entries without controller releases; keep executable legacy trust bundled.
 
 = 0.4.5 =
 * Support exact localhost allowlist entries alongside domain/subdomain restrictions.
@@ -139,8 +143,8 @@ Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-
 
 
 = 0.4.2 =
-* Remove the catalogue heading/search toolbar.
-* Remove redundant status strips from catalogue cards; group headings convey lifecycle state.
+* Remove the catalog heading/search toolbar.
+* Remove redundant status strips from catalog cards; group headings convey lifecycle state.
 
 
 = 0.4.1 =
@@ -149,18 +153,18 @@ Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-
 
 
 = 0.4.0 =
-* Show only available updates on the first tab. Add catalogue activation, deactivation and deletion.
+* Show only available updates on the first tab. Add catalog activation, deactivation and deletion.
 * Enforce domain availability, network permissions and deletion protection across sites.
 * Move smaller Beta chips to the bottom-right of cards.
 
 
 = 0.3.0 =
-* Group the catalogue into Active, Available and Beta plugins.
+* Group the catalog into Active, Available and Beta plugins.
 * Keep active beta plugins in Active with a visible Beta chip.
-* Track readiness explicitly in catalogue metadata, with safe handling of older cached catalogues.
+* Track readiness explicitly in catalog metadata, with safe handling of older cached catalogs.
 
 = 0.2.0 =
-* Simplify installed plugin columns and catalogue cards; remove persistent setup, success and recovery commentary.
+* Simplify installed plugin columns and catalog cards; remove persistent setup, success and recovery commentary.
 * Add accessible checking and update-progress dialogs with concise results, failure details and interruption recovery.
 
 = 0.1.2 =
@@ -170,4 +174,4 @@ Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-
 * Recognise the audited TN User Management 1.8 updater during migration, alongside the reviewed current implementation.
 
 = 0.1.0 =
-* First release: author-specific catalogue, background/manual checks, native update integration, guided batch updates and audited legacy compatibility.
+* First release: author-specific catalog, background/manual checks, native update integration, guided batch updates and audited legacy compatibility.

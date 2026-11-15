@@ -26,7 +26,7 @@ function tnuc_plugin_information($result, string $action, $args) {
         if (($args->slug ?? '') !== $identity['slug']) { continue; }
         $entry = tnuc_catalogue()['plugins'][$id] ?? null;
         if ($entry && !tnuc_domain_allowed($entry)) { return new WP_Error('unavailable', 'This plugin is unavailable for this domain.'); }
-        if (!$entry) { return new WP_Error('tnuc_no_metadata', 'Open Plugins > Techn Plugins and check the catalogue first.'); }
+        if (!$entry) { return new WP_Error('tnuc_no_metadata', 'Open Plugins > Techn Plugins and check the catalog first.'); }
         return (object) ['name' => $entry['name'], 'slug' => $entry['slug'], 'version' => $entry['version'], 'author' => esc_html($entry['author']), 'homepage' => 'https://github.com/' . $entry['owner'] . '/' . $entry['repo'], 'download_link' => tnuc_compatibility($entry) === '' ? tnuc_package($entry) : '', 'requires' => $entry['requires'], 'requires_php' => $entry['requires_php'], 'sections' => ['description' => '<p>' . esc_html($entry['description']) . '</p>', 'changelog' => '<pre style="white-space:pre-wrap">' . esc_html($entry['body']) . '</pre>']];
     }
     return $result;

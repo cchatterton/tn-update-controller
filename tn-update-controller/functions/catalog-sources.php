@@ -72,7 +72,7 @@ function tnuc_hub_check() {
     $techn = tnuc_refresh();
     if (is_wp_error($techn)) { $errors[] = $techn->get_error_message(); }
     if (tnuc_controller_update_pending()) {
-        return ['status' => 'controller_update', 'message' => 'Update Techn Update Controller first, then check the selected catalogues.', 'done' => 1, 'total' => 1];
+        return ['status' => 'controller_update', 'message' => 'Update Techn Update Controller first, then check the selected catalogs.', 'done' => 1, 'total' => 1];
     }
     $active_catalogs = [];
     foreach ($selected as $catalog_id) { if (isset($catalogs[$catalog_id]) && $catalogs[$catalog_id]['status'] !== 'archived') { $active_catalogs[] = $catalogs[$catalog_id]; } }
@@ -100,7 +100,7 @@ function tnuc_hub_check() {
     tnuc_hub_refresh_other_details();
     tnuc_put('hub_checked_at', time());
     tnuc_put('hub_check_errors', $errors);
-    return ['status' => $errors ? 'partial' : 'complete', 'message' => $errors ? implode(' ', $errors) : 'Selected catalogues and WordPress plugin updates checked.', 'done' => 1, 'total' => 1];
+    return ['status' => $errors ? 'partial' : 'complete', 'message' => $errors ? implode(' ', $errors) : 'Selected catalogs and WordPress plugin updates checked.', 'done' => 1, 'total' => 1];
 }
 
 function tnuc_hub_native_updates(): array {

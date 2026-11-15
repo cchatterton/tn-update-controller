@@ -14,6 +14,9 @@ function is_plugin_active_for_network($file) { return false; }
 function admin_url($path) { return '/wp-admin/' . $path; }
 function network_admin_url($path) { return '/wp-admin/network/' . $path; }
 function self_admin_url($path) { return '/wp-admin/' . $path; }
+function add_query_arg($args, $url) { return $url . '?' . http_build_query($args); }
+function get_transient($key) { return false; }
+function wp_nonce_field($action) { echo '<input type="hidden" name="_wpnonce" value="test">'; }
 function current_user_can($cap) { return true; }
 function wp_is_file_mod_allowed($context) { return true; }
 function plugin_basename($path) { return 'tn-update-controller/tn-update-controller.php'; }
@@ -35,11 +38,10 @@ $items = [
     'fusion-26:example' => ['key' => 'fusion-26:example', 'catalog' => 'fusion-26', 'entry' => ['id' => 'example', 'name' => 'Example', 'description' => 'Example plugin', 'role' => 'Content', 'beta' => false], 'match' => ['file' => 'example/example.php', 'data' => ['Version' => '1.0.0']], 'release' => ['version' => '1.1.0', 'notes' => 'https://example.test/release'], 'update' => ['version' => '1.1.0', 'source' => 'mirror'], 'issue' => '', 'conflict' => false],
     'other:site/site.php' => ['key' => 'other:site/site.php', 'catalog' => 'other', 'entry' => ['id' => 'site/site.php', 'name' => 'Site Plugin', 'description' => 'Local plugin'], 'match' => ['file' => 'site/site.php', 'data' => ['Version' => '1.0.0']], 'release' => [], 'update' => [], 'issue' => '', 'conflict' => false],
 ];
-$_GET['catalog'] = 'fusion-26'; ob_start(); tnuc_hub_render_catalogue($catalogs, $selected, $items); $html = ob_get_clean();
-ui_assert(strpos($html, 'Catalogue subscriptions') !== false && strpos($html, 'data-subscribe') !== false, 'subscription controls render');
-ui_assert(strpos($html, 'Fusion 25 · Supported') !== false && strpos($html, 'Fusion 26 · Current') !== false, 'current and supported editions are selectable');
+ob_start(); tnuc_hub_render_catalogue(['id' => 'fusion-26', 'name' => 'Fusion 26'], $catalogs, $items); $html = ob_get_clean();
+ui_assert(strpos($html, 'id="tnuc-catalog"') === false && strpos($html, 'data-subscribe') === false, 'catalog screen has no edition picker or subscription controls');
 ui_assert(strpos($html, 'Review before archive.') !== false, 'edition notice renders');
 ui_assert(strpos($html, 'data-kind="update"') !== false && strpos($html, 'Release notes') !== false, 'managed update and release notes actions render');
-$_GET['catalog'] = 'other'; ob_start(); tnuc_hub_render_catalogue($catalogs, $selected, $items); $html = ob_get_clean();
+ob_start(); tnuc_hub_render_catalogue(['id' => 'other', 'name' => 'Other Plugins'], $catalogs, $items); $html = ob_get_clean();
 ui_assert(strpos($html, 'Site Plugin') !== false && strpos($html, 'Example plugin') === false, 'Other lists only unclaimed installed plugins');
 ui_assert(strpos($html, '100 downloads · 5 ratings') !== false && strpos($html, 'wordpress.org/plugins/site-plugin/#developers') !== false, 'Other retains public details and release notes');

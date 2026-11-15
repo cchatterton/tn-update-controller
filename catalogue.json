@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-15T04:50:48.463094+00:00",
+  "published_at": "2026-11-15T05:15:22.180117+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -523,19 +523,19 @@
       "asset": "tn-update-controller.zip",
       "author": "Techn",
       "name": "TN Update Controller",
-      "description": "Select curated plugin catalogs and manage their updates in one place.",
+      "description": "Select curated plugin collections and manage their updates in one place.",
       "beta": false,
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.5",
-      "tag": "v0.10.5",
+      "version": "0.10.6",
+      "tag": "v0.10.6",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## What's Changed\n* Publish Techn 25 and 27 readable catalogs by @cchatterton in https://github.com/cchatterton/tn-update-controller/pull/11\n\n\n**Full Changelog**: https://github.com/cchatterton/tn-update-controller/compare/v0.10.4...v0.10.5",
-      "sha256": "5cfec24e8f33d99b676be42bae9abbddd58bdeb68812a9a8f9ace5d761ea4d8e"
+      "body": "Collections now has one submenu per collection, combining unique plugins from selected releases. The latest Techn release is selected on new sites, and at least one Techn release is required. Older release URLs redirect to the shared collection screen.",
+      "sha256": "1ae556cfe402efc444b782a3a5a1c18d82ddfaf6388ae6b5a7eea9238deacdb5"
     },
     {
       "id": "tn-user-management",

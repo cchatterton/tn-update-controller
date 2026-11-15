@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-15T05:15:22.180117+00:00",
+  "published_at": "2026-11-15T05:25:35.616628+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -528,14 +528,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.6",
-      "tag": "v0.10.6",
+      "version": "0.10.7",
+      "tag": "v0.10.7",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Collections now has one submenu per collection, combining unique plugins from selected releases. The latest Techn release is selected on new sites, and at least one Techn release is required. Older release URLs redirect to the shared collection screen.",
-      "sha256": "1ae556cfe402efc444b782a3a5a1c18d82ddfaf6388ae6b5a7eea9238deacdb5"
+      "body": "Restores compatibility with older controllers reading the collection registry, allowing them to discover the current controller update before switching to the new collection menus.",
+      "sha256": "7a0c29565d2ec1c4eb61959b06d262a515b580f20dbb05d2211c98faf11aea1d"
     },
     {
       "id": "tn-user-management",

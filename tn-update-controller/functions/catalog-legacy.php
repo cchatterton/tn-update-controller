@@ -60,7 +60,7 @@ function tnuc_hub_as_row_meta(array $links, string $file): array {
         $links = array_values(array_filter($links, static function ($link) {
             return !in_array(trim(wp_strip_all_tags((string) $link)), ['Install AlphaSys Update Controller', 'Activate AlphaSys Update Controller', 'Update AlphaSys Update Controller', 'Check for updates'], true);
         }));
-        if (tnuc_authorised()) { $links[] = '<a href="' . esc_url(tnuc_hub_url('installed', 'tnuc-' . $catalog['id'])) . '">' . esc_html($catalog['name']) . ' Plugins</a>'; }
+        if (tnuc_authorised()) { $links[] = '<a href="' . esc_url(tnuc_hub_url('installed', 'tnuc-' . $catalog['collection'])) . '">' . esc_html(tnuc_collection_name($catalog['collection'])) . ' Plugins</a>'; }
         return $links;
     } }
     return $links;

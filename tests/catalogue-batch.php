@@ -31,6 +31,7 @@ function tnuc_lock($name, $time) { return 'lock'; }
 function tnuc_unlock($name, $token) {}
 function tnuc_plugins() { return $GLOBALS['installed']; }
 function tnuc_hub_items() { return $GLOBALS['items']; }
+function tnuc_hub_current_key($key) { return $key; }
 function tnuc_hub_match($entry, $installed) { $file = $entry['file']; return isset($installed[$file]) ? ['file' => $file, 'data' => $installed[$file]] : []; }
 function wp_generate_uuid4() { return uniqid('batch-', true); }
 function get_current_user_id() { return 1; }

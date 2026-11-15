@@ -13,7 +13,10 @@ function tnuc_catalog_registry(): array {
 function tnuc_catalog_selection(): array {
     $selected = tnuc_get('catalog_selection', null);
     if ($selected === null) { return tnuc_default_catalog_selection(); }
-    return is_array($selected) ? array_values($selected) : [];
+    $selected = is_array($selected) ? array_values($selected) : [];
+    $catalogs = tnuc_catalogs();
+    foreach ($selected as $id) { if (($catalogs[$id]['collection'] ?? '') === 'techn' && isset($catalogs[$id]['plugins']['tn-update-controller'])) { return $selected; } }
+    return array_values(array_unique(array_merge(tnuc_default_catalog_selection(), $selected)));
 }
 
 function tnuc_selected_catalogs(string $collection = ''): array {
@@ -24,21 +27,44 @@ function tnuc_selected_catalogs(string $collection = ''): array {
     return $selected;
 }
 
+function tnuc_collection_name(string $collection, array $catalogs = []): string {
+    if (!$catalogs) { $catalogs = tnuc_catalogs(); }
+    foreach ($catalogs as $catalog) {
+        if ($catalog['collection'] === $collection) {
+            return preg_replace('/\s+' . preg_quote((string) $catalog['release'], '/') . '$/D', '', $catalog['name']);
+        }
+    }
+    return ucfirst($collection);
+}
+
+function tnuc_selected_collections(): array {
+    $catalogs = tnuc_catalogs(); $selected = tnuc_catalog_selection(); $collections = [];
+    foreach ($catalogs as $id => $catalog) {
+        if (in_array($id, $selected, true)) { $collections[$catalog['collection']] = tnuc_collection_name($catalog['collection'], $catalogs); }
+    }
+    return $collections;
+}
+
 function tnuc_default_catalog_selection(): array {
     $latest = null;
     foreach (tnuc_catalogs() as $catalog) {
         if ($catalog['collection'] !== 'techn' || $catalog['status'] !== 'current') { continue; }
-        if ($latest === null || (int) $catalog['year'] > (int) $latest['year']) { $latest = $catalog; }
+        if ($latest === null || (int) $catalog['release'] > (int) $latest['release']) { $latest = $catalog; }
     }
     return $latest ? [$latest['id']] : [];
 }
 
 function tnuc_migrate_catalog_selection(): void {
-    if (tnuc_get('catalog_list_migrated', false)) { return; }
-    $stored = tnuc_get('catalog_selection', null);
-    if ($stored === null || ($stored === [] && !tnuc_get('catalog_menu_migrated', false))) { $stored = tnuc_default_catalog_selection(); }
-    tnuc_put('catalog_selection', is_array($stored) ? array_values($stored) : []);
-    tnuc_put('catalog_list_migrated', true);
+    if (!tnuc_get('catalog_list_migrated', false)) {
+        $stored = tnuc_get('catalog_selection', null);
+        if ($stored === null || ($stored === [] && !tnuc_get('catalog_menu_migrated', false))) { $stored = tnuc_default_catalog_selection(); }
+        tnuc_put('catalog_selection', is_array($stored) ? array_values($stored) : []);
+        tnuc_put('catalog_list_migrated', true);
+    }
+    if (!tnuc_get('collection_techn_required', false)) {
+        tnuc_put('catalog_selection', tnuc_catalog_selection());
+        tnuc_put('collection_techn_required', true);
+    }
 }
 
 function tnuc_catalog_registry_validate($candidate) {
@@ -50,11 +76,13 @@ function tnuc_catalog_registry_validate($candidate) {
     $catalogs = []; $ids = [];
     foreach ($candidate['catalogs'] as $catalog) {
         if (!is_array($catalog)) { return new WP_Error('registry_catalog', 'A catalog entry is invalid.'); }
-        $id = $catalog['id'] ?? ''; $collection = $catalog['collection'] ?? ''; $year = $catalog['year'] ?? '';
-        if (!is_string($id) || !is_string($collection) || !preg_match('/^[a-z][a-z0-9-]*$/D', $collection) || !preg_match('/^[a-z][a-z0-9-]*-\d{2}$/D', $id) || !preg_match('/^\d{2}$/D', (string) $year) || $id !== $collection . '-' . $year || isset($catalogs[$id]) || !in_array($catalog['status'] ?? '', ['current', 'supported', 'archive_planned', 'archived'], true) || !is_array($catalog['plugins'] ?? null) || count($catalog['plugins']) > 200) {
+        $id = $catalog['id'] ?? ''; $collection = $catalog['collection'] ?? ''; $release = $catalog['release'] ?? ($catalog['year'] ?? '');
+        if (!is_string($id) || !is_string($collection) || !preg_match('/^[a-z][a-z0-9-]*$/D', $collection) || !preg_match('/^[a-z][a-z0-9-]*-\d{2}$/D', $id) || !preg_match('/^\d{2}$/D', (string) $release) || $id !== $collection . '-' . $release || isset($catalogs[$id]) || !in_array($catalog['status'] ?? '', ['current', 'supported', 'archive_planned', 'archived'], true) || !is_array($catalog['plugins'] ?? null) || count($catalog['plugins']) > 200) {
             return new WP_Error('registry_catalog', 'A catalog entry is invalid.');
         }
-        $catalog['name'] = sanitize_text_field((string) ($catalog['name'] ?? ucfirst($collection) . ' ' . $year));
+        $catalog['release'] = $release;
+        unset($catalog['year']);
+        $catalog['name'] = sanitize_text_field((string) ($catalog['name'] ?? ucfirst($collection)));
         $catalog['notice'] = sanitize_textarea_field((string) ($catalog['notice'] ?? ''));
         $date = (string) ($catalog['last_updated'] ?? '');
         if ($date !== '' && (!preg_match('/^\d{4}-\d{2}-\d{2}$/D', $date) || !checkdate((int) substr($date, 5, 2), (int) substr($date, 8, 2), (int) substr($date, 0, 4)))) {
@@ -117,8 +145,11 @@ function tnuc_save_catalog_selection(array $input) {
         if ($catalogs[$id]['status'] === 'archived' && !in_array($id, tnuc_catalog_selection(), true)) { return new WP_Error('selection', 'Archived catalogs cannot be newly selected.'); }
         $selected[] = $id;
     }
+    $has_techn = false;
+    foreach ($selected as $id) { if ($catalogs[$id]['collection'] === 'techn' && isset($catalogs[$id]['plugins']['tn-update-controller'])) { $has_techn = true; break; } }
+    if (!$has_techn) { return new WP_Error('selection', 'Select at least one Techn release to keep the controller available for updates.'); }
     tnuc_put('catalog_selection', $selected);
-    return ['message' => 'Catalog subscriptions saved. Check for updates to refresh the selected catalogs.'];
+    return ['message' => 'Collection releases saved. Check for updates to refresh the selected collections.'];
 }
 
 function tnuc_catalog_registry_refresh() {

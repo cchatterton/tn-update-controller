@@ -108,6 +108,14 @@ function tnuc_hub_native_updates(): array {
     return is_object($state) && is_array($state->response ?? null) ? $state->response : [];
 }
 
+function tnuc_hub_current_key(string $key): string {
+    $parts = explode(':', $key, 2);
+    if (count($parts) !== 2) { return $key; }
+    $catalogs = tnuc_catalogs();
+    $catalog = $catalogs[$parts[0]] ?? null;
+    return $catalog && in_array($parts[0], tnuc_catalog_selection(), true) ? $catalog['collection'] . ':' . $parts[1] : $key;
+}
+
 function tnuc_hub_wporg_slug(string $file): string {
     $state = get_site_transient('update_plugins');
     foreach (['response', 'no_update'] as $group) {
@@ -207,21 +215,31 @@ function tnuc_hub_policy_issue(array $entry, array $release, string $collection,
 
 function tnuc_hub_items(): array {
     $catalogs = tnuc_catalogs(); $selected = tnuc_catalog_selection(); $installed = tnuc_plugins(); $native = tnuc_hub_native_updates(); $items = []; $owned = [plugin_basename(TNUC_FILE) => true];
-    foreach ($selected as $catalog_id) {
-        if (!isset($catalogs[$catalog_id])) { continue; }
-        $collection = $catalogs[$catalog_id]['collection'];
+    $editions = [];
+    foreach ($selected as $id) { if (isset($catalogs[$id])) { $editions[] = $catalogs[$id]; } }
+    usort($editions, static function ($left, $right) {
+        $left_archived = $left['status'] === 'archived'; $right_archived = $right['status'] === 'archived';
+        return ($left_archived <=> $right_archived) ?: ((int) $right['release'] <=> (int) $left['release']);
+    });
+    $seen = [];
+    foreach ($editions as $catalog) {
+        $catalog_id = $catalog['id']; $collection = $catalog['collection'];
         foreach ($catalogs[$catalog_id]['plugins'] as $entry) {
+            $identity = strtolower((string) ($entry['file'] ?? $entry['slug'] ?? $entry['id']));
+            $plugin_id = strtolower((string) $entry['id']);
+            if (isset($seen[$collection][$identity]) || isset($seen[$collection]['id:' . $plugin_id])) { continue; }
+            $seen[$collection][$identity] = true; $seen[$collection]['id:' . $plugin_id] = true;
             $match = tnuc_hub_match($entry, $installed); $file = $match['file'] ?? '';
-            $release = $catalogs[$catalog_id]['status'] === 'archived' ? [] : tnuc_hub_release($entry, $collection); $current = (string) ($match['data']['Version'] ?? '0');
+            $release = $catalogs[$catalog_id]['status'] === 'archived' && $entry['id'] !== 'tn-update-controller' ? [] : tnuc_hub_release($entry, $collection); $current = (string) ($match['data']['Version'] ?? '0');
             $native_update = $file !== '' ? ($native[$file] ?? null) : null;
             $native_version = is_object($native_update) ? (string) ($native_update->new_version ?? '') : '';
             $newer_mirror = $release && $file !== '' && version_compare($release['version'], $current, '>');
             $newer_native = $native_version !== '' && version_compare($native_version, $current, '>');
             $native_allowed = ($entry['fallback'] ?? '') === 'native' || $entry['source'] === 'native' || $catalogs[$catalog_id]['status'] === 'archived';
             $update = $newer_mirror ? $release : (($newer_native && $native_allowed) ? ['source' => 'native', 'version' => $native_version, 'package' => (string) ($native_update->package ?? '')] : []);
-            $key = $catalog_id . ':' . $entry['id'];
+            $key = $collection . ':' . $entry['id'];
             $issue = tnuc_hub_policy_issue($entry, $release, $collection, $installed);
-            $items[$key] = ['key' => $key, 'catalog' => $catalog_id, 'collection' => $collection, 'entry' => $entry, 'match' => $match, 'release' => $release, 'update' => $update, 'conflict' => !tnuc_hub_match_trusted($entry, $match, $collection), 'issue' => $issue];
+            $items[$key] = ['key' => $key, 'catalog' => $collection, 'release_id' => $catalog_id, 'collection' => $collection, 'entry' => $entry, 'match' => $match, 'release' => $release, 'update' => $update, 'conflict' => !tnuc_hub_match_trusted($entry, $match, $collection), 'issue' => $issue];
             if ($file !== '') { $owned[$file] = true; }
         }
     }

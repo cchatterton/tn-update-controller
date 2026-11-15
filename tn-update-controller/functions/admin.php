@@ -2,23 +2,20 @@
 if (!defined('ABSPATH')) { exit; }
 function tnuc_menu(): void {
     if (is_multisite() && !is_network_admin()) { return; }
-    $selected = tnuc_catalog_selection(); $catalogs = tnuc_catalogs();
-    foreach ($catalogs as $id => $catalog) {
-        if (!in_array($id, $selected, true)) { continue; }
-        $label = $catalog['name'] . ' Plugins';
-        add_submenu_page('plugins.php', $label, $label, 'update_plugins', 'tnuc-' . $id, 'tnuc_hub_render_admin');
+    foreach (tnuc_selected_collections() as $collection => $name) {
+        $label = $name . ' Plugins';
+        add_submenu_page('plugins.php', $label, $label, 'update_plugins', 'tnuc-' . $collection, 'tnuc_hub_render_admin');
     }
     add_submenu_page('plugins.php', 'Other Plugins', 'Other Plugins', 'update_plugins', 'tnuc-other', 'tnuc_hub_render_admin');
-    add_submenu_page('plugins.php', 'Plugin Catalogs', 'Plugin Catalogs', 'update_plugins', 'tnuc', 'tnuc_hub_render_registry');
+    add_submenu_page('plugins.php', 'Collections Catalog', 'Collections', 'update_plugins', 'tnuc', 'tnuc_hub_render_registry');
 }
 function tnuc_finalize_plugin_menus(): void {
     if (is_multisite() && !is_network_admin()) { return; }
     foreach (['asuc', 'fusion-plugins', 'tn-other-plugins'] as $slug) { remove_submenu_page('plugins.php', $slug); }
     global $submenu;
     if (empty($submenu['plugins.php'])) { return; }
-    $selected = tnuc_catalog_selection(); $catalogs = tnuc_catalogs();
     $last = [];
-    foreach ($catalogs as $id => $catalog) { if (in_array($id, $selected, true)) { $last[] = 'tnuc-' . $id; } }
+    foreach (tnuc_selected_collections() as $collection => $name) { $last[] = 'tnuc-' . $collection; }
     $last[] = 'tnuc-other'; $last[] = 'tnuc';
     $items = $submenu['plugins.php']; $submenu['plugins.php'] = [];
     foreach ($items as $item) { if (!in_array((string) ($item[2] ?? ''), $last, true)) { $submenu['plugins.php'][] = $item; } }
@@ -33,19 +30,16 @@ function tnuc_disable_legacy_plugin_menu_order(): void {
 function tnuc_legacy_catalog_target(string $page): string {
     if ($page === 'tnuc' || $page === 'tnuc-other') { return ''; }
     if ($page === 'tn-other-plugins') { return 'tnuc-other'; }
+    $selected_collections = tnuc_selected_collections();
+    if (strpos($page, 'tnuc-') === 0 && isset($selected_collections[substr($page, 5)])) { return ''; }
     $collections = ['tnuc-techn' => 'techn', 'tnuc-alphasys' => 'alphasys', 'tnuc-fusion' => 'fusion', 'asuc' => 'alphasys', 'fusion-plugins' => 'fusion'];
     if (!isset($collections[$page])) {
         if (strpos($page, 'tnuc-') !== 0) { return ''; }
         $id = substr($page, 5);
-        if (in_array($id, tnuc_catalog_selection(), true)) { return ''; }
         $collections[$page] = tnuc_catalogs()[$id]['collection'] ?? '';
         if ($collections[$page] === '') { return 'tnuc'; }
     }
-    $latest = null;
-    foreach (tnuc_selected_catalogs($collections[$page]) as $catalog) {
-        if ($latest === null || (int) $catalog['year'] > (int) $latest['year']) { $latest = $catalog; }
-    }
-    return $latest ? 'tnuc-' . $latest['id'] : 'tnuc';
+    return isset($selected_collections[$collections[$page]]) ? 'tnuc-' . $collections[$page] : 'tnuc';
 }
 function tnuc_redirect_legacy_catalog_page(): void {
     global $pagenow;
@@ -55,7 +49,7 @@ function tnuc_redirect_legacy_catalog_page(): void {
     $tab = isset($_GET['tab']) && is_string($_GET['tab']) ? sanitize_key(wp_unslash($_GET['tab'])) : 'installed';
     wp_safe_redirect(tnuc_hub_url($tab, $target)); exit;
 }
-function tnuc_settings_link(array $links): array { array_unshift($links, '<a href="' . esc_url(tnuc_hub_url()) . '">Plugin Catalogs</a>'); return $links; }
+function tnuc_settings_link(array $links): array { array_unshift($links, '<a href="' . esc_url(tnuc_hub_url()) . '">Collections</a>'); return $links; }
 function tnuc_assets(string $hook): void {
     if ($hook !== 'plugins_page_tnuc') { return; }
     wp_enqueue_style('tnuc-admin', plugins_url('styles/admin.css', TNUC_FILE), [], TNUC_VERSION);

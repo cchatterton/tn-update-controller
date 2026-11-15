@@ -17,7 +17,7 @@ def markdown_text(value):
 def render(catalog):
     plugins = catalog["plugins"]
     lines = [
-        "# " + markdown_text(catalog["name"]),
+        "# " + markdown_text(catalog["name"] + " " + catalog["release"]),
         "",
         "**Type:** " + catalog["type"].capitalize(),
         "**Status:** " + catalog["status"].replace("_", " ").capitalize(),

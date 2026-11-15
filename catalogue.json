@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-15T01:00:02.276098+00:00",
+  "published_at": "2026-11-15T02:51:13.711787+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -523,19 +523,19 @@
       "asset": "tn-update-controller.zip",
       "author": "Techn",
       "name": "TN Update Controller",
-      "description": "Subscribe to curated plugin catalogues and manage their updates in one place.",
+      "description": "Select curated plugin catalogs and manage their updates in one place.",
       "beta": false,
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.1",
-      "tag": "v0.10.1",
+      "version": "0.10.2",
+      "tag": "v0.10.2",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Plugin Catalogue 0.10.1 restores the details shown for Other installed plugins: WordPress.org update date, download count, ratings and release notes. Those details refresh during an explicit Check for updates and are read from cache when the screen loads.\n\nThis patch follows the 0.10.0 shared-catalogue release. The controller plugin identity remains TN Update Controller; the WordPress submenu is Plugin Catalogue.\n",
-      "sha256": "8fe5ad41a4fdeea6731cefb53421587650896d4a4d51511f895104a41854904a"
+      "body": "Plugin Catalogs now manages edition selection. Each selected Techn, AlphaSys, or Fusion catalog has a dedicated Plugins submenu with its own Updates available and Catalog tabs. Other Plugins always shows installed plugins outside selected catalogs. New installations select the latest current Techn edition by default. Interface copy consistently uses Catalog.",
+      "sha256": "aa2d4acb940bc1a2f911ccfd71c203679115aa8b3e85bdf58a957674cf1ebbce"
     },
     {
       "id": "tn-user-management",

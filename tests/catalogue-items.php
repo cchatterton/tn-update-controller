@@ -54,10 +54,10 @@ route_assert(isset($items['techn:tn-update-controller']), 'required Techn collec
 route_assert(isset($items['alphasys:AS-Relevansi']) && !$items['alphasys:AS-Relevansi']['match'], 'AlphaSys collection lists an uninstalled plugin');
 $expanded = json_decode((string) file_get_contents($root . '/catalogue-registry.json'), true);
 $fusion25 = current(array_filter($expanded['catalogs'], static function ($catalog) { return $catalog['id'] === 'fusion-26'; }));
-$fusion25['id'] = 'fusion-25'; $fusion25['release'] = '25'; $fusion25['name'] = 'Fusion'; $fusion25['status'] = 'supported';
+$fusion25['id'] = 'fusion-25'; $fusion25['release'] = '25'; $fusion25['year'] = '25'; $fusion25['name'] = 'Fusion'; $fusion25['status'] = 'supported';
 $fusion25['plugins'][] = ['id' => 'old-only', 'name' => 'Old Only', 'description' => 'Included only in the older release.', 'source' => 'native', 'native_source' => 'wordpress.org', 'slug' => 'old-only', 'file' => 'old-only/old-only.php'];
 $expanded['catalogs'][] = $fusion25;
-$expanded['revision'] = 3;
+$expanded['revision'] = 4;
 $GLOBALS['options']['catalog_registry'] = $expanded;
 $GLOBALS['options']['catalog_selection'] = ['fusion-25', 'fusion-26'];
 $items = tnuc_hub_items();

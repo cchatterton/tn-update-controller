@@ -77,7 +77,7 @@ function tnuc_catalog_registry_validate($candidate) {
     foreach ($candidate['catalogs'] as $catalog) {
         if (!is_array($catalog)) { return new WP_Error('registry_catalog', 'A catalog entry is invalid.'); }
         $id = $catalog['id'] ?? ''; $collection = $catalog['collection'] ?? ''; $release = $catalog['release'] ?? ($catalog['year'] ?? '');
-        if (!is_string($id) || !is_string($collection) || !preg_match('/^[a-z][a-z0-9-]*$/D', $collection) || !preg_match('/^[a-z][a-z0-9-]*-\d{2}$/D', $id) || !preg_match('/^\d{2}$/D', (string) $release) || $id !== $collection . '-' . $release || isset($catalogs[$id]) || !in_array($catalog['status'] ?? '', ['current', 'supported', 'archive_planned', 'archived'], true) || !is_array($catalog['plugins'] ?? null) || count($catalog['plugins']) > 200) {
+        if (!is_string($id) || !is_string($collection) || !preg_match('/^[a-z][a-z0-9-]*$/D', $collection) || !preg_match('/^[a-z][a-z0-9-]*-\d{2}$/D', $id) || !preg_match('/^\d{2}$/D', (string) $release) || (isset($catalog['year']) && $catalog['year'] !== $release) || $id !== $collection . '-' . $release || isset($catalogs[$id]) || !in_array($catalog['status'] ?? '', ['current', 'supported', 'archive_planned', 'archived'], true) || !is_array($catalog['plugins'] ?? null) || count($catalog['plugins']) > 200) {
             return new WP_Error('registry_catalog', 'A catalog entry is invalid.');
         }
         $catalog['release'] = $release;

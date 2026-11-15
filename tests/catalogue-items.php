@@ -33,7 +33,7 @@ $alpha = json_decode((string) file_get_contents($root . '/tests/fixtures/as-cata
 $fusion = json_decode((string) file_get_contents($root . '/tests/fixtures/fusion-index-v3.json'), true);
 $catalogs = tnuc_catalogs();
 $GLOBALS['options'] = [
-    'catalog_selection' => ['alphasys' => 'alphasys-26', 'fusion' => 'fusion-26'],
+    'catalog_selection' => ['alphasys-26', 'fusion-26'],
     'as_catalogue' => tnuc_hub_validate_as_feed($alpha, $catalogs),
     'fusion_mirror' => tnuc_hub_validate_fusion_feed($fusion, $catalogs),
 ];
@@ -52,3 +52,12 @@ route_assert(isset($items['other:custom-plugin/custom-plugin.php']) && $items['o
 route_assert(!isset($items['other:disable-comments/disable-comments.php']), 'subscribed plugin is excluded from Other');
 route_assert(isset($items['controller:tn-update-controller']), 'controller remains manageable without a Techn subscription');
 route_assert(isset($items['alphasys-26:AS-Relevansi']) && !$items['alphasys-26:AS-Relevansi']['match'], 'AlphaSys catalogue lists an uninstalled plugin');
+$expanded = json_decode((string) file_get_contents($root . '/catalogue-registry.json'), true);
+$fusion25 = $expanded['catalogs'][2]; $fusion25['id'] = 'fusion-25'; $fusion25['year'] = '25'; $fusion25['name'] = 'Fusion 25'; $fusion25['status'] = 'supported';
+$expanded['catalogs'][] = $fusion25;
+$GLOBALS['options']['catalog_registry'] = $expanded;
+$GLOBALS['options']['catalog_selection'] = ['fusion-25', 'fusion-26'];
+$items = tnuc_hub_items();
+route_assert(isset($items['fusion-25:disable-comments'], $items['fusion-26:disable-comments']), 'two editions of one collection render separately');
+route_assert(!$items['fusion-25:disable-comments']['conflict'] && !$items['fusion-26:disable-comments']['conflict'], 'shared plugin identity across editions is not a conflict');
+route_assert(!isset($items['other:disable-comments/disable-comments.php']), 'Other excludes plugins represented in either selected edition');

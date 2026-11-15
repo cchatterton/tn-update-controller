@@ -3,7 +3,7 @@ Contributors:
 Tags: updates, plugins, catalog, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.10.2
+Stable tag: 0.10.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,9 +12,9 @@ A plugin catalog registry with dedicated collection screens and guided updates.
 
 == Description ==
 
-Plugin Catalogs lists the available editions. The latest Techn edition is selected by default; AlphaSys 26 and Fusion 26 are available initially. Each selected collection gets its own Plugins submenu. Other Plugins is always available and shows installed plugins outside the selected catalogs. Publishing a new edition does not change a site's saved selection or uninstall plugins from an older edition.
+Plugin Catalogs lists the available editions. The latest Techn edition is selected by default; AlphaSys 26 and Fusion 26 are available initially. Each checked catalog gets its own Plugins submenu; multiple editions of one collection can appear together. Other Plugins is always available and shows installed plugins outside the selected catalogs. Publishing a new edition does not change a site's saved selection or uninstall plugins from an older edition.
 
-Plugins > Plugin Catalogs holds edition choices. Each selected collection and Other Plugins has Updates available and Catalog tabs, with grouped plugin cards and a modal update flow. Catalog screens contain no edition picker. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
+Plugins > Plugin Catalogs lists individual catalogs with checkboxes. Each checked catalog and Other Plugins has Updates available and Catalog tabs, with grouped plugin cards and a modal update flow. Catalog screens contain no edition picker. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
 
 Checks are manual on each site. The separate Fusion mirror publisher may refresh its packages in the background. Each site check verifies this controller first. If its update is available, update it and check again before processing the selected catalogs. Discovery does not install updates or change WordPress auto-update settings.
 
@@ -26,7 +26,7 @@ On multisite, network activate this controller and use Network Admin. Inactive r
 
 1. Upload tn-update-controller.zip through Plugins > Add Plugin > Upload Plugin.
 2. Activate (network activate on multisite).
-3. Open Plugins > Plugin Catalogs, choose editions, then use each collection submenu to check for updates.
+3. Open Plugins > Plugin Catalogs, check the catalogs this site uses, then use each catalog submenu to check for updates.
 4. Review installed/available versions and choose Update selected plugins when ready.
 
 Installing or activating the controller does not automatically update other plugins. Batch operations preserve active/inactive state. Test migration on staging and verify recovery arrangements before production rollout.
@@ -55,6 +55,10 @@ Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-servi
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.10.3 =
+* List published catalogs as independent checkboxes, with a separate Plugins submenu for each checked edition.
+* Keep Other Plugins and Plugin Catalogs as the final two submenus. Allow new catalog collections and multiple editions of one collection.
 
 = 0.10.2 =
 * Move edition selection to Plugins > Plugin Catalogs and give each selected catalog its own Plugins submenu.

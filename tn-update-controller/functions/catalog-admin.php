@@ -11,9 +11,9 @@ function tnuc_hub_screen(): array {
     $page = sanitize_key(wp_unslash($_GET['page'] ?? ''));
     if ($page === 'tnuc-other') { return ['id' => 'other', 'title' => 'Other Plugins', 'name' => 'Other Plugins']; }
     $id = substr($page, 0, 5) === 'tnuc-' ? substr($page, 5) : '';
-    $selected = tnuc_catalog_selection(); $catalogs = tnuc_catalogs();
-    if (isset($catalogs[$id]) && in_array($id, $selected, true)) {
-        return ['id' => $id, 'title' => $catalogs[$id]['name'] . ' Plugins', 'name' => $catalogs[$id]['name']];
+    $collections = tnuc_selected_collections();
+    if (isset($collections[$id])) {
+        return ['id' => $id, 'title' => $collections[$id] . ' Plugins', 'name' => $collections[$id]];
     }
     return [];
 }
@@ -31,31 +31,31 @@ function tnuc_hub_assets(string $hook): void {
 }
 
 function tnuc_hub_render_registry(): void {
-    if (!tnuc_authorised()) { wp_die('You cannot manage plugin catalogs.'); }
+    if (!tnuc_authorised()) { wp_die('You cannot manage plugin collections.'); }
     $catalogs = tnuc_catalogs(); $selected = tnuc_catalog_selection();
     $can_select = current_user_can(is_multisite() ? 'manage_network_options' : 'manage_options');
-    echo '<div class="wrap tnuc-wrap"><h1>Plugin Catalogs</h1><p>Choose the catalogs this site uses. Each selected catalog gets its own Plugins submenu. Changing selections does not install or remove plugins.</p>';
+    echo '<div class="wrap tnuc-wrap"><h1>Collections Catalog</h1><p>Select the releases this site uses. Select at least one Techn release. Selected releases with the same collection name share one Plugins submenu. Changing selections does not install or remove plugins.</p>';
     $notice = get_transient('tnuc_notice_' . get_current_user_id());
     if (is_array($notice)) { delete_transient('tnuc_notice_' . get_current_user_id()); echo '<div class="notice ' . (!empty($notice['error']) ? 'notice-error' : 'notice-success') . ' is-dismissible"><p>' . esc_html($notice['message'] ?? '') . '</p></div>'; }
     echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '"><input type="hidden" name="action" value="tnuc_catalog_selection">';
     wp_nonce_field('tnuc_catalog_selection');
-    echo '<div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><th scope="col">Select</th><th scope="col">Catalog</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Last updated</th><th scope="col">Plugins</th></tr></thead><tbody>';
+    echo '<div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><th scope="col">Select</th><th scope="col">Collection</th><th scope="col">Release</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Last updated</th><th scope="col">Plugins</th></tr></thead><tbody>';
     foreach ($catalogs as $id => $catalog) {
         $checked = in_array($id, $selected, true);
         $disabled = !$can_select || ($catalog['status'] === 'archived' && !$checked);
-        echo '<tr><td><input type="checkbox" id="tnuc-catalog-' . esc_attr($id) . '" name="catalogs[]" value="' . esc_attr($id) . '"' . checked($checked, true, false) . ($disabled ? ' disabled' : '') . '></td><td><label for="tnuc-catalog-' . esc_attr($id) . '"><strong>' . esc_html($catalog['name']) . '</strong></label>';
+        echo '<tr><td><input type="checkbox" id="tnuc-catalog-' . esc_attr($id) . '" name="catalogs[]" value="' . esc_attr($id) . '"' . checked($checked, true, false) . ($disabled ? ' disabled' : '') . '></td><td><label for="tnuc-catalog-' . esc_attr($id) . '"><strong>' . esc_html(tnuc_collection_name($catalog['collection'], $catalogs)) . '</strong></label>';
         if (!empty($catalog['notice'])) { echo '<p class="description">' . esc_html($catalog['notice']) . '</p>'; }
         $listing = 'https://github.com/cchatterton/tn-update-controller/blob/main/catalogs/' . rawurlencode($id) . '.md';
         $updated = $catalog['last_updated'] !== '' ? wp_date('j M Y', strtotime($catalog['last_updated'] . ' 12:00 UTC')) : '—';
-        echo '</td><td>' . esc_html(ucfirst($catalog['type'])) . '</td><td>' . esc_html(ucwords(str_replace('_', ' ', $catalog['status']))) . '</td><td>' . esc_html($updated) . '</td><td><a href="' . esc_url($listing) . '" target="_blank" rel="noopener noreferrer">View ' . esc_html(count($catalog['plugins'])) . ' plugins<span class="screen-reader-text"> in ' . esc_html($catalog['name']) . ' (opens in a new tab)</span></a></td></tr>';
+        echo '</td><td>' . esc_html($catalog['release']) . '</td><td>' . esc_html(ucfirst($catalog['type'])) . '</td><td>' . esc_html(ucwords(str_replace('_', ' ', $catalog['status']))) . '</td><td>' . esc_html($updated) . '</td><td><a href="' . esc_url($listing) . '" target="_blank" rel="noopener noreferrer">View ' . esc_html(count($catalog['plugins'])) . ' plugins<span class="screen-reader-text"> in ' . esc_html(tnuc_collection_name($catalog['collection'], $catalogs) . ' ' . $catalog['release']) . ' (opens in a new tab)</span></a></td></tr>';
     }
     echo '</tbody></table></div>';
-    if ($can_select) { echo '<p><button type="submit" class="button button-primary">Save catalogs</button></p>'; }
-    echo '</form><p>Other Plugins is always available for installed plugins outside the selected catalogs.</p></div>';
+    if ($can_select) { echo '<p><button type="submit" class="button button-primary">Save collections</button></p>'; }
+    echo '</form><p>Other Plugins is always available for installed plugins outside the selected collections.</p></div>';
 }
 
 function tnuc_hub_save_subscriptions_form(): void {
-    if (!tnuc_authorised() || !check_admin_referer('tnuc_catalog_selection')) { wp_die('You cannot change plugin catalogs.'); }
+    if (!tnuc_authorised() || !check_admin_referer('tnuc_catalog_selection')) { wp_die('You cannot change plugin collections.'); }
     $input = isset($_POST['catalogs']) && is_array($_POST['catalogs']) ? array_filter(array_map('sanitize_key', wp_unslash($_POST['catalogs']))) : [];
     $result = tnuc_save_catalog_selection($input);
     set_transient('tnuc_notice_' . get_current_user_id(), ['error' => is_wp_error($result), 'message' => is_wp_error($result) ? $result->get_error_message() : $result['message']], 60);
@@ -82,7 +82,7 @@ function tnuc_hub_render_admin(): void {
         delete_transient('tnuc_notice_' . get_current_user_id());
         echo '<div class="notice ' . (!empty($notice['error']) ? 'notice-error' : 'notice-success') . ' is-dismissible"><p>' . esc_html($notice['message'] ?? '') . '</p></div>';
     }
-    echo '<header class="tnuc-header"><span class="tnuc-version" aria-label="Version ' . esc_attr(TNUC_VERSION) . '">v' . esc_html(TNUC_VERSION) . '</span><p class="tnuc-eyebrow">' . esc_html($screen['name']) . '</p><h2>Selected plugins. Simple updates.</h2><p>' . esc_html($screen['id'] === 'other' ? 'Manage installed plugins outside your selected catalogs.' : 'Discover and update plugins from this catalog.') . '</p><div class="tnuc-header-bottom"><span>' . esc_html($count) . ' installed · ' . esc_html(count($available)) . ' updates available</span><button type="button" class="button tnuc-primary" data-check>Check for updates</button></div></header>';
+    echo '<header class="tnuc-header"><span class="tnuc-version" aria-label="Version ' . esc_attr(TNUC_VERSION) . '">v' . esc_html(TNUC_VERSION) . '</span><p class="tnuc-eyebrow">' . esc_html($screen['name']) . '</p><h2>Selected plugins. Simple updates.</h2><p>' . esc_html($screen['id'] === 'other' ? 'Manage installed plugins outside your selected collections.' : 'Discover and update plugins from this collection.') . '</p><div class="tnuc-header-bottom"><span>' . esc_html($count) . ' installed · ' . esc_html(count($available)) . ' updates available</span><button type="button" class="button tnuc-primary" data-check>Check for updates</button></div></header>';
     $errors = (array) tnuc_get('hub_check_errors');
     echo '<div class="tnuc-status"><span>' . ($checked ? 'Last checked ' . esc_html(wp_date('j M Y, H:i', $checked)) : 'Never checked. Check for updates to load current releases.') . ($errors ? ' · Some sources could not be checked.' : '') . '</span></div>';
     echo '<nav class="nav-tab-wrapper" aria-label="' . esc_attr($screen['title']) . '">';
@@ -105,7 +105,7 @@ function tnuc_hub_render_updates(array $updates, array $catalogs): void {
         $name = $item['entry']['name']; $current = $item['match']['data']['Version'] ?? '';
         echo '<tr><th class="check-column">';
         if ($eligible) { echo '<input type="checkbox" name="tnuc-selected" value="' . esc_attr($key) . '" aria-label="Update ' . esc_attr($name) . '">'; }
-        echo '</th><td><strong>' . esc_html($name) . '</strong><br><span class="description">' . esc_html($item['catalog'] === 'other' ? 'Other' : ($item['catalog'] === 'controller' ? 'Controller' : ($catalogs[$item['catalog']]['name'] ?? $item['catalog']))) . '</span></td><td>' . esc_html($current) . '</td><td>';
+        echo '</th><td><strong>' . esc_html($name) . '</strong><br><span class="description">' . esc_html($item['catalog'] === 'other' ? 'Other' : ($item['catalog'] === 'controller' ? 'Controller' : tnuc_collection_name($item['catalog'], $catalogs))) . '</span></td><td>' . esc_html($current) . '</td><td>';
         if (!empty($release['notes'])) { echo '<a href="' . esc_url($release['notes']) . '" target="_blank" rel="noopener noreferrer">' . esc_html($release['version']) . '<span class="screen-reader-text"> release notes (opens in a new tab)</span></a>'; }
         else { echo esc_html($release['version']); }
         $issue = $item['issue'] ?: tnuc_hub_compatibility($release);
@@ -121,8 +121,7 @@ function tnuc_hub_render_updates(array $updates, array $catalogs): void {
 
 function tnuc_hub_render_catalogue(array $screen, array $catalogs, array $items): void {
     $catalog_id = $screen['id'];
-    echo '<div class="tnuc-catalogue-toolbar"><div><h2>' . esc_html($catalog_id === 'other' ? 'Other Plugins' : $screen['name'] . ' catalog') . '</h2>';
-    if ($catalog_id !== 'other' && !empty($catalogs[$catalog_id]['notice'])) { echo '<p class="tnuc-catalogue-notice">' . esc_html($catalogs[$catalog_id]['notice']) . '</p>'; }
+    echo '<div class="tnuc-catalogue-toolbar"><div><h2>' . esc_html($catalog_id === 'other' ? 'Other Plugins' : $screen['name'] . ' Plugins') . '</h2>';
     echo '</div></div>';
     $groups = ['active' => [], 'installed' => [], 'available' => [], 'beta' => [], 'licensed' => []];
     foreach ($items as $key => $item) {
@@ -212,7 +211,7 @@ function tnuc_hub_dispatch(string $operation, array $input) {
         if (!tnuc_hub_screen()) {
             if ($previous_tab === null) { unset($_GET['tab']); } else { $_GET['tab'] = $previous_tab; }
             if ($previous_page === null) { unset($_GET['page']); } else { $_GET['page'] = $previous_page; }
-            return new WP_Error('screen', 'This catalog page is unavailable. Open Plugin Catalogs and select a catalog.');
+            return new WP_Error('screen', 'This collection page is unavailable. Open Collections Catalog and select a release.');
         }
         ob_start();
         try { tnuc_hub_render_admin(); $html = ob_get_contents(); }
@@ -225,7 +224,7 @@ function tnuc_hub_dispatch(string $operation, array $input) {
     if ($operation === 'step') { return tnuc_hub_step_batch(sanitize_text_field($input['job'] ?? '')); }
     if ($operation === 'status') { return ['batch' => tnuc_hub_batch()]; }
     if ($operation === 'plugin_action') { return tnuc_hub_plugin_action(sanitize_text_field($input['plugin_id'] ?? ''), sanitize_key($input['plugin_action'] ?? '')); }
-    return new WP_Error('operation', 'Unknown Plugin Catalog action.');
+    return new WP_Error('operation', 'Unknown collection action.');
 }
 
 function tnuc_hub_ajax(): void {

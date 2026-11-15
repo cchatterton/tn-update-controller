@@ -3,18 +3,18 @@ Contributors:
 Tags: updates, plugins, catalog, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.10.5
+Stable tag: 0.10.6
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A plugin catalog registry with dedicated collection screens and guided updates.
+A collection release registry with shared collection screens and guided updates.
 
 == Description ==
 
-Plugin Catalogs lists the available editions. Techn 27 is current and selected by default on new sites; Techn 25, Techn 26, AlphaSys 26 and Fusion 26 remain available. Each checked catalog gets its own Plugins submenu; multiple editions of one collection can appear together. Other Plugins is always available and shows installed plugins outside the selected catalogs. Publishing a new edition does not change a site's saved selection or uninstall plugins from an older edition.
+Collections Catalog lists the available releases. Techn 27 is current and selected by default on new sites; Techn 25, Techn 26, AlphaSys 26 and Fusion 26 remain available. At least one Techn release must remain selected so the controller can update. Each selected collection gets one Plugins submenu containing the unique plugins across its selected releases. Other Plugins is always available and shows installed plugins outside the selected collections. Publishing a new release does not change a site's saved selection or uninstall plugins from an older release.
 
-Plugins > Plugin Catalogs lists individual catalogs with checkboxes, Hosted or Mirrored type, a last updated date, and a link to each readable GitHub plugin list. Each checked catalog and Other Plugins has Updates available and Catalog tabs, with grouped plugin cards and a modal update flow. Catalog screens contain no edition picker. Older Plugins submenu URLs redirect to their current screen after a controller update. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
+Plugins > Collections lists collection releases with checkboxes, Hosted or Mirrored type, a last updated date, and a link to each readable GitHub plugin list. Each collection and Other Plugins has Updates available and Catalog tabs, with grouped plugin cards and a modal update flow. Collection screens show the collection name without release numbers. Older Plugins submenu URLs redirect to the collection screen after a controller update. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
 
 Checks are manual on each site. The separate Fusion mirror publisher may refresh its packages in the background. Each site check verifies this controller first. If its update is available, update it and check again before processing the selected catalogs. Discovery does not install updates or change WordPress auto-update settings.
 
@@ -26,7 +26,7 @@ On multisite, network activate this controller and use Network Admin. Inactive r
 
 1. Upload tn-update-controller.zip through Plugins > Add Plugin > Upload Plugin.
 2. Activate (network activate on multisite).
-3. Open Plugins > Plugin Catalogs, check the catalogs this site uses, then use each catalog submenu to check for updates.
+3. Open Plugins > Collections, check the releases this site uses, then use each collection submenu to check for updates.
 4. Review installed/available versions and choose Update selected plugins when ready.
 
 Installing or activating the controller does not automatically update other plugins. Batch operations preserve active/inactive state. Test migration on staging and verify recovery arrangements before production rollout.
@@ -55,6 +55,11 @@ Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-servi
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.10.6 =
+* Group selected releases under one submenu per collection, showing each plugin once.
+* Require a Techn release containing the controller; default new sites to the latest current Techn release.
+* Rename the last Plugins submenu to Collections and split collection name and release in the Collections Catalog.
 
 = 0.10.5 =
 * Publish Techn 25 with eight plugins and Techn 27 with twenty plugins; keep Techn 26 supported.

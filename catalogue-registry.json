@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "revision": 1,
+  "revision": 2,
   "catalogs": [
     {
       "id": "techn-27",
       "type": "hosted",
       "collection": "techn",
-      "year": "27",
-      "name": "Techn 27",
+      "release": "27",
+      "name": "Techn",
       "status": "current",
       "notice": "",
       "plugins": [
@@ -278,8 +278,8 @@
       "id": "techn-26",
       "type": "hosted",
       "collection": "techn",
-      "year": "26",
-      "name": "Techn 26",
+      "release": "26",
+      "name": "Techn",
       "status": "supported",
       "notice": "",
       "plugins": [
@@ -615,8 +615,8 @@
       "id": "techn-25",
       "type": "hosted",
       "collection": "techn",
-      "year": "25",
-      "name": "Techn 25",
+      "release": "25",
+      "name": "Techn",
       "status": "supported",
       "notice": "",
       "plugins": [
@@ -731,8 +731,8 @@
       "id": "alphasys-26",
       "type": "hosted",
       "collection": "alphasys",
-      "year": "26",
-      "name": "AlphaSys 26",
+      "release": "26",
+      "name": "AlphaSys",
       "status": "current",
       "notice": "",
       "plugins": [
@@ -1042,8 +1042,8 @@
       "id": "fusion-26",
       "type": "mirrored",
       "collection": "fusion",
-      "year": "26",
-      "name": "Fusion 26",
+      "release": "26",
+      "name": "Fusion",
       "status": "current",
       "notice": "",
       "plugins": [

@@ -24,26 +24,27 @@ function tnuc_get($key, $default = []) { return $key === 'hub_other_details' ? [
 function number_format_i18n($number) { return number_format($number); }
 function tnuc_hub_wporg_slug($file) { return ''; }
 function tnuc_hub_native_updates() { return []; }
+function tnuc_collection_name($collection, $catalogs = []) { return ucfirst($collection); }
 function tnuc_hub_eligible($item, $kind) { return empty($item['issue']) && ($kind === 'install' ? empty($item['conflict']) && !$item['match'] && (bool) $item['release'] : $item['match'] && (bool) $item['update']); }
 function tnuc_hub_compatibility($release) { return ''; }
 require dirname(__DIR__) . '/tn-update-controller/functions/catalog-admin.php';
 
 function ui_assert($condition, $message) { if (!$condition) { throw new RuntimeException($message); } echo "PASS: $message\n"; }
 $catalogs = [
-    'fusion-26' => ['id' => 'fusion-26', 'collection' => 'fusion', 'year' => '26', 'name' => 'Fusion 26', 'status' => 'current', 'notice' => 'Review before archive.', 'plugins' => []],
-    'fusion-25' => ['id' => 'fusion-25', 'collection' => 'fusion', 'year' => '25', 'name' => 'Fusion 25', 'status' => 'supported', 'notice' => '', 'plugins' => []],
+    'fusion-26' => ['id' => 'fusion-26', 'collection' => 'fusion', 'release' => '26', 'name' => 'Fusion', 'status' => 'current', 'notice' => 'Review before archive.', 'plugins' => []],
+    'fusion-25' => ['id' => 'fusion-25', 'collection' => 'fusion', 'release' => '25', 'name' => 'Fusion', 'status' => 'supported', 'notice' => '', 'plugins' => []],
 ];
 $selected = ['fusion' => 'fusion-26'];
 $items = [
-    'fusion-26:example' => ['key' => 'fusion-26:example', 'catalog' => 'fusion-26', 'entry' => ['id' => 'example', 'name' => 'Example', 'description' => 'Example plugin', 'role' => 'Content', 'beta' => false], 'match' => ['file' => 'example/example.php', 'data' => ['Version' => '1.0.0']], 'release' => ['version' => '1.1.0', 'notes' => 'https://example.test/release'], 'update' => ['version' => '1.1.0', 'source' => 'mirror'], 'issue' => '', 'conflict' => true],
+    'fusion:example' => ['key' => 'fusion:example', 'catalog' => 'fusion', 'entry' => ['id' => 'example', 'name' => 'Example', 'description' => 'Example plugin', 'role' => 'Content', 'beta' => false], 'match' => ['file' => 'example/example.php', 'data' => ['Version' => '1.0.0']], 'release' => ['version' => '1.1.0', 'notes' => 'https://example.test/release'], 'update' => ['version' => '1.1.0', 'source' => 'mirror'], 'issue' => '', 'conflict' => true],
     'other:site/site.php' => ['key' => 'other:site/site.php', 'catalog' => 'other', 'entry' => ['id' => 'site/site.php', 'name' => 'Site Plugin', 'description' => 'Local plugin'], 'match' => ['file' => 'site/site.php', 'data' => ['Version' => '1.0.0']], 'release' => [], 'update' => [], 'issue' => '', 'conflict' => false],
 ];
-ob_start(); tnuc_hub_render_catalogue(['id' => 'fusion-26', 'name' => 'Fusion 26'], $catalogs, $items); $html = ob_get_clean();
+ob_start(); tnuc_hub_render_catalogue(['id' => 'fusion', 'name' => 'Fusion'], $catalogs, $items); $html = ob_get_clean();
 ui_assert(strpos($html, 'id="tnuc-catalog"') === false && strpos($html, 'data-subscribe') === false, 'catalog screen has no edition picker or subscription controls');
-ui_assert(strpos($html, 'Review before archive.') !== false, 'edition notice renders');
+ui_assert(strpos($html, 'Fusion Plugins') !== false && strpos($html, 'Fusion 26') === false, 'collection screen omits release number');
 ui_assert(strpos($html, 'data-kind="update"') !== false && strpos($html, 'Release notes') !== false, 'managed update and release notes actions render');
 ui_assert(strpos($html, 'Review before updating') === false, 'installed plugin identity metadata adds no update warning');
-ob_start(); tnuc_hub_render_updates(['fusion-26:example' => $items['fusion-26:example']], $catalogs); $html = ob_get_clean();
+ob_start(); tnuc_hub_render_updates(['fusion:example' => $items['fusion:example']], $catalogs); $html = ob_get_clean();
 ui_assert(strpos($html, 'name="tnuc-selected"') !== false, 'available update remains selectable despite installed identity metadata');
 ob_start(); tnuc_hub_render_catalogue(['id' => 'other', 'name' => 'Other Plugins'], $catalogs, $items); $html = ob_get_clean();
 ui_assert(strpos($html, 'Site Plugin') !== false && strpos($html, 'Example plugin') === false, 'Other lists only unclaimed installed plugins');

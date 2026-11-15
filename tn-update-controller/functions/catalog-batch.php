@@ -16,7 +16,7 @@ function tnuc_hub_eligible(array $item, string $kind): bool {
 
 function tnuc_hub_start_batch(array $keys, string $kind) {
     if (!in_array($kind, ['update', 'install'], true) || !tnuc_authorised($kind === 'install' ? 'install_plugins' : 'update_plugins') || !wp_is_file_mod_allowed('tnuc')) { return new WP_Error('permission', 'You cannot change plugins on this site.'); }
-    $keys = array_values(array_unique(array_filter($keys, 'is_string')));
+    $keys = array_values(array_unique(array_map('tnuc_hub_current_key', array_filter($keys, 'is_string'))));
     if (!$keys || count($keys) > 100) { return new WP_Error('selection', 'Select at least one eligible plugin.'); }
     if (tnuc_controller_update_pending()) {
         foreach ($keys as $key) { if (substr($key, -strlen(':tn-update-controller')) !== ':tn-update-controller') { return new WP_Error('controller_first', 'Update the controller first, then check for updates again.'); } }
@@ -84,7 +84,7 @@ function tnuc_hub_step_batch(string $id) {
         if (get_filesystem_method() !== 'direct') { return new WP_Error('filesystem', 'This site requires filesystem credentials. Use the WordPress Plugins screen.'); }
         foreach ($batch['items'] as $index => $queued) {
             if (!in_array($queued['status'], ['pending', 'working'], true)) { continue; }
-            $item = $available[$queued['id']] ?? null;
+            $item = $available[tnuc_hub_current_key($queued['id'])] ?? null;
             $release = $item ? ($batch['kind'] === 'install' ? $item['release'] : $item['update']) : [];
             $error = (!$item || !$release || ($release['version'] ?? '') !== $queued['version'] || ($release['source'] ?? '') !== $queued['source'] || ($release['sha256'] ?? '') !== $queued['sha256']) ? 'The package changed. Check for updates again.' : tnuc_hub_compatibility($release);
             $file = $item['match']['file'] ?? $queued['file'];
@@ -125,7 +125,7 @@ function tnuc_hub_step_batch(string $id) {
 }
 
 function tnuc_hub_plugin_action(string $key, string $operation) {
-    $item = tnuc_hub_items()[$key] ?? null;
+    $item = tnuc_hub_items()[tnuc_hub_current_key($key)] ?? null;
     if (!$item || empty($item['match']) || !in_array($operation, ['activate', 'deactivate', 'delete'], true)) { return new WP_Error('action', 'This plugin action is unavailable.'); }
     $file = $item['match']['file'];
     if ($file === plugin_basename(TNUC_FILE)) { return new WP_Error('controller', 'Use WordPress Plugins to manage the controller.'); }

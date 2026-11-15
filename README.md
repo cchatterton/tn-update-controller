@@ -1,24 +1,24 @@
 # TN Update Controller
 
-The controller behind **Plugins → Plugin Catalogs**. A site checks any combination of published catalogs: Techn 27 is current; Techn 25, Techn 26, AlphaSys 26 and Fusion 26 are available. The latest current Techn edition is selected by default on new sites. Each checked catalog gets a separate Plugins submenu. **Other Plugins** and **Plugin Catalogs** are always the final two submenus. Other Plugins lists installed plugins outside the selected catalogs. Installable ZIP: [latest release](https://github.com/cchatterton/tn-update-controller/releases/latest/download/tn-update-controller.zip).
+The controller behind **Plugins → Collections**. A site selects collection releases: Techn 27 is current; Techn 25, Techn 26, AlphaSys 26 and Fusion 26 are available. The latest current Techn release is selected by default, and at least one Techn release must remain selected. Each selected collection gets one Plugins submenu with the unique plugins from its selected releases. **Other Plugins** and **Collections** are always the final two submenus. Other Plugins lists installed plugins outside the selected collections. Installable ZIP: [latest release](https://github.com/cchatterton/tn-update-controller/releases/latest/download/tn-update-controller.zip).
 
-WordPress 6.5+, PHP 7.4+. On multisite, network activate it. Open **Plugins → Plugin Catalogs** (Network Admin on multisite) to choose editions.
+WordPress 6.5+, PHP 7.4+. On multisite, network activate it. Open **Plugins → Collections** (Network Admin on multisite) to choose releases.
 
 - **Updates available:** version comparisons and selected bulk updates from the appropriate package provider.
-- **Catalog:** grouped cards, release notes and lifecycle actions for the selected edition on that submenu. New installs remain inactive.
+- **Catalog:** grouped cards, release notes and lifecycle actions for the selected collection. New installs remain inactive.
 **Check for updates** refreshes the public registry, subscribed release feeds and WordPress update state together.
 
 Activation removes obsolete controller schedules. It performs no discovery or plugin upgrades. Review updates and choose **Update selected plugins**. Each update has a separate result and an interrupted batch can be resumed. The controller updates itself last. Existing activation and settings are preserved by native WordPress installation APIs. Keep your normal backup and staging process; a batch is not an atomic transaction or a site rollback service.
 
-## Catalog registry
+## Collections registry
 
-The root `catalogue-registry.json` publishes edition membership, type, status, last updated dates and a revision. The bundled copy allows a cold-cache screen to render without HTTP. The controller keeps a newer validated copy after an explicit check. Each site saves its checked catalog IDs; multiple editions of the same collection may be selected. A new installation selects the latest current Techn edition; existing site selections are retained. Publishing a new edition never changes an existing site's selection. Each catalog's plugin count links to a [readable GitHub list](catalogs/techn-27.md) in a new tab.
+The root `catalogue-registry.json` publishes release membership, type, status, last updated dates and a revision. The bundled copy allows a cold-cache screen to render without HTTP. The controller keeps a newer validated copy after an explicit check. Each site saves its selected release IDs; multiple releases of one collection may be selected. The latest current Techn release is selected on a new installation; existing valid selections are retained. Publishing a new release never changes an existing site's selection. Each release's plugin count links to a [readable GitHub list](catalogs/techn-27.md) in a new tab.
 
 Release metadata stays with its package source. Techn and AlphaSys entries use their verified public GitHub release feeds. Fusion entries prefer the verified GitHub mirror and use the site's native WordPress update provider when the mirror has no newer package. Other installed plugins use their existing WordPress provider; an explicit check also caches WordPress.org details for their cards. A selected catalog's membership does not install or delete plugins.
 
 ## Ownership and coexistence
 
-The existing Techn release publisher continues to verify Techn-authored packages and publish `catalogue.json`. AlphaSys continues to publish its own release feed; Fusion continues to publish its mirror index. The Plugin Catalogs registry chooses which verified plugin identities belong to each edition and can add new catalog collections without changing the menu code. During migration, the separate AlphaSys and Fusion controllers can remain active; retire them only after the shared controller and their client integrations have been checked on the site. See [discovery and exceptions](docs/DISCOVERY.md).
+The existing Techn release publisher continues to verify Techn-authored packages and publish `catalogue.json`. AlphaSys continues to publish its own release feed; Fusion continues to publish its mirror index. The Collections Catalog registry chooses which verified plugin identities belong to each release and can add new collections without changing the menu code. During migration, the separate AlphaSys and Fusion controllers can remain active; retire them only after the shared controller and their client integrations have been checked on the site. See [discovery and exceptions](docs/DISCOVERY.md).
 
 ## Performance
 

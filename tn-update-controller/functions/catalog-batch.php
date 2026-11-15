@@ -5,13 +5,13 @@ function tnuc_hub_batch(): array { return (array) tnuc_get('hub_batch'); }
 function tnuc_hub_store_batch(array $batch): void { tnuc_put('hub_batch', $batch); }
 
 function tnuc_hub_eligible(array $item, string $kind): bool {
-    if (!empty($item['conflict']) || !empty($item['issue'])) { return false; }
+    if (!empty($item['issue'])) { return false; }
     if (tnuc_controller_update_pending() && ($item['entry']['id'] ?? '') !== 'tn-update-controller') { return false; }
     if ($kind === 'update') {
         $update = $item['update'];
         return !empty($item['match']) && !empty($update) && ($update['source'] !== 'native' || !empty($update['package']));
     }
-    return empty($item['match']) && !empty($item['release']) && in_array($item['release']['source'], ['github', 'mirror'], true);
+    return empty($item['conflict']) && empty($item['match']) && !empty($item['release']) && in_array($item['release']['source'], ['github', 'mirror'], true);
 }
 
 function tnuc_hub_start_batch(array $keys, string $kind) {

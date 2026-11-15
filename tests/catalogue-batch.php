@@ -46,6 +46,7 @@ $GLOBALS['installed'] = ['native-plugin/native-plugin.php' => ['Version' => '1.0
 $GLOBALS['items'] = [
     'other:native-plugin/native-plugin.php' => ['key' => 'other:native-plugin/native-plugin.php', 'entry' => ['file' => 'native-plugin/native-plugin.php', 'name' => 'Native Plugin'], 'match' => ['file' => 'native-plugin/native-plugin.php'], 'update' => ['source' => 'native', 'version' => '1.1.0', 'package' => 'https://vendor.example/update.zip'], 'release' => [], 'conflict' => false, 'issue' => ''],
 ];
+batch_assert(tnuc_hub_eligible(array_merge($GLOBALS['items']['other:native-plugin/native-plugin.php'], ['conflict' => true]), 'update'), 'installed plugin identity metadata does not hide a usable update');
 $job = tnuc_hub_start_batch(['other:native-plugin/native-plugin.php'], 'update');
 batch_assert(!is_wp_error($job) && $job['status'] === 'running', 'native update batch starts');
 $result = tnuc_hub_step_batch($job['id']);

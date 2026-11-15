@@ -160,7 +160,7 @@ function tnuc_hub_render_card(array $item): void {
         if (!empty($info['last_updated'])) { echo '<p class="description">Last updated ' . esc_html($info['last_updated']) . '</p>'; }
         if ($info) { echo '<p class="description">' . esc_html(number_format_i18n((int) ($info['downloaded'] ?? 0))) . ' downloads · ' . esc_html(number_format_i18n((int) ($info['num_ratings'] ?? 0))) . ' ratings</p>'; }
     }
-    if (!empty($item['conflict'])) { echo '<p class="tnuc-warning">Plugin identity conflicts with another selected catalog or the installed plugin. Review before updating.</p>'; }
+    if (!$match && !empty($item['conflict'])) { echo '<p class="tnuc-warning">This plugin is listed in another selected catalog.</p>'; }
     if (!empty($item['issue'])) { echo '<p class="tnuc-warning">' . esc_html($item['issue']) . '</p>'; }
     if ($release) {
         $requirements = [];

@@ -60,6 +60,7 @@ Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-
 * Publish Techn 25 with eight plugins and Techn 27 with twenty plugins; keep Techn 26 supported.
 * Link each catalog to its readable GitHub plugin list in a new tab and show the catalog's last updated date.
 * Keep generated plugin lists in sync with the registry during publication.
+* Keep a newer release selectable when an installed plugin's identity metadata differs from its catalog entry.
 
 = 0.10.4 =
 * Redirect older Plugins submenu URLs and translate in-progress update modal refreshes after controller updates.

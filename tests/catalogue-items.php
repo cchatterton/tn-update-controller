@@ -53,8 +53,10 @@ route_assert(!isset($items['other:disable-comments/disable-comments.php']), 'sub
 route_assert(isset($items['controller:tn-update-controller']), 'controller remains manageable without a Techn subscription');
 route_assert(isset($items['alphasys-26:AS-Relevansi']) && !$items['alphasys-26:AS-Relevansi']['match'], 'AlphaSys catalogue lists an uninstalled plugin');
 $expanded = json_decode((string) file_get_contents($root . '/catalogue-registry.json'), true);
-$fusion25 = $expanded['catalogs'][2]; $fusion25['id'] = 'fusion-25'; $fusion25['year'] = '25'; $fusion25['name'] = 'Fusion 25'; $fusion25['status'] = 'supported';
+$fusion25 = current(array_filter($expanded['catalogs'], static function ($catalog) { return $catalog['id'] === 'fusion-26'; }));
+$fusion25['id'] = 'fusion-25'; $fusion25['year'] = '25'; $fusion25['name'] = 'Fusion 25'; $fusion25['status'] = 'supported';
 $expanded['catalogs'][] = $fusion25;
+$expanded['revision'] = 2;
 $GLOBALS['options']['catalog_registry'] = $expanded;
 $GLOBALS['options']['catalog_selection'] = ['fusion-25', 'fusion-26'];
 $items = tnuc_hub_items();

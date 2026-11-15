@@ -1,4 +1,4 @@
-name: Plugin Catalogue validation
+name: Plugin Catalog validation
 
 on:
   push:
@@ -21,8 +21,9 @@ jobs:
       - name: Syntax
         run: |
           find tn-update-controller -name '*.php' -print0 | xargs -0 -n1 php -l
-      - name: Catalogue and package tests
+      - name: Catalog and package tests
         run: |
+          python3 scripts/render-catalogs.py --check
           php tests/catalogue-registry.php
           php tests/catalogue-items.php
           php tests/catalogue-ui.php

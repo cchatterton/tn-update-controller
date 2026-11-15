@@ -39,13 +39,15 @@ function tnuc_hub_render_registry(): void {
     if (is_array($notice)) { delete_transient('tnuc_notice_' . get_current_user_id()); echo '<div class="notice ' . (!empty($notice['error']) ? 'notice-error' : 'notice-success') . ' is-dismissible"><p>' . esc_html($notice['message'] ?? '') . '</p></div>'; }
     echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '"><input type="hidden" name="action" value="tnuc_catalog_selection">';
     wp_nonce_field('tnuc_catalog_selection');
-    echo '<div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><th scope="col">Select</th><th scope="col">Catalog</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Plugins</th></tr></thead><tbody>';
+    echo '<div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><th scope="col">Select</th><th scope="col">Catalog</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Last updated</th><th scope="col">Plugins</th></tr></thead><tbody>';
     foreach ($catalogs as $id => $catalog) {
         $checked = in_array($id, $selected, true);
         $disabled = !$can_select || ($catalog['status'] === 'archived' && !$checked);
         echo '<tr><td><input type="checkbox" id="tnuc-catalog-' . esc_attr($id) . '" name="catalogs[]" value="' . esc_attr($id) . '"' . checked($checked, true, false) . ($disabled ? ' disabled' : '') . '></td><td><label for="tnuc-catalog-' . esc_attr($id) . '"><strong>' . esc_html($catalog['name']) . '</strong></label>';
         if (!empty($catalog['notice'])) { echo '<p class="description">' . esc_html($catalog['notice']) . '</p>'; }
-        echo '</td><td>' . esc_html(ucfirst($catalog['type'])) . '</td><td>' . esc_html(ucwords(str_replace('_', ' ', $catalog['status']))) . '</td><td>' . esc_html(count($catalog['plugins'])) . '</td></tr>';
+        $listing = 'https://github.com/cchatterton/tn-update-controller/blob/main/catalogs/' . rawurlencode($id) . '.md';
+        $updated = $catalog['last_updated'] !== '' ? wp_date('j M Y', strtotime($catalog['last_updated'] . ' 12:00 UTC')) : '—';
+        echo '</td><td>' . esc_html(ucfirst($catalog['type'])) . '</td><td>' . esc_html(ucwords(str_replace('_', ' ', $catalog['status']))) . '</td><td>' . esc_html($updated) . '</td><td><a href="' . esc_url($listing) . '" target="_blank" rel="noopener noreferrer">View ' . esc_html(count($catalog['plugins'])) . ' plugins<span class="screen-reader-text"> in ' . esc_html($catalog['name']) . ' (opens in a new tab)</span></a></td></tr>';
     }
     echo '</tbody></table></div>';
     if ($can_select) { echo '<p><button type="submit" class="button button-primary">Save catalogs</button></p>'; }
@@ -158,7 +160,7 @@ function tnuc_hub_render_card(array $item): void {
         if (!empty($info['last_updated'])) { echo '<p class="description">Last updated ' . esc_html($info['last_updated']) . '</p>'; }
         if ($info) { echo '<p class="description">' . esc_html(number_format_i18n((int) ($info['downloaded'] ?? 0))) . ' downloads · ' . esc_html(number_format_i18n((int) ($info['num_ratings'] ?? 0))) . ' ratings</p>'; }
     }
-    if (!empty($item['conflict'])) { echo '<p class="tnuc-warning">Plugin identity conflicts with another selected catalog or the installed plugin. Review before updating.</p>'; }
+    if (!$match && !empty($item['conflict'])) { echo '<p class="tnuc-warning">This plugin is listed in another selected catalog.</p>'; }
     if (!empty($item['issue'])) { echo '<p class="tnuc-warning">' . esc_html($item['issue']) . '</p>'; }
     if ($release) {
         $requirements = [];

@@ -68,6 +68,11 @@
         const url = new URL(window.location.href);
         const tab = targetTab || url.searchParams.get('tab') || 'installed';
         const result = await call('view', { tab, screen: tnucAdmin.screen });
+        if (result.screen && result.screen !== tnucAdmin.screen) {
+            tnucAdmin.screen = result.screen;
+            url.searchParams.set('page', result.screen);
+            window.history.replaceState(null, '', url);
+        }
         const page = new DOMParser().parseFromString(result.html, 'text/html');
         const view = page.getElementById('tnuc-view');
         if (!view) throw new Error('Could not refresh the plugin list.');

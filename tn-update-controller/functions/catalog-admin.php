@@ -39,13 +39,13 @@ function tnuc_hub_render_registry(): void {
     if (is_array($notice)) { delete_transient('tnuc_notice_' . get_current_user_id()); echo '<div class="notice ' . (!empty($notice['error']) ? 'notice-error' : 'notice-success') . ' is-dismissible"><p>' . esc_html($notice['message'] ?? '') . '</p></div>'; }
     echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '"><input type="hidden" name="action" value="tnuc_catalog_selection">';
     wp_nonce_field('tnuc_catalog_selection');
-    echo '<div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><th scope="col">Select</th><th scope="col">Catalog</th><th scope="col">Status</th><th scope="col">Plugins</th></tr></thead><tbody>';
+    echo '<div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><th scope="col">Select</th><th scope="col">Catalog</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Plugins</th></tr></thead><tbody>';
     foreach ($catalogs as $id => $catalog) {
         $checked = in_array($id, $selected, true);
         $disabled = !$can_select || ($catalog['status'] === 'archived' && !$checked);
         echo '<tr><td><input type="checkbox" id="tnuc-catalog-' . esc_attr($id) . '" name="catalogs[]" value="' . esc_attr($id) . '"' . checked($checked, true, false) . ($disabled ? ' disabled' : '') . '></td><td><label for="tnuc-catalog-' . esc_attr($id) . '"><strong>' . esc_html($catalog['name']) . '</strong></label>';
         if (!empty($catalog['notice'])) { echo '<p class="description">' . esc_html($catalog['notice']) . '</p>'; }
-        echo '</td><td>' . esc_html(ucwords(str_replace('_', ' ', $catalog['status']))) . '</td><td>' . esc_html(count($catalog['plugins'])) . '</td></tr>';
+        echo '</td><td>' . esc_html(ucfirst($catalog['type'])) . '</td><td>' . esc_html(ucwords(str_replace('_', ' ', $catalog['status']))) . '</td><td>' . esc_html(count($catalog['plugins'])) . '</td></tr>';
     }
     echo '</tbody></table></div>';
     if ($can_select) { echo '<p><button type="submit" class="button button-primary">Save catalogs</button></p>'; }
@@ -200,11 +200,22 @@ function tnuc_hub_dispatch(string $operation, array $input) {
     if ($operation === 'view') {
         $previous_tab = $_GET['tab'] ?? null; $previous_page = $_GET['page'] ?? null;
         $_GET['tab'] = sanitize_key($input['tab'] ?? 'installed');
-        $_GET['page'] = sanitize_key($input['screen'] ?? '');
+        $requested = sanitize_key($input['screen'] ?? '');
+        if ($requested === '') {
+            $legacy_catalog = sanitize_key($input['catalog'] ?? '');
+            $requested = $legacy_catalog === 'other' ? 'tnuc-other' : ($legacy_catalog !== '' ? 'tnuc-' . $legacy_catalog : tnuc_legacy_catalog_target('tnuc-techn'));
+            if ($requested === 'tnuc') { $requested = 'tnuc-other'; }
+        }
+        $_GET['page'] = tnuc_legacy_catalog_target($requested) ?: $requested;
+        if (!tnuc_hub_screen()) {
+            if ($previous_tab === null) { unset($_GET['tab']); } else { $_GET['tab'] = $previous_tab; }
+            if ($previous_page === null) { unset($_GET['page']); } else { $_GET['page'] = $previous_page; }
+            return new WP_Error('screen', 'This catalog page is unavailable. Open Plugin Catalogs and select a catalog.');
+        }
         ob_start();
         try { tnuc_hub_render_admin(); $html = ob_get_contents(); }
         finally { ob_end_clean(); if ($previous_tab === null) { unset($_GET['tab']); } else { $_GET['tab'] = $previous_tab; } if ($previous_page === null) { unset($_GET['page']); } else { $_GET['page'] = $previous_page; } }
-        return ['html' => $html];
+        return ['html' => $html, 'screen' => tnuc_legacy_catalog_target($requested) ?: $requested];
     }
     if ($operation === 'save_subscriptions') { return tnuc_save_catalog_selection((array) ($input['catalogs'] ?? [])); }
     if ($operation === 'check') { return tnuc_hub_check(); }

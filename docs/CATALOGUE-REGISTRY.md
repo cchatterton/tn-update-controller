@@ -1,12 +1,12 @@
-# Plugin Catalogue registry
+# Plugin Catalog registry
 
-`catalogue-registry.json` is the public directory of catalogue editions. The identical bundled copy at `tn-update-controller/data/catalogue-registry.json` lets the screen render without a network request. An explicit **Check for updates** replaces the site's cached copy only after validation.
+`catalogue-registry.json` is the public directory of catalog editions. The identical bundled copy at `tn-update-controller/data/catalogue-registry.json` lets the screen render without a network request. An explicit **Check for updates** replaces the site's cached copy only after validation.
 
-Each edition has an ID such as `fusion-26`, a collection, year, name, status, optional notice, and a fixed list of plugin identities. A site may subscribe to one edition per collection. Existing Techn controller installations retain Techn 26 on upgrade; new installations begin with no subscriptions. A new edition does not alter saved site choices.
+Each edition has an ID such as `fusion-26`, a collection, year, name, type, status, optional notice, and a fixed list of plugin identities. Type is `hosted` for direct GitHub release catalogs or `mirrored` for mirror catalogs. The catalog list shows this as Hosted or Mirrored. A site can check any combination of editions; each creates its own Plugins submenu. New installations select the latest current Techn catalog by default. A new edition does not alter saved site choices.
 
-Statuses are `current`, `supported`, `archive_planned`, and `archived`. Current, supported and archive-planned editions remain available for site selection. `archive_planned` can carry a notice for sites using that edition. An archived edition remains visible to subscribed sites but cannot be newly selected; its catalogue packages are not refreshed or offered by Plugin Catalogue. Installed plugins can use their existing WordPress update providers.
+Statuses are `current`, `supported`, `archive_planned`, and `archived`. Current, supported and archive-planned editions remain available for site selection. `archive_planned` can carry a notice for sites using that edition. An archived edition remains visible to selected sites but cannot be newly selected; its catalog packages are not refreshed or offered by Plugin Catalogs. Installed plugins can use their existing WordPress update providers.
 
-The registry records **membership**, not the latest version. Techn and AlphaSys package versions come from their published release catalogues. Fusion package versions come from its mirror index. An entry may designate `github`, `mirror`, or `native`; mirror entries can fall back to the site's native WordPress update state. Other is calculated from installed plugins outside the site's selected editions and has no registry entry.
+The registry records **membership**, not the latest version. Techn and AlphaSys package versions come from their published release catalogs. Fusion package versions come from its mirror index. An entry may designate `github`, `mirror`, or `native`; mirror entries can fall back to the site's native WordPress update state. Other is calculated from installed plugins outside the site's selected editions and has no registry entry.
 
 ## Publishing an edition
 

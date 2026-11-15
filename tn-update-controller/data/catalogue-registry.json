@@ -3,6 +3,7 @@
   "catalogs": [
     {
       "id": "techn-26",
+      "type": "hosted",
       "collection": "techn",
       "year": "26",
       "name": "Techn 26",
@@ -338,6 +339,7 @@
     },
     {
       "id": "alphasys-26",
+      "type": "hosted",
       "collection": "alphasys",
       "year": "26",
       "name": "AlphaSys 26",
@@ -647,6 +649,7 @@
     },
     {
       "id": "fusion-26",
+      "type": "mirrored",
       "collection": "fusion",
       "year": "26",
       "name": "Fusion 26",

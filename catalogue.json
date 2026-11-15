@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-14T12:10:53.785546+00:00",
+  "published_at": "2026-11-15T00:56:06.059394+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -523,19 +523,19 @@
       "asset": "tn-update-controller.zip",
       "author": "Techn",
       "name": "TN Update Controller",
-      "description": "One catalogue, manual update checks and guided updates for Techn plugins.",
+      "description": "Subscribe to curated plugin catalogues and manage their updates in one place.",
       "beta": false,
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.9.7",
-      "tag": "v0.9.7",
+      "version": "0.10.0",
+      "tag": "v0.10.0",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Recognise the installed List of Values 1.4 package by its original Chris Chatterton author header for the first Techn-managed beta update.\n- Bound the legacy identity to version 1.4. Later versions must use the Techn author or matching Update URI.\n- Preserve all other controller and plugin identities.\n",
-      "sha256": "83744224e62ae7e94379b0eda512ce8f272da1dc8e55da217afcd5e262352da0"
+      "body": "Plugin Catalogue is now the shared screen provided by TN Update Controller.\n\n- Subscribe each site to one edition of Techn, AlphaSys and Fusion. The initial registry includes Techn 26, AlphaSys 26 and Fusion 26.\n- Review installed plugins outside those selections under Other.\n- Check and update through verified Techn/AlphaSys GitHub releases, the Fusion GitHub mirror or each plugin's native WordPress update provider.\n- Keep grouped catalogue cards, modal progress, selected updates and resumable batches.\n- Preserve the Techn controller plugin identity and carry reviewed AlphaSys legacy updater compatibility for migration.\n\nUpdate the controller first, then open Plugins \u2192 Plugin Catalogue and choose the editions for the site. The older controller plugins can be retired after their integrations are verified in the shared screen.\n",
+      "sha256": "0e1d524dfc27aedd271901537815041b8a89d33bd0f1d64bf50a6ac359265e7d"
     },
     {
       "id": "tn-user-management",

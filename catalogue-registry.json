@@ -1,13 +1,286 @@
 {
   "schema": 1,
+  "revision": 1,
   "catalogs": [
+    {
+      "id": "techn-27",
+      "type": "hosted",
+      "collection": "techn",
+      "year": "27",
+      "name": "Techn 27",
+      "status": "current",
+      "notice": "",
+      "plugins": [
+        {
+          "id": "TN-Exploitation-Audit",
+          "name": "TN Exploitation Audit",
+          "description": "Admin-only audit tools for detecting exposure to CMS exploitation indicators and collecting safe local evidence.",
+          "owner": "cchatterton",
+          "repo": "TN-Exploitation-Audit",
+          "file": "tn-exploitation-audit/tn-exploitation-audit.php",
+          "slug": "tn-exploitation-audit",
+          "asset": "tn-exploitation-audit.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "help-guides",
+          "name": "Help Guides (Wiki-style)",
+          "description": "Adds Wiki CPT, Help Guides admin menus, screen ID display, and help tabs.",
+          "owner": "cchatterton",
+          "repo": "help-guides",
+          "file": "Help Guides/help_guides.php",
+          "slug": "Help Guides",
+          "asset": "help-guides.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "menubot",
+          "name": "Menubot",
+          "description": "Make navigating WordPress admin menus easy for power users.",
+          "owner": "cchatterton",
+          "repo": "menubot",
+          "file": "menubot/menubot.php",
+          "slug": "menubot",
+          "asset": "menubot.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "persona26",
+          "name": "Persona26",
+          "description": "Visitor profiles, engagement dimensions and personalisation with Independent Analytics and Gravity Forms.",
+          "owner": "cchatterton",
+          "repo": "persona26",
+          "file": "persona26/persona26.php",
+          "slug": "persona26",
+          "asset": "persona26.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-authenticator",
+          "name": "TN Authenticator",
+          "description": "Provides a plug-and-play PIN login page at /login-pin.",
+          "owner": "cchatterton",
+          "repo": "tn-authenticator",
+          "file": "tn-authenticator/tn-authenticator.php",
+          "slug": "tn-authenticator",
+          "asset": "tn-authenticator.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-content-planner",
+          "name": "TN Content Planner",
+          "description": "Plan content by post type, arrange a WBS, and create or update selected WordPress content.",
+          "owner": "cchatterton",
+          "repo": "tn-content-planner",
+          "file": "tn-content-planner/tn-content-planner.php",
+          "slug": "tn-content-planner",
+          "asset": "tn-content-planner.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-display-density",
+          "name": "TN Display Density",
+          "description": "Compensates for desktop display scaling on Windows and macOS.",
+          "owner": "cchatterton",
+          "repo": "tn-display-density",
+          "file": "tn-display-density/tn-display-density.php",
+          "slug": "tn-display-density",
+          "asset": "tn-display-density.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-environments",
+          "name": "TN Environments",
+          "description": "Prompts admins to confirm the environment, adds admin environment styling, and displays a build ID.",
+          "owner": "cchatterton",
+          "repo": "tn-environments",
+          "file": "tn-environments/tn-environments.php",
+          "slug": "tn-environments",
+          "asset": "tn-environments.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-login-with-email",
+          "name": "TN Login with Email",
+          "description": "Allows valid email addresses to be used as usernames in WordPress and Multisite registration.",
+          "owner": "cchatterton",
+          "repo": "tn-login-with-email",
+          "file": "tn-login-with-email/tn-login-with-email.php",
+          "slug": "tn-login-with-email",
+          "asset": "tn-login-with-email.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-lov",
+          "name": "TN LOV",
+          "description": "Manage reusable, optionally grouped values with native WordPress tools and optional WPML language support.",
+          "owner": "cchatterton",
+          "repo": "tn-lov",
+          "file": "tn-lov/tn-lov.php",
+          "slug": "tn-lov",
+          "asset": "tn-lov.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-pallet",
+          "name": "TN Pallet",
+          "description": "Manage a named colour palette and generated utility CSS from WordPress admin.",
+          "owner": "cchatterton",
+          "repo": "tn-pallet",
+          "file": "tn-pallet/tn-pallet.php",
+          "slug": "tn-pallet",
+          "asset": "tn-pallet.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-performance-advisor",
+          "name": "TN Performance Advisor",
+          "description": "Turns a sanitised Query Monitor capture into a prioritised performance action plan using the WordPress AI Client.",
+          "owner": "cchatterton",
+          "repo": "tn-performance-advisor",
+          "file": "tn-performance-advisor/tn-performance-advisor.php",
+          "slug": "tn-performance-advisor",
+          "asset": "tn-performance-advisor.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-post-families",
+          "name": "TN Post Families",
+          "description": "Navigate parent, child and sibling posts in the WordPress editor.",
+          "owner": "cchatterton",
+          "repo": "tn-post-families",
+          "file": "tn-post-families/tn-post-families.php",
+          "slug": "tn-post-families",
+          "asset": "tn-post-families.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-qrcodes",
+          "name": "TN QR Codes",
+          "description": "Adds QR codes to public post types and allows tracked QR code downloads.",
+          "owner": "cchatterton",
+          "repo": "tn-qrcodes",
+          "file": "tn-qrcodes/tn-qrcodes.php",
+          "slug": "tn-qrcodes",
+          "asset": "tn-qrcodes.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-sentinel",
+          "name": "TN Sentinel",
+          "description": "Protects WordPress plugin administration using a paired owner and authenticator approval.",
+          "owner": "cchatterton",
+          "repo": "tn-sentinel",
+          "file": "tn-sentinel/tn-sentinel.php",
+          "slug": "tn-sentinel",
+          "asset": "tn-sentinel.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-sticky-posts",
+          "name": "TN Sticky Posts",
+          "description": "Centrally manages announcement content for native WordPress sticky posts.",
+          "owner": "cchatterton",
+          "repo": "tn-sticky-posts",
+          "file": "tn-sticky-posts/tn-sticky-posts.php",
+          "slug": "tn-sticky-posts",
+          "asset": "tn-sticky-posts.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-tax-manager",
+          "name": "TN Tax Manager",
+          "description": "Lightweight front-end taxonomy management with AI suggestions and guided taxonomy cleanup.",
+          "owner": "cchatterton",
+          "repo": "tn-tax-manager",
+          "file": "tn-tax-manager/tn-tax-manager.php",
+          "slug": "tn-tax-manager",
+          "asset": "tn-tax-manager.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-update-controller",
+          "name": "TN Update Controller",
+          "description": "Select curated plugin catalogs and manage their updates in one place.",
+          "owner": "cchatterton",
+          "repo": "tn-update-controller",
+          "file": "tn-update-controller/tn-update-controller.php",
+          "slug": "tn-update-controller",
+          "asset": "tn-update-controller.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-user-management",
+          "name": "TN User Management",
+          "description": "Email-as-username, one-time username migration, role normalisation, permission sets, and multisite user governance.",
+          "owner": "cchatterton",
+          "repo": "tn-user-management",
+          "file": "tn-user-management/tn-user-management.php",
+          "slug": "tn-user-management",
+          "asset": "tn-user-management.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-wp-migrate-code-diff",
+          "name": "WP Migrate - Release Management",
+          "description": "Compares connected WordPress code and content, and creates or installs selective offline releases.",
+          "owner": "cchatterton",
+          "repo": "tn-wp-migrate-code-diff",
+          "file": "tn-wp-migrate-code-diff/tn-wp-migrate-code-diff.php",
+          "slug": "tn-wp-migrate-code-diff",
+          "asset": "tn-wp-migrate-code-diff.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        }
+      ],
+      "last_updated": "2026-11-15"
+    },
     {
       "id": "techn-26",
       "type": "hosted",
       "collection": "techn",
       "year": "26",
       "name": "Techn 26",
-      "status": "current",
+      "status": "supported",
       "notice": "",
       "plugins": [
         {
@@ -286,7 +559,7 @@
         {
           "id": "tn-update-controller",
           "name": "TN Update Controller",
-          "description": "Subscribe to curated plugin catalogues and manage their updates in one place.",
+          "description": "Select curated plugin catalogs and manage their updates in one place.",
           "owner": "cchatterton",
           "repo": "tn-update-controller",
           "file": "tn-update-controller/tn-update-controller.php",
@@ -335,7 +608,124 @@
           "beta": true,
           "source": "github"
         }
-      ]
+      ],
+      "last_updated": "2026-11-15"
+    },
+    {
+      "id": "techn-25",
+      "type": "hosted",
+      "collection": "techn",
+      "year": "25",
+      "name": "Techn 25",
+      "status": "supported",
+      "notice": "",
+      "plugins": [
+        {
+          "id": "clean-my-posts",
+          "name": "TN Clean My Posts",
+          "description": "Safely previews, backs up, cleans, and restores unwanted WordPress content.",
+          "owner": "cchatterton",
+          "repo": "clean-my-posts",
+          "file": "clean-my-posts/clean-my-posts.php",
+          "slug": "clean-my-posts",
+          "asset": "clean-my-posts.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "lov",
+          "name": "List of Values",
+          "description": "Manage ACF-backed lists of values, including keys, images and colours.",
+          "owner": "cchatterton",
+          "repo": "lov",
+          "file": "lov/lov.php",
+          "slug": "lov",
+          "asset": "lov.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "menubot",
+          "name": "Menubot",
+          "description": "Make navigating WordPress admin menus easy for power users.",
+          "owner": "cchatterton",
+          "repo": "menubot",
+          "file": "menubot/menubot.php",
+          "slug": "menubot",
+          "asset": "menubot.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-environments",
+          "name": "TN Environments",
+          "description": "Prompts admins to confirm the environment, adds admin environment styling, and displays a build ID.",
+          "owner": "cchatterton",
+          "repo": "tn-environments",
+          "file": "tn-environments/tn-environments.php",
+          "slug": "tn-environments",
+          "asset": "tn-environments.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-login-with-email",
+          "name": "TN Login with Email",
+          "description": "Allows valid email addresses to be used as usernames in WordPress and Multisite registration.",
+          "owner": "cchatterton",
+          "repo": "tn-login-with-email",
+          "file": "tn-login-with-email/tn-login-with-email.php",
+          "slug": "tn-login-with-email",
+          "asset": "tn-login-with-email.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-post-families",
+          "name": "TN Post Families",
+          "description": "Navigate parent, child and sibling posts in the WordPress editor.",
+          "owner": "cchatterton",
+          "repo": "tn-post-families",
+          "file": "tn-post-families/tn-post-families.php",
+          "slug": "tn-post-families",
+          "asset": "tn-post-families.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
+          "id": "tn-qrcodes",
+          "name": "TN QR Codes",
+          "description": "Adds QR codes to public post types and allows tracked QR code downloads.",
+          "owner": "cchatterton",
+          "repo": "tn-qrcodes",
+          "file": "tn-qrcodes/tn-qrcodes.php",
+          "slug": "tn-qrcodes",
+          "asset": "tn-qrcodes.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        },
+        {
+          "id": "tn-update-controller",
+          "name": "TN Update Controller",
+          "description": "Select curated plugin catalogs and manage their updates in one place.",
+          "owner": "cchatterton",
+          "repo": "tn-update-controller",
+          "file": "tn-update-controller/tn-update-controller.php",
+          "slug": "tn-update-controller",
+          "asset": "tn-update-controller.zip",
+          "author": "Techn",
+          "beta": false,
+          "source": "github"
+        }
+      ],
+      "last_updated": "2026-11-15"
     },
     {
       "id": "alphasys-26",
@@ -645,7 +1035,8 @@
           "beta": false,
           "source": "github"
         }
-      ]
+      ],
+      "last_updated": "2026-11-15"
     },
     {
       "id": "fusion-26",
@@ -915,7 +1306,8 @@
           "fallback": "native",
           "native_source": "wordpress.org"
         }
-      ]
+      ],
+      "last_updated": "2026-11-15"
     }
   ]
 }

@@ -3,7 +3,7 @@ Contributors:
 Tags: updates, plugins, catalog, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.10.4
+Stable tag: 0.10.5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,9 +12,9 @@ A plugin catalog registry with dedicated collection screens and guided updates.
 
 == Description ==
 
-Plugin Catalogs lists the available editions. The latest Techn edition is selected by default; AlphaSys 26 and Fusion 26 are available initially. Each checked catalog gets its own Plugins submenu; multiple editions of one collection can appear together. Other Plugins is always available and shows installed plugins outside the selected catalogs. Publishing a new edition does not change a site's saved selection or uninstall plugins from an older edition.
+Plugin Catalogs lists the available editions. Techn 27 is current and selected by default on new sites; Techn 25, Techn 26, AlphaSys 26 and Fusion 26 remain available. Each checked catalog gets its own Plugins submenu; multiple editions of one collection can appear together. Other Plugins is always available and shows installed plugins outside the selected catalogs. Publishing a new edition does not change a site's saved selection or uninstall plugins from an older edition.
 
-Plugins > Plugin Catalogs lists individual catalogs with checkboxes and Hosted or Mirrored type. Each checked catalog and Other Plugins has Updates available and Catalog tabs, with grouped plugin cards and a modal update flow. Catalog screens contain no edition picker. Older Plugins submenu URLs redirect to their current screen after a controller update. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
+Plugins > Plugin Catalogs lists individual catalogs with checkboxes, Hosted or Mirrored type, a last updated date, and a link to each readable GitHub plugin list. Each checked catalog and Other Plugins has Updates available and Catalog tabs, with grouped plugin cards and a modal update flow. Catalog screens contain no edition picker. Older Plugins submenu URLs redirect to their current screen after a controller update. Explicit checks read the public registry, subscribed GitHub release feeds, the Fusion mirror index and WordPress's existing plugin update providers. Ordinary page rendering makes no metadata requests. GitHub packages are checked against their published SHA-256 and expected ZIP directory; native updates use WordPress's own package provider.
 
 Checks are manual on each site. The separate Fusion mirror publisher may refresh its packages in the background. Each site check verifies this controller first. If its update is available, update it and check again before processing the selected catalogs. Discovery does not install updates or change WordPress auto-update settings.
 
@@ -55,6 +55,11 @@ Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-servi
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.10.5 =
+* Publish Techn 25 with eight plugins and Techn 27 with twenty plugins; keep Techn 26 supported.
+* Link each catalog to its readable GitHub plugin list in a new tab and show the catalog's last updated date.
+* Keep generated plugin lists in sync with the registry during publication.
 
 = 0.10.4 =
 * Redirect older Plugins submenu URLs and translate in-progress update modal refreshes after controller updates.

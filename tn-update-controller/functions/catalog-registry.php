@@ -5,8 +5,8 @@ define('TNUC_REGISTRY_URL', 'https://raw.githubusercontent.com/cchatterton/tn-up
 
 function tnuc_catalog_registry(): array {
     $stored = tnuc_get('catalog_registry');
-    if (is_array($stored) && ($stored['schema'] ?? null) === 1) { return $stored; }
     $bundled = json_decode((string) file_get_contents(TNUC_DIR . 'data/catalogue-registry.json'), true);
+    if (is_array($stored) && ($stored['schema'] ?? null) === 1 && (int) ($stored['revision'] ?? 0) >= (int) ($bundled['revision'] ?? 0)) { return $stored; }
     return is_array($bundled) ? $bundled : ['schema' => 1, 'catalogs' => []];
 }
 
@@ -45,6 +45,8 @@ function tnuc_catalog_registry_validate($candidate) {
     if (!is_array($candidate) || ($candidate['schema'] ?? null) !== 1 || !is_array($candidate['catalogs'] ?? null) || count($candidate['catalogs']) > 30) {
         return new WP_Error('registry_schema', 'The catalog registry is invalid.');
     }
+    $revision = $candidate['revision'] ?? 0;
+    if (!is_int($revision) || $revision < 0) { return new WP_Error('registry_revision', 'The catalog registry revision is invalid.'); }
     $catalogs = []; $ids = [];
     foreach ($candidate['catalogs'] as $catalog) {
         if (!is_array($catalog)) { return new WP_Error('registry_catalog', 'A catalog entry is invalid.'); }
@@ -54,6 +56,11 @@ function tnuc_catalog_registry_validate($candidate) {
         }
         $catalog['name'] = sanitize_text_field((string) ($catalog['name'] ?? ucfirst($collection) . ' ' . $year));
         $catalog['notice'] = sanitize_textarea_field((string) ($catalog['notice'] ?? ''));
+        $date = (string) ($catalog['last_updated'] ?? '');
+        if ($date !== '' && (!preg_match('/^\d{4}-\d{2}-\d{2}$/D', $date) || !checkdate((int) substr($date, 5, 2), (int) substr($date, 8, 2), (int) substr($date, 0, 4)))) {
+            return new WP_Error('registry_date', 'A catalog last updated date is invalid.');
+        }
+        $catalog['last_updated'] = $date;
         if (!isset($catalog['type'])) {
             $catalog['type'] = in_array('mirror', array_column($catalog['plugins'], 'source'), true) ? 'mirrored' : 'hosted';
         }
@@ -93,7 +100,7 @@ function tnuc_catalog_registry_validate($candidate) {
         $ids[$collection][] = $id;
     }
     if (!$catalogs) { return new WP_Error('registry_empty', 'No catalogs were published.'); }
-    return ['schema' => 1, 'catalogs' => $catalogs];
+    return ['schema' => 1, 'revision' => $revision, 'catalogs' => $catalogs];
 }
 
 function tnuc_catalogs(): array {

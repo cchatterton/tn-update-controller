@@ -3,7 +3,7 @@ Contributors:
 Tags: updates, plugins, catalogue, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.10.0
+Stable tag: 0.10.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,9 @@ Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-servi
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.10.1 =
+* Restore WordPress.org update dates, download and rating counts, and release notes on Other plugin cards.
 
 = 0.10.0 =
 * Add a published catalogue registry and site subscriptions for Techn 26, AlphaSys 26 and Fusion 26.

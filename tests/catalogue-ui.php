@@ -17,6 +17,10 @@ function self_admin_url($path) { return '/wp-admin/' . $path; }
 function current_user_can($cap) { return true; }
 function wp_is_file_mod_allowed($context) { return true; }
 function plugin_basename($path) { return 'tn-update-controller/tn-update-controller.php'; }
+function tnuc_get($key, $default = []) { return $key === 'hub_other_details' ? ['site/site.php' => ['slug' => 'site-plugin', 'last_updated' => '2026-11-01', 'downloaded' => 100, 'num_ratings' => 5]] : $default; }
+function number_format_i18n($number) { return number_format($number); }
+function tnuc_hub_wporg_slug($file) { return ''; }
+function tnuc_hub_native_updates() { return []; }
 function tnuc_hub_eligible($item, $kind) { return empty($item['issue']) && empty($item['conflict']) && ($kind === 'install' ? !$item['match'] && (bool) $item['release'] : $item['match'] && (bool) $item['update']); }
 function tnuc_hub_compatibility($release) { return ''; }
 require dirname(__DIR__) . '/tn-update-controller/functions/catalog-admin.php';
@@ -38,3 +42,4 @@ ui_assert(strpos($html, 'Review before archive.') !== false, 'edition notice ren
 ui_assert(strpos($html, 'data-kind="update"') !== false && strpos($html, 'Release notes') !== false, 'managed update and release notes actions render');
 $_GET['catalog'] = 'other'; ob_start(); tnuc_hub_render_catalogue($catalogs, $selected, $items); $html = ob_get_clean();
 ui_assert(strpos($html, 'Site Plugin') !== false && strpos($html, 'Example plugin') === false, 'Other lists only unclaimed installed plugins');
+ui_assert(strpos($html, '100 downloads · 5 ratings') !== false && strpos($html, 'wordpress.org/plugins/site-plugin/#developers') !== false, 'Other retains public details and release notes');

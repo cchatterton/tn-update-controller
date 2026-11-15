@@ -2,18 +2,33 @@
 if (!defined('ABSPATH')) { exit; }
 function tnuc_menu(): void {
     if (is_multisite() && !is_network_admin()) { return; }
-    add_submenu_page('plugins.php', 'Plugin Catalogs', 'Plugin Catalogs', 'update_plugins', 'tnuc', 'tnuc_hub_render_registry');
     $selected = tnuc_catalog_selection(); $catalogs = tnuc_catalogs();
-    foreach (['techn' => 'Techn Plugins', 'alphasys' => 'AlphaSys Plugins', 'fusion' => 'Fusion Plugins'] as $collection => $label) {
-        if (isset($catalogs[$selected[$collection] ?? ''])) {
-            add_submenu_page('plugins.php', $label, $label, 'update_plugins', 'tnuc-' . $collection, 'tnuc_hub_render_admin');
-        }
+    foreach ($catalogs as $id => $catalog) {
+        if (!in_array($id, $selected, true)) { continue; }
+        $label = $catalog['name'] . ' Plugins';
+        add_submenu_page('plugins.php', $label, $label, 'update_plugins', 'tnuc-' . $id, 'tnuc_hub_render_admin');
     }
     add_submenu_page('plugins.php', 'Other Plugins', 'Other Plugins', 'update_plugins', 'tnuc-other', 'tnuc_hub_render_admin');
+    add_submenu_page('plugins.php', 'Plugin Catalogs', 'Plugin Catalogs', 'update_plugins', 'tnuc', 'tnuc_hub_render_registry');
 }
-function tnuc_hide_legacy_plugin_menus(): void {
+function tnuc_finalize_plugin_menus(): void {
     if (is_multisite() && !is_network_admin()) { return; }
     foreach (['asuc', 'fusion-plugins', 'tn-other-plugins'] as $slug) { remove_submenu_page('plugins.php', $slug); }
+    global $submenu;
+    if (empty($submenu['plugins.php'])) { return; }
+    $selected = tnuc_catalog_selection(); $catalogs = tnuc_catalogs();
+    $last = [];
+    foreach ($catalogs as $id => $catalog) { if (in_array($id, $selected, true)) { $last[] = 'tnuc-' . $id; } }
+    $last[] = 'tnuc-other'; $last[] = 'tnuc';
+    $items = $submenu['plugins.php']; $submenu['plugins.php'] = [];
+    foreach ($items as $item) { if (!in_array((string) ($item[2] ?? ''), $last, true)) { $submenu['plugins.php'][] = $item; } }
+    foreach ($last as $slug) { foreach ($items as $item) { if (($item[2] ?? '') === $slug) { $submenu['plugins.php'][] = $item; break; } } }
+}
+function tnuc_disable_legacy_plugin_menu_order(): void {
+    remove_action('admin_menu', 'fpl_order_plugin_menu', PHP_INT_MAX);
+    remove_action('network_admin_menu', 'fpl_order_plugin_menu', PHP_INT_MAX);
+    remove_action('admin_menu', 'tnop_register_menu', PHP_INT_MAX);
+    remove_action('network_admin_menu', 'tnop_register_menu', PHP_INT_MAX);
 }
 function tnuc_settings_link(array $links): array { array_unshift($links, '<a href="' . esc_url(tnuc_hub_url()) . '">Plugin Catalogs</a>'); return $links; }
 function tnuc_assets(string $hook): void {

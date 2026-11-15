@@ -207,8 +207,9 @@ function tnuc_hub_policy_issue(array $entry, array $release, string $collection,
 
 function tnuc_hub_items(): array {
     $catalogs = tnuc_catalogs(); $selected = tnuc_catalog_selection(); $installed = tnuc_plugins(); $native = tnuc_hub_native_updates(); $items = []; $owned = [plugin_basename(TNUC_FILE) => true];
-    foreach ($selected as $collection => $catalog_id) {
-        if (!isset($catalogs[$catalog_id]) || $catalogs[$catalog_id]['collection'] !== $collection) { continue; }
+    foreach ($selected as $catalog_id) {
+        if (!isset($catalogs[$catalog_id])) { continue; }
+        $collection = $catalogs[$catalog_id]['collection'];
         foreach ($catalogs[$catalog_id]['plugins'] as $entry) {
             $match = tnuc_hub_match($entry, $installed); $file = $match['file'] ?? '';
             $release = $catalogs[$catalog_id]['status'] === 'archived' ? [] : tnuc_hub_release($entry, $collection); $current = (string) ($match['data']['Version'] ?? '0');
@@ -224,8 +225,13 @@ function tnuc_hub_items(): array {
             if ($file !== '') { $owned[$file] = true; }
         }
     }
-    if (!isset($selected['techn']) && isset($catalogs['techn-26']['plugins']['tn-update-controller'])) {
-        $entry = $catalogs['techn-26']['plugins']['tn-update-controller'];
+    $controller_selected = false;
+    foreach ($selected as $catalog_id) { if (isset($catalogs[$catalog_id]['plugins']['tn-update-controller'])) { $controller_selected = true; break; } }
+    $controller_catalog = tnuc_default_catalog_selection()[0] ?? 'techn-26';
+    $controller_entry = $catalogs[$controller_catalog]['plugins']['tn-update-controller'] ?? null;
+    if (!$controller_entry) { foreach ($catalogs as $catalog) { if (isset($catalog['plugins']['tn-update-controller'])) { $controller_entry = $catalog['plugins']['tn-update-controller']; break; } } }
+    if (!$controller_selected && $controller_entry) {
+        $entry = $controller_entry;
         $match = tnuc_hub_match($entry, $installed); $release = tnuc_hub_release($entry, 'techn');
         $update = $match && $release && version_compare($release['version'], (string) ($match['data']['Version'] ?? '0'), '>') ? $release : [];
         $key = 'controller:tn-update-controller';
@@ -236,8 +242,11 @@ function tnuc_hub_items(): array {
         $entry = $item['entry'];
         $identity = !empty($entry['slug']) ? 'slug:' . strtolower($entry['slug']) : 'name:' . strtolower($entry['name']);
         if (isset($identities[$identity])) {
-            $items[$key]['conflict'] = true;
-            $items[$identities[$identity]]['conflict'] = true;
+            $previous = $items[$identities[$identity]]['entry'];
+            if (($previous['file'] ?? '') !== ($entry['file'] ?? '') || ($previous['source'] ?? '') !== ($entry['source'] ?? '')) {
+                $items[$key]['conflict'] = true;
+                $items[$identities[$identity]]['conflict'] = true;
+            }
         } else { $identities[$identity] = $key; }
     }
     foreach ($installed as $file => $plugin) {

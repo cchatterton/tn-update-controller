@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TN Update Controller
  * Description: Select curated plugin catalogs and manage their updates in one place.
- * Version: 0.10.2
+ * Version: 0.10.3
  * Author: Techn
  * Author URI: https://techn.com.au
  * Update URI: https://github.com/cchatterton/tn-update-controller
@@ -14,7 +14,7 @@
  * Text Domain: tn-update-controller
  */
 if (!defined('ABSPATH')) { exit; }
-define('TNUC_VERSION', '0.10.2');
+define('TNUC_VERSION', '0.10.3');
 define('TNUC_API_VERSION', 1);
 define('TNUC_FILE', __FILE__);
 define('TNUC_DIR', __DIR__ . '/');
@@ -51,8 +51,9 @@ function tnuc_boot(): void {
     tnuc_migrate_catalog_selection();
     add_action('admin_menu', 'tnuc_menu');
     add_action('network_admin_menu', 'tnuc_menu');
-    add_action('admin_menu', 'tnuc_hide_legacy_plugin_menus', PHP_INT_MAX);
-    add_action('network_admin_menu', 'tnuc_hide_legacy_plugin_menus', PHP_INT_MAX);
+    add_action('admin_init', 'tnuc_disable_legacy_plugin_menu_order');
+    add_action('admin_menu', 'tnuc_finalize_plugin_menus', PHP_INT_MAX);
+    add_action('network_admin_menu', 'tnuc_finalize_plugin_menus', PHP_INT_MAX);
     add_action('admin_enqueue_scripts', 'tnuc_hub_assets');
     add_action('admin_post_tnuc_action', 'tnuc_handle_form');
     add_action('admin_post_tnuc_catalog_selection', 'tnuc_hub_save_subscriptions_form');

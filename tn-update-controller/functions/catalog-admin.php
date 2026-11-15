@@ -10,23 +10,22 @@ function tnuc_hub_url(string $tab = 'installed', string $screen = 'tnuc'): strin
 function tnuc_hub_screen(): array {
     $page = sanitize_key(wp_unslash($_GET['page'] ?? ''));
     if ($page === 'tnuc-other') { return ['id' => 'other', 'title' => 'Other Plugins', 'name' => 'Other Plugins']; }
-    $collection = substr($page, 0, 5) === 'tnuc-' ? substr($page, 5) : '';
-    $labels = ['techn' => 'Techn Plugins', 'alphasys' => 'AlphaSys Plugins', 'fusion' => 'Fusion Plugins'];
+    $id = substr($page, 0, 5) === 'tnuc-' ? substr($page, 5) : '';
     $selected = tnuc_catalog_selection(); $catalogs = tnuc_catalogs();
-    $id = $selected[$collection] ?? '';
-    if (isset($labels[$collection], $catalogs[$id]) && $catalogs[$id]['collection'] === $collection) {
-        return ['id' => $id, 'title' => $labels[$collection], 'name' => $catalogs[$id]['name']];
+    if (isset($catalogs[$id]) && in_array($id, $selected, true)) {
+        return ['id' => $id, 'title' => $catalogs[$id]['name'] . ' Plugins', 'name' => $catalogs[$id]['name']];
     }
     return [];
 }
 
 function tnuc_hub_assets(string $hook): void {
-    if (!in_array($hook, ['plugins_page_tnuc', 'plugins_page_tnuc-techn', 'plugins_page_tnuc-alphasys', 'plugins_page_tnuc-fusion', 'plugins_page_tnuc-other'], true)) { return; }
+    if (strpos($hook, 'plugins_page_tnuc') !== 0) { return; }
     wp_enqueue_style('tnuc-admin', plugins_url('styles/admin.css', TNUC_FILE), [], TNUC_VERSION);
     if ($hook === 'plugins_page_tnuc') { return; }
+    $screen = tnuc_hub_screen();
+    if (!$screen) { return; }
     wp_enqueue_script('tnuc-admin', plugins_url('scripts/catalog-admin.js', TNUC_FILE), [], TNUC_VERSION, true);
     $names = [];
-    $screen = tnuc_hub_screen();
     foreach (tnuc_hub_items() as $key => $item) { if ($item['catalog'] === $screen['id'] || ($screen['id'] === 'other' && $item['catalog'] === 'controller')) { $names[$key] = $item['entry']['name']; } }
     wp_localize_script('tnuc-admin', 'tnucAdmin', ['url' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('tnuc_hub'), 'screen' => sanitize_key(wp_unslash($_GET['page'] ?? '')), 'names' => $names]);
 }
@@ -35,30 +34,22 @@ function tnuc_hub_render_registry(): void {
     if (!tnuc_authorised()) { wp_die('You cannot manage plugin catalogs.'); }
     $catalogs = tnuc_catalogs(); $selected = tnuc_catalog_selection();
     $can_select = current_user_can(is_multisite() ? 'manage_network_options' : 'manage_options');
-    echo '<div class="wrap tnuc-wrap"><h1>Plugin Catalogs</h1><p>Select one edition from each collection. The latest Techn catalog is selected by default. Changing a selection does not install or remove plugins.</p>';
+    echo '<div class="wrap tnuc-wrap"><h1>Plugin Catalogs</h1><p>Choose the catalogs this site uses. Each selected catalog gets its own Plugins submenu. Changing selections does not install or remove plugins.</p>';
     $notice = get_transient('tnuc_notice_' . get_current_user_id());
     if (is_array($notice)) { delete_transient('tnuc_notice_' . get_current_user_id()); echo '<div class="notice ' . (!empty($notice['error']) ? 'notice-error' : 'notice-success') . ' is-dismissible"><p>' . esc_html($notice['message'] ?? '') . '</p></div>'; }
     echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '"><input type="hidden" name="action" value="tnuc_catalog_selection">';
     wp_nonce_field('tnuc_catalog_selection');
-    foreach (['techn' => 'Techn', 'alphasys' => 'AlphaSys', 'fusion' => 'Fusion'] as $collection => $label) {
-        echo '<section class="tnuc-subscriptions"><h2>' . esc_html($label) . '</h2><label for="tnuc-' . esc_attr($collection) . '">Selected catalog</label> <select id="tnuc-' . esc_attr($collection) . '" name="catalogs[]"' . ($can_select ? '' : ' disabled') . '><option value="">Not selected</option>';
-        foreach ($catalogs as $id => $catalog) {
-            if ($catalog['collection'] !== $collection) { continue; }
-            $archived = $catalog['status'] === 'archived' && ($selected[$collection] ?? '') !== $id;
-            echo '<option value="' . esc_attr($id) . '"' . selected($selected[$collection] ?? '', $id, false) . ($archived ? ' disabled' : '') . '>' . esc_html($catalog['name'] . ' · ' . ucwords(str_replace('_', ' ', $catalog['status']))) . '</option>';
-        }
-        echo '</select><ul>';
-        foreach ($catalogs as $id => $catalog) {
-            if ($catalog['collection'] !== $collection) { continue; }
-            echo '<li>' . esc_html($catalog['name'] . ' · ' . ucwords(str_replace('_', ' ', $catalog['status'])) . ' · ' . count($catalog['plugins']) . ' plugins') . (($selected[$collection] ?? '') === $id ? ' · Selected' : '') . '</li>';
-        }
-        echo '</ul>';
-        $chosen = $catalogs[$selected[$collection] ?? ''] ?? null;
-        if ($chosen && !empty($chosen['notice'])) { echo '<p class="tnuc-catalogue-notice">' . esc_html($chosen['notice']) . '</p>'; }
-        echo '</section>';
+    echo '<div class="tnuc-table-scroll"><table class="widefat striped"><thead><tr><th scope="col">Select</th><th scope="col">Catalog</th><th scope="col">Status</th><th scope="col">Plugins</th></tr></thead><tbody>';
+    foreach ($catalogs as $id => $catalog) {
+        $checked = in_array($id, $selected, true);
+        $disabled = !$can_select || ($catalog['status'] === 'archived' && !$checked);
+        echo '<tr><td><input type="checkbox" id="tnuc-catalog-' . esc_attr($id) . '" name="catalogs[]" value="' . esc_attr($id) . '"' . checked($checked, true, false) . ($disabled ? ' disabled' : '') . '></td><td><label for="tnuc-catalog-' . esc_attr($id) . '"><strong>' . esc_html($catalog['name']) . '</strong></label>';
+        if (!empty($catalog['notice'])) { echo '<p class="description">' . esc_html($catalog['notice']) . '</p>'; }
+        echo '</td><td>' . esc_html(ucwords(str_replace('_', ' ', $catalog['status']))) . '</td><td>' . esc_html(count($catalog['plugins'])) . '</td></tr>';
     }
+    echo '</tbody></table></div>';
     if ($can_select) { echo '<p><button type="submit" class="button button-primary">Save catalogs</button></p>'; }
-    echo '</form><p><a href="' . esc_url(tnuc_hub_url('installed', 'tnuc-other')) . '">Other Plugins</a> always shows installed plugins outside the selected catalogs.</p></div>';
+    echo '</form><p>Other Plugins is always available for installed plugins outside the selected catalogs.</p></div>';
 }
 
 function tnuc_hub_save_subscriptions_form(): void {

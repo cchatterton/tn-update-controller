@@ -13,7 +13,15 @@ function tnuc_catalog_registry(): array {
 function tnuc_catalog_selection(): array {
     $selected = tnuc_get('catalog_selection', null);
     if ($selected === null) { return tnuc_default_catalog_selection(); }
-    return is_array($selected) ? $selected : [];
+    return is_array($selected) ? array_values($selected) : [];
+}
+
+function tnuc_selected_catalogs(string $collection = ''): array {
+    $catalogs = tnuc_catalogs(); $selected = [];
+    foreach (tnuc_catalog_selection() as $id) {
+        if (isset($catalogs[$id]) && ($collection === '' || $catalogs[$id]['collection'] === $collection)) { $selected[$id] = $catalogs[$id]; }
+    }
+    return $selected;
 }
 
 function tnuc_default_catalog_selection(): array {
@@ -22,14 +30,15 @@ function tnuc_default_catalog_selection(): array {
         if ($catalog['collection'] !== 'techn' || $catalog['status'] !== 'current') { continue; }
         if ($latest === null || (int) $catalog['year'] > (int) $latest['year']) { $latest = $catalog; }
     }
-    return $latest ? ['techn' => $latest['id']] : [];
+    return $latest ? [$latest['id']] : [];
 }
 
 function tnuc_migrate_catalog_selection(): void {
-    if (tnuc_get('catalog_menu_migrated', false)) { return; }
+    if (tnuc_get('catalog_list_migrated', false)) { return; }
     $stored = tnuc_get('catalog_selection', null);
-    if ($stored === null || $stored === []) { tnuc_put('catalog_selection', tnuc_default_catalog_selection()); }
-    tnuc_put('catalog_menu_migrated', true);
+    if ($stored === null || ($stored === [] && !tnuc_get('catalog_menu_migrated', false))) { $stored = tnuc_default_catalog_selection(); }
+    tnuc_put('catalog_selection', is_array($stored) ? array_values($stored) : []);
+    tnuc_put('catalog_list_migrated', true);
 }
 
 function tnuc_catalog_registry_validate($candidate) {
@@ -40,7 +49,7 @@ function tnuc_catalog_registry_validate($candidate) {
     foreach ($candidate['catalogs'] as $catalog) {
         if (!is_array($catalog)) { return new WP_Error('registry_catalog', 'A catalog entry is invalid.'); }
         $id = $catalog['id'] ?? ''; $collection = $catalog['collection'] ?? ''; $year = $catalog['year'] ?? '';
-        if (!is_string($id) || !preg_match('/^[a-z][a-z0-9-]*-\d{2}$/D', $id) || !in_array($collection, ['techn', 'alphasys', 'fusion'], true) || !preg_match('/^\d{2}$/D', (string) $year) || $id !== $collection . '-' . $year || isset($catalogs[$id]) || !in_array($catalog['status'] ?? '', ['current', 'supported', 'archive_planned', 'archived'], true) || !is_array($catalog['plugins'] ?? null) || count($catalog['plugins']) > 200) {
+        if (!is_string($id) || !is_string($collection) || !preg_match('/^[a-z][a-z0-9-]*$/D', $collection) || !preg_match('/^[a-z][a-z0-9-]*-\d{2}$/D', $id) || !preg_match('/^\d{2}$/D', (string) $year) || $id !== $collection . '-' . $year || isset($catalogs[$id]) || !in_array($catalog['status'] ?? '', ['current', 'supported', 'archive_planned', 'archived'], true) || !is_array($catalog['plugins'] ?? null) || count($catalog['plugins']) > 200) {
             return new WP_Error('registry_catalog', 'A catalog entry is invalid.');
         }
         $catalog['name'] = sanitize_text_field((string) ($catalog['name'] ?? ucfirst($collection) . ' ' . $year));
@@ -93,10 +102,9 @@ function tnuc_save_catalog_selection(array $input) {
     $catalogs = tnuc_catalogs(); $selected = [];
     foreach ($input as $id) {
         if (!is_string($id) || !isset($catalogs[$id])) { return new WP_Error('selection', 'An unknown catalog was selected.'); }
-        $collection = $catalogs[$id]['collection'];
-        if (isset($selected[$collection])) { return new WP_Error('selection', 'Select only one edition of each collection.'); }
-        if ($catalogs[$id]['status'] === 'archived' && (tnuc_catalog_selection()[$collection] ?? '') !== $id) { return new WP_Error('selection', 'Archived editions cannot be newly subscribed.'); }
-        $selected[$collection] = $id;
+        if (in_array($id, $selected, true)) { return new WP_Error('selection', 'A catalog was selected twice.'); }
+        if ($catalogs[$id]['status'] === 'archived' && !in_array($id, tnuc_catalog_selection(), true)) { return new WP_Error('selection', 'Archived catalogs cannot be newly selected.'); }
+        $selected[] = $id;
     }
     tnuc_put('catalog_selection', $selected);
     return ['message' => 'Catalog subscriptions saved. Check for updates to refresh the selected catalogs.'];

@@ -24,21 +24,20 @@ function tnuc_hub_as_legacy_match(array $entry, array $match): bool {
 
 function tnuc_hub_suppress_as_legacy(): void {
     global $wp_filter;
-    $selected = tnuc_catalog_selection(); $catalogs = tnuc_catalogs();
-    $catalog = $catalogs[$selected['alphasys'] ?? ''] ?? null;
-    if (!$catalog || $catalog['collection'] !== 'alphasys') { return; }
+    $selected_catalogs = tnuc_selected_catalogs('alphasys');
+    if (!$selected_catalogs) { return; }
     $installed = tnuc_plugins(); $approved = [];
-    foreach ($catalog['plugins'] as $entry) {
+    foreach ($selected_catalogs as $catalog) { foreach ($catalog['plugins'] as $entry) {
         $reviewed = tnuc_hub_as_legacy()[$entry['id']] ?? [];
         if (!$reviewed || ($reviewed['file'] ?? '') !== ($entry['file'] ?? '') || ($reviewed['repo'] ?? '') !== ($entry['repo'] ?? '') || !isset($installed[$entry['file']])) { continue; }
         foreach ($reviewed['legacy'] ?? [] as $legacy) {
             $path = WP_PLUGIN_DIR . '/' . dirname($entry['file']) . '/' . ($legacy['path'] ?? '');
             if (is_file($path) && preg_match('/^[a-f0-9]{64}$/D', (string) ($legacy['sha256'] ?? '')) && hash_equals($legacy['sha256'], (string) hash_file('sha256', $path))) { $approved[wp_normalize_path(realpath($path))] = true; }
         }
-    }
+    } }
     if (!$approved) { return; }
     $hooks = ['pre_set_site_transient_update_plugins', 'site_transient_update_plugins', 'update_plugins_github.com', 'plugins_api', 'plugin_row_meta', 'admin_init', 'load-plugins.php', 'admin_notices', 'network_admin_notices', 'upgrader_process_complete'];
-    foreach ($catalog['plugins'] as $entry) { $hooks[] = 'plugin_action_links_' . $entry['file']; $hooks[] = 'network_admin_plugin_action_links_' . $entry['file']; }
+    foreach ($selected_catalogs as $catalog) { foreach ($catalog['plugins'] as $entry) { $hooks[] = 'plugin_action_links_' . $entry['file']; $hooks[] = 'network_admin_plugin_action_links_' . $entry['file']; } }
     foreach ($hooks as $hook) {
         if (empty($wp_filter[$hook])) { continue; }
         foreach ($wp_filter[$hook]->callbacks as $priority => $callbacks) {
@@ -56,15 +55,13 @@ function tnuc_hub_suppress_as_legacy(): void {
 }
 
 function tnuc_hub_as_row_meta(array $links, string $file): array {
-    $selected = tnuc_catalog_selection(); $catalog = tnuc_catalogs()[$selected['alphasys'] ?? ''] ?? null;
-    if (!$catalog || $catalog['collection'] !== 'alphasys') { return $links; }
-    foreach ($catalog['plugins'] as $entry) {
+    foreach (tnuc_selected_catalogs('alphasys') as $catalog) { foreach ($catalog['plugins'] as $entry) {
         if (($entry['file'] ?? '') !== $file) { continue; }
         $links = array_values(array_filter($links, static function ($link) {
             return !in_array(trim(wp_strip_all_tags((string) $link)), ['Install AlphaSys Update Controller', 'Activate AlphaSys Update Controller', 'Update AlphaSys Update Controller', 'Check for updates'], true);
         }));
-        if (tnuc_authorised()) { $links[] = '<a href="' . esc_url(tnuc_hub_url('installed', 'tnuc-alphasys')) . '">AlphaSys Plugins</a>'; }
-        break;
-    }
+        if (tnuc_authorised()) { $links[] = '<a href="' . esc_url(tnuc_hub_url('installed', 'tnuc-' . $catalog['id'])) . '">' . esc_html($catalog['name']) . ' Plugins</a>'; }
+        return $links;
+    } }
     return $links;
 }

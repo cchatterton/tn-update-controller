@@ -8,7 +8,11 @@ function tnuc_available(): bool {
 function tnuc_get(string $key, $default = []) { return get_site_option('tnuc_' . $key, $default); }
 function tnuc_put(string $key, $value): void { update_site_option('tnuc_' . $key, $value); }
 function tnuc_settings(): array { return ['mode' => 'manual']; }
-function tnuc_url(string $tab = 'installed'): string { return tnuc_hub_url($tab, isset(tnuc_catalog_selection()['techn']) ? 'tnuc-techn' : 'tnuc'); }
+function tnuc_url(string $tab = 'installed'): string {
+    $latest = null;
+    foreach (tnuc_selected_catalogs('techn') as $catalog) { if ($latest === null || (int) $catalog['year'] > (int) $latest['year']) { $latest = $catalog; } }
+    return tnuc_hub_url($tab, $latest ? 'tnuc-' . $latest['id'] : 'tnuc');
+}
 function tnuc_authorised(string $cap = 'update_plugins'): bool {
     return current_user_can($cap) && (!is_multisite() || current_user_can('manage_network_plugins'));
 }

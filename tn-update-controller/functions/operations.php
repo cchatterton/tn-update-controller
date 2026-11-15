@@ -119,5 +119,5 @@ function tnuc_handle_form(): void {
     $result = $op === 'check' ? tnuc_hub_check() : tnuc_dispatch($op, $input);
     if ($op === 'check' && !is_wp_error($result) && ($result['status'] ?? '') === 'running') { $result = tnuc_scan_step($result['id']); if (!is_wp_error($result) && $result['status'] === 'running') { set_transient('tnuc_continue_' . get_current_user_id(), $result['id'], 120); } }
     set_transient('tnuc_notice_' . get_current_user_id(), ['error' => is_wp_error($result), 'message' => is_wp_error($result) ? $result->get_error_message() : ($result['message'] ?? 'Action completed.')], 120);
-    wp_safe_redirect(tnuc_hub_url()); exit;
+    wp_safe_redirect(tnuc_url()); exit;
 }

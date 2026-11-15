@@ -67,15 +67,13 @@
     const refresh = async (targetTab = '') => {
         const url = new URL(window.location.href);
         const tab = targetTab || url.searchParams.get('tab') || 'installed';
-        const result = await call('view', { tab, catalog: url.searchParams.get('catalog') || '' });
+        const result = await call('view', { tab, screen: tnucAdmin.screen });
         const page = new DOMParser().parseFromString(result.html, 'text/html');
         const view = page.getElementById('tnuc-view');
         if (!view) throw new Error('Could not refresh the plugin list.');
         document.getElementById('tnuc-view').replaceChildren(...view.childNodes);
         if (targetTab) {
             url.searchParams.set('tab', targetTab);
-            const catalogue = view.querySelector('#tnuc-catalog');
-            if (catalogue) url.searchParams.set('catalog', catalogue.value);
             window.history.replaceState(null, '', url);
         }
         selection();
@@ -158,7 +156,7 @@
         await finish(result.batch);
     };
     root.addEventListener('click', event => {
-        const button = event.target.closest('[data-plugin-action], [data-check], [data-subscribe], [data-install], [data-resume], [data-results], #tnuc-update-selected');
+        const button = event.target.closest('[data-plugin-action], [data-check], [data-install], [data-resume], [data-results], #tnuc-update-selected');
         if (!button || busy) return;
         event.preventDefault();
         if (button.hasAttribute('data-plugin-action')) {
@@ -175,12 +173,6 @@
             });
         }
         if (button.hasAttribute('data-check')) return void execute('Checking for updates', check);
-        if (button.hasAttribute('data-subscribe')) return void execute('Saving catalogues', async () => {
-            const catalogs = [...root.querySelectorAll('[data-subscription]')].map(field => field.value).filter(Boolean);
-            const result = await call('save_subscriptions', { catalogs });
-            title.textContent = 'Catalogues saved'; message.textContent = result.message;
-            await refresh('catalogue'); setBusy(false); close.focus();
-        });
         if (button.hasAttribute('data-results')) return void execute('Update results', results);
         if (button.hasAttribute('data-resume')) return void execute('Updating plugins', () => resume(button.dataset.resume));
         const ids = button.dataset.install ? [button.dataset.install] : [...root.querySelectorAll('[name="tnuc-selected"]:checked:not(:disabled)')].map(i => i.value);

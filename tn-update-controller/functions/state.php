@@ -8,13 +8,13 @@ function tnuc_available(): bool {
 function tnuc_get(string $key, $default = []) { return get_site_option('tnuc_' . $key, $default); }
 function tnuc_put(string $key, $value): void { update_site_option('tnuc_' . $key, $value); }
 function tnuc_settings(): array { return ['mode' => 'manual']; }
-function tnuc_url(string $tab = 'installed'): string { return add_query_arg(['page' => 'tnuc', 'tab' => $tab], network_admin_url('plugins.php')); }
+function tnuc_url(string $tab = 'installed'): string { return tnuc_hub_url($tab, isset(tnuc_catalog_selection()['techn']) ? 'tnuc-techn' : 'tnuc'); }
 function tnuc_authorised(string $cap = 'update_plugins'): bool {
     return current_user_can($cap) && (!is_multisite() || current_user_can('manage_network_plugins'));
 }
 function tnuc_activate(bool $network_wide = false): void {
     if (is_multisite() && !$network_wide) { wp_die(esc_html__('Network activate the controller to manage shared plugin files.', 'tn-update-controller')); }
-    if (tnuc_get('catalog_selection', null) === null) { tnuc_put('catalog_selection', []); }
+    if (tnuc_get('catalog_selection', null) === null) { tnuc_put('catalog_selection', tnuc_default_catalog_selection()); }
     tnuc_put('setup_pending', true);
     tnuc_schedule();
 }

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-15T02:51:13.711787+00:00",
+  "published_at": "2026-11-15T04:08:21.671265+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -528,14 +528,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.2",
-      "tag": "v0.10.2",
+      "version": "0.10.3",
+      "tag": "v0.10.3",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Plugin Catalogs now manages edition selection. Each selected Techn, AlphaSys, or Fusion catalog has a dedicated Plugins submenu with its own Updates available and Catalog tabs. Other Plugins always shows installed plugins outside selected catalogs. New installations select the latest current Techn edition by default. Interface copy consistently uses Catalog.",
-      "sha256": "aa2d4acb940bc1a2f911ccfd71c203679115aa8b3e85bdf58a957674cf1ebbce"
+      "body": "Plugin Catalogs now lists individual catalogs with checkboxes. Every checked edition gets its own Plugins submenu, including Techn 25 and Techn 26 together. Other Plugins and Plugin Catalogs remain the final two submenus. Existing selections migrate automatically; new catalog collections can be published without menu code changes.",
+      "sha256": "cfa1463ce88e857eacb26d7f1597c4d29281e08fe7c43c72472890da377b895c"
     },
     {
       "id": "tn-user-management",

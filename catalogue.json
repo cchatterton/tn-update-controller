@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-19T23:09:09.881392+00:00",
+  "published_at": "2026-11-19T23:25:43.841141+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -549,16 +549,17 @@
       "name": "TN User Management",
       "description": "Email-as-username, one-time username migration, role normalisation, permission sets, and multisite user governance.",
       "beta": false,
+      "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "1.32.2",
-      "tag": "v1.32.2",
+      "version": "1.33",
+      "tag": "v1.33",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.32.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
-      "sha256": "82ae3a23199a1415c9c8739140433bef491d2b3722a453da83625825784322f7"
+      "body": "## 1.33 - 2026-11-20\n\n- Added a `granted_super_admin` handler that immediately adds or promotes the newly granted Super Admin to Administrator on every existing site.\n- Reused the same per-user synchronisation routine for activation-time Super Admin reconciliation.",
+      "sha256": "3c46d409bf102f8c7ff15458c87d6203d22992087eb3b6c986e89bba802ea3aa"
     },
     {
       "id": "tn-wp-migrate-code-diff",

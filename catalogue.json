@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-19T22:37:09.593480+00:00",
+  "published_at": "2026-11-19T23:09:09.881392+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -191,16 +191,17 @@
       "name": "TN Authenticator",
       "description": "Provides a plug-and-play PIN login page at /login-pin.",
       "beta": false,
+      "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "1.6.2",
-      "tag": "v1.6.2",
+      "version": "1.6.3",
+      "tag": "v1.6.3",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.6.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
-      "sha256": "73cfbcb0495309953acbc259a35ba1573731974bdf024ba2dee2ce6993ae0d9e"
+      "body": "## What\u2019s changed\n\n- Send OTP emails from `no-reply@<current-site-domain>`.\n- Remove a leading `www.` from the sender domain.\n- Fall back to the WordPress administrator email for invalid development hosts.\n- Add the `tn_auth_from_email` filter for explicit sender overrides.\n\nThe attached `tn-authenticator.zip` can be installed directly through WordPress or discovered by TN Update Controller.",
+      "sha256": "be80c9b904ac7aa05b00f679859100608c592dea5c1a0e13aacdfc1b41ede40a"
     },
     {
       "id": "tn-content-planner",

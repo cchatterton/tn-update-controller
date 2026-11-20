@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-19T23:25:43.841141+00:00",
+  "published_at": "2026-11-20T22:59:57.178997+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -335,6 +335,29 @@
       "controller_api": 1,
       "body": "- Align WordPress 7.0 / PHP 7.4 metadata, GPL/readme packaging and project-authored CSS units with current Codex standards.\n- Add a canonical version watermark to the existing header and verify desktop/narrow-screen reflow.\n- Remove independent GitHub update checks and delegate updates to Techn Update Controller. Keep Beta readiness and existing feature settings, package identity and domain restrictions.\n- Standardise update headers and controller-aware Install/Activate/Check links.\n\n\nReadiness remains Beta. Update through the matching author controller.\n",
       "sha256": "36d022c5d52dbe43d424106ff5fe67dddd8eb7ac519b4fdf2a5d25f53f92c964"
+    },
+    {
+      "id": "tn-meeting-polls",
+      "owner": "cchatterton",
+      "repo": "tn-meeting-polls",
+      "file": "tn-meeting-polls/tn-meeting-polls.php",
+      "slug": "tn-meeting-polls",
+      "asset": "tn-meeting-polls.zip",
+      "author": "Techn",
+      "name": "TN Meeting Polls",
+      "description": "Verified meeting-time polls with optional calendar placeholders.",
+      "beta": true,
+      "exclusive": false,
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "0.1.1",
+      "tag": "v0.1.1",
+      "requires": "7.0",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "controller_api": 1,
+      "body": "- Add Techn author branding, release metadata, licence, readmes and standard package build.\n- Integrate the guarded TN Update Controller client for GitHub distribution.\n- Apply the Techn interface palette, version watermark, rem-based CSS and visible focus treatment.\n",
+      "sha256": "33ff234addeeb5918683cf0e14a8d3263f7f3b8af27f31b55ecde65d252119e2"
     },
     {
       "id": "tn-other-plugins",

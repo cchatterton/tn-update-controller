@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T09:45:27.343068+00:00",
+  "published_at": "2026-11-22T09:52:06.389449+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.18",
-      "tag": "v0.1.18",
+      "version": "0.1.19",
+      "tag": "v0.1.19",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Show poll cards as a one-at-a-time accordion, preserve expansion during live refresh, and extend the admin background through the full page height.",
-      "sha256": "c8b9469c0687025d713ef7708c6149b970a6d8881291887fd7b2c67aaae592be"
+      "body": "Preferred meeting hours now position the time picker without limiting which times can be saved. The native picker starts on a ten-minute value.",
+      "sha256": "fd80ce20b5001bf0a38a1739db29ec99bfb0a6d08aa13bd078f8549cfdba41bf"
     },
     {
       "id": "tn-other-plugins",

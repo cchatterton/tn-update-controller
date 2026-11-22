@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.9 - 2026-11-22
+
+- Prevent an uninstalled GitHub plugin from appearing as a card without a verified installable release.
+- Reject curated Techn collection entries that do not match the verified release feed during publication.
+
 ## 0.10.8 - 2026-11-22
 
 - Add TN Meeting Polls to the current Techn 27 collection and bundled registry.

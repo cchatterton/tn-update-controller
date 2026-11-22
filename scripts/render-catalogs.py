@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "catalogs"
+IDENTITY = ("owner", "repo", "file", "slug", "asset", "author")
 
 
 def markdown_text(value):
@@ -35,11 +36,24 @@ def render(catalog):
     return "\n".join(lines) + "\n"
 
 
+def verify_techn_releases(registry):
+    feed = json.loads((ROOT / "catalogue.json").read_text())
+    releases = {entry["id"]: entry for entry in feed["plugins"]}
+    for catalog in registry["catalogs"]:
+        for plugin in catalog["plugins"]:
+            if plugin.get("source") != "github" or plugin.get("feed", catalog["collection"]) != "techn":
+                continue
+            released = releases.get(plugin["id"])
+            if not released or any(released.get(key) != plugin.get(key) for key in IDENTITY):
+                raise ValueError(f"{catalog['id']}: {plugin['id']} has no matching verified Techn release")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="Fail if the readable lists differ from the registry")
     args = parser.parse_args()
     registry = json.loads((ROOT / "catalogue-registry.json").read_text())
+    verify_techn_releases(registry)
     expected = {OUTPUT / (catalog["id"] + ".md"): render(catalog) for catalog in registry["catalogs"]}
     if args.check:
         actual = set(OUTPUT.glob("*.md")) if OUTPUT.exists() else set()

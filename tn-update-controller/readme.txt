@@ -3,7 +3,7 @@ Contributors:
 Tags: updates, plugins, catalog, techn
 Requires at least: 6.5
 Tested up to: 7.1.2
-Stable tag: 0.10.8
+Stable tag: 0.10.9
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,10 @@ Terms: https://docs.github.com/en/site-policy/github-terms/github-terms-of-servi
 Privacy: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
 
 == Changelog ==
+
+= 0.10.9 =
+* Show a new GitHub plugin in Catalog only after a matching verified release is available locally.
+* Check curated Techn collection entries against the verified release feed before publishing their readable lists.
 
 = 0.10.8 =
 * Add TN Meeting Polls to the current Techn collection and include it in the bundled registry.

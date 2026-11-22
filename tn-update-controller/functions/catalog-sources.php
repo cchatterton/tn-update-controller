@@ -231,6 +231,9 @@ function tnuc_hub_items(): array {
             $seen[$collection][$identity] = true; $seen[$collection]['id:' . $plugin_id] = true;
             $match = tnuc_hub_match($entry, $installed); $file = $match['file'] ?? '';
             $release = $catalogs[$catalog_id]['status'] === 'archived' && $entry['id'] !== 'tn-update-controller' ? [] : tnuc_hub_release($entry, $collection); $current = (string) ($match['data']['Version'] ?? '0');
+            // A collection entry alone is not an installable package. Keep new GitHub
+            // plugins out of the Catalog until the explicit check verifies their release.
+            if (!$match && ($entry['source'] ?? '') === 'github' && !$release) { continue; }
             $native_update = $file !== '' ? ($native[$file] ?? null) : null;
             $native_version = is_object($native_update) ? (string) ($native_update->new_version ?? '') : '';
             $newer_mirror = $release && $file !== '' && version_compare($release['version'], $current, '>');

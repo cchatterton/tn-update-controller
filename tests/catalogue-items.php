@@ -19,14 +19,16 @@ function tnuc_plugins() { return $GLOBALS['installed']; }
 function tnuc_match($entry, $plugins) { return isset($plugins[$entry['file']]); }
 function tnuc_compatibility($entry) { return ''; }
 function tnuc_valid_domain_policy($rule) { return is_array($rule['allowed_domains']) && is_bool($rule['include_subdomains']); }
-function tnuc_hub_compatibility($release) { return ''; }
+function tnuc_controller_update_pending() { return false; }
 function tnuc_bundled_registry() { return json_decode((string) file_get_contents(TNUC_DIR . 'data/registry.json'), true); }
 function tnuc_catalogue() { return $GLOBALS['techn_feed']; }
 require TNUC_DIR . 'functions/catalog-registry.php';
 require TNUC_DIR . 'functions/catalog-sources.php';
+require TNUC_DIR . 'functions/catalog-batch.php';
 
 function route_assert($condition, $message) { if (!$condition) { throw new RuntimeException($message); } echo "PASS: $message\n"; }
 $root = dirname(__DIR__);
+$wp_version = '7.1.2';
 $techn = json_decode((string) file_get_contents($root . '/catalogue.json'), true);
 $GLOBALS['techn_feed'] = ['plugins' => array_column($techn['plugins'], null, 'id')];
 $alpha = json_decode((string) file_get_contents($root . '/tests/fixtures/as-catalogue.json'), true);
@@ -52,6 +54,12 @@ route_assert(isset($items['other:custom-plugin/custom-plugin.php']) && $items['o
 route_assert(!isset($items['other:disable-comments/disable-comments.php']), 'subscribed plugin is excluded from Other');
 route_assert(isset($items['techn:tn-update-controller']), 'required Techn collection includes the controller');
 route_assert(isset($items['techn:tn-meeting-polls']) && $items['techn:tn-meeting-polls']['release']['version'] === '0.1.1', 'current Techn collection exposes TN Meeting Polls with its verified release');
+route_assert(tnuc_hub_eligible($items['techn:tn-meeting-polls'], 'install'), 'verified TN Meeting Polls release enables Install');
+$verified_feed = $GLOBALS['techn_feed'];
+unset($GLOBALS['techn_feed']['plugins']['tn-meeting-polls']);
+$stale_items = tnuc_hub_items();
+route_assert(!isset($stale_items['techn:tn-meeting-polls']), 'a new unverified GitHub release cannot render as an un-installable card');
+$GLOBALS['techn_feed'] = $verified_feed;
 route_assert(isset($items['alphasys:AS-Relevansi']) && !$items['alphasys:AS-Relevansi']['match'], 'AlphaSys collection lists an uninstalled plugin');
 $expanded = json_decode((string) file_get_contents($root . '/catalogue-registry.json'), true);
 $fusion25 = current(array_filter($expanded['catalogs'], static function ($catalog) { return $catalog['id'] === 'fusion-26'; }));

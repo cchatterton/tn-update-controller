@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-20T22:59:57.178997+00:00",
+  "published_at": "2026-11-22T04:24:09.391196+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -552,14 +552,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.7",
-      "tag": "v0.10.7",
+      "version": "0.10.8",
+      "tag": "v0.10.8",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Restores compatibility with older controllers reading the collection registry, allowing them to discover the current controller update before switching to the new collection menus.",
-      "sha256": "7a0c29565d2ec1c4eb61959b06d262a515b580f20dbb05d2211c98faf11aea1d"
+      "body": "- Add TN Meeting Polls to the current Techn 27 collection and bundled registry.\n- Keep the public collection list in sync with the published registry.\n",
+      "sha256": "42ac85e859778f80300f736e4598818bffb7fd953211e3a233d74c75500a91a4"
     },
     {
       "id": "tn-user-management",

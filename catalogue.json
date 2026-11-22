@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T04:31:15.739774+00:00",
+  "published_at": "2026-11-22T04:38:57.622584+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.1",
-      "tag": "v0.1.1",
+      "version": "0.1.2",
+      "tag": "v0.1.2",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Add Techn author branding, release metadata, licence, readmes and standard package build.\n- Integrate the guarded TN Update Controller client for GitHub distribution.\n- Apply the Techn interface palette, version watermark, rem-based CSS and visible focus treatment.\n",
-      "sha256": "33ff234addeeb5918683cf0e14a8d3263f7f3b8af27f31b55ecde65d252119e2"
+      "body": "TN Meeting Polls 0.1.2\n\nVerified package release for the Techn plugin catalog. No feature changes from 0.1.1.\n",
+      "sha256": "843ca14cd45141d7c5d96877d95507f6e9aff57ed96b29b647967053ba668ee4"
     },
     {
       "id": "tn-other-plugins",

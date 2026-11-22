@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T09:59:02.882356+00:00",
+  "published_at": "2026-11-22T21:56:03.184651+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.20",
-      "tag": "v0.1.20",
+      "version": "0.1.21",
+      "tag": "v0.1.21",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Remove the five-minute future cutoff from poll creation and editing. A valid proposed time is accepted even if it has passed.",
-      "sha256": "ad3845ac73f4380ad487685545da98c7faae97f6f42532f729892bf0437d72a8"
+      "body": "Rename the Templates action to Use. Add a per-contact Send Placeholder checkbox, saved as the default when selecting or searching for that contact in a new poll.",
+      "sha256": "d1fe5f5d230eb1f92f6077f423fbdaea4a743a2a554282c57418870e3efeaba0"
     },
     {
       "id": "tn-other-plugins",

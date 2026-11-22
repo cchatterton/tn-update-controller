@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T06:24:41.053237+00:00",
+  "published_at": "2026-11-22T06:35:13.549722+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.5",
-      "tag": "v0.1.5",
+      "version": "0.1.6",
+      "tag": "v0.1.6",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Meeting start times now use 10-minute steps. Calendar requests sent through the SMTP2GO WordPress mail plugin use its MIME endpoint to preserve an Outlook-compatible invitation. The configured API key must permit /email/mime.",
-      "sha256": "22b6207e5fa71f19e36ca63bd5ea2fe7f5a5ef699f4d8dc136c022e6473df03b"
+      "body": "Add per-organiser meeting duration and meeting-hour settings, a personal attendee contact list, and contact search on poll creation. Show SMTP2GO MIME permission failures on open polls. For placeholder delivery, enable Emails > /email/mime on the SMTP2GO API key.",
+      "sha256": "7d2e9855ec7b98e09f3a5a98c7ccfb1cf914b6c24a94b99de3f5f862221e21dc"
     },
     {
       "id": "tn-other-plugins",

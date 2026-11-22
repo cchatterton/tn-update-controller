@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T08:15:16.880648+00:00",
+  "published_at": "2026-11-22T08:16:33.332659+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.12",
-      "tag": "v0.1.12",
+      "version": "0.1.13",
+      "tag": "v0.1.13",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Show the meeting duration beside the public poll title, place the description below it, and add space before verification.",
-      "sha256": "1ff19d8337451076d4c710cad5d6346dbd2e1c0e47f5fdc32254bd2f7e8943b0"
+      "body": "Show saved attendees in a table with name, email, Save, and Remove together on one row.",
+      "sha256": "8f962faa08fb059ef51a49c95647aa186b1ed7e9269e25bdea1ddb7d7d76f18c"
     },
     {
       "id": "tn-other-plugins",

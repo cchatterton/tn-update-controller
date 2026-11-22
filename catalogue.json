@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T07:10:51.436516+00:00",
+  "published_at": "2026-11-22T07:43:15.193825+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.8",
-      "tag": "v0.1.8",
+      "version": "0.1.9",
+      "tag": "v0.1.9",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Group attendee voting choices by local date. Each date is shown once with all proposed times and their Prefer, Yes, and No controls below it.",
-      "sha256": "cc15a02abfa34d6bd8a81583b8af2b442ac34ce5cb6c794e6713a687eb3c0d55"
+      "body": "Refine the attendee voting page: identity verification wording, one-row code entry, duration near the poll title, a time-and-vote row for each option, and no repeated end-time or placeholder explanation.",
+      "sha256": "a11a020a507bab24c3efc21e631320d9811986217acaff614b6d5b9e6b13057f"
     },
     {
       "id": "tn-other-plugins",

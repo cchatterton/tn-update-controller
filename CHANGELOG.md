@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.8 - 2026-11-22
+
+- Add TN Meeting Polls to the current Techn 27 collection and bundled registry.
+- Keep the public collection list in sync with the published registry.
+
 ## 0.10.1 - 2026-11-15
 
 - Restore WordPress.org update dates, download and rating counts, and release notes on Other plugin cards.

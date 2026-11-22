@@ -2,8 +2,8 @@
 
 **Type:** Hosted
 **Status:** Current
-**Last updated:** 2026-11-15
-**Plugins:** 20
+**Last updated:** 2026-11-22
+**Plugins:** 21
 
 - **TN Exploitation Audit** (Beta) — Admin-only audit tools for detecting exposure to CMS exploitation indicators and collecting safe local evidence.
 - **Help Guides (Wiki-style)** — Adds Wiki CPT, Help Guides admin menus, screen ID display, and help tabs.
@@ -15,6 +15,7 @@
 - **TN Environments** — Prompts admins to confirm the environment, adds admin environment styling, and displays a build ID.
 - **TN Login with Email** (Beta) — Allows valid email addresses to be used as usernames in WordPress and Multisite registration.
 - **TN LOV** (Beta) — Manage reusable, optionally grouped values with native WordPress tools and optional WPML language support.
+- **TN Meeting Polls** (Beta) — Verified meeting-time polls with optional calendar placeholders.
 - **TN Pallet** — Manage a named colour palette and generated utility CSS from WordPress admin.
 - **TN Performance Advisor** (Beta) — Turns a sanitised Query Monitor capture into a prioritised performance action plan using the WordPress AI Client.
 - **TN Post Families** (Beta) — Navigate parent, child and sibling posts in the WordPress editor.

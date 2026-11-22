@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 3,
+  "revision": 4,
   "catalogs": [
     {
       "id": "techn-27",
@@ -143,6 +143,19 @@
           "source": "github"
         },
         {
+          "id": "tn-meeting-polls",
+          "name": "TN Meeting Polls",
+          "description": "Verified meeting-time polls with optional calendar placeholders.",
+          "owner": "cchatterton",
+          "repo": "tn-meeting-polls",
+          "file": "tn-meeting-polls/tn-meeting-polls.php",
+          "slug": "tn-meeting-polls",
+          "asset": "tn-meeting-polls.zip",
+          "author": "Techn",
+          "beta": true,
+          "source": "github"
+        },
+        {
           "id": "tn-pallet",
           "name": "TN Pallet",
           "description": "Manage a named colour palette and generated utility CSS from WordPress admin.",
@@ -273,7 +286,7 @@
           "source": "github"
         }
       ],
-      "last_updated": "2026-11-15"
+      "last_updated": "2026-11-22"
     },
     {
       "id": "techn-26",

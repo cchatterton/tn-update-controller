@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T04:24:09.391196+00:00",
+  "published_at": "2026-11-22T04:31:15.739774+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -552,14 +552,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.10.8",
-      "tag": "v0.10.8",
+      "version": "0.10.9",
+      "tag": "v0.10.9",
       "requires": "6.5",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "- Add TN Meeting Polls to the current Techn 27 collection and bundled registry.\n- Keep the public collection list in sync with the published registry.\n",
-      "sha256": "42ac85e859778f80300f736e4598818bffb7fd953211e3a233d74c75500a91a4"
+      "body": "TN Update Controller 0.10.9\n\n- Hide uninstalled GitHub plugins from the Catalog until a matching verified release is available locally.\n- Reject curated Techn collection entries without a matching verified release feed entry during publication.\n\nAfter updating the controller, run Check for updates again to refresh the verified release feed. TN Meeting Polls 0.1.1 will then show an Install button in the Techn 27 catalog.\n",
+      "sha256": "4f2480c7e1e197860a728f56e4452a8bba4c30d0e8a429131707251193ea4521"
     },
     {
       "id": "tn-user-management",

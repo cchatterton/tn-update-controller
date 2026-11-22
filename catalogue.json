@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T08:18:25.670037+00:00",
+  "published_at": "2026-11-22T08:21:58.933207+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.14",
-      "tag": "v0.1.14",
+      "version": "0.1.15",
+      "tag": "v0.1.15",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Select saved attendees in the contact table and open Create a poll with them already added.",
-      "sha256": "a79ae62aebc2e4dd67d716ac3ad30104b1b078e07794aae9b209ffc46f124745"
+      "body": "Remove browser confirmation dialogs from poll actions and contact removal. Align Cancel poll to the right below Individual votes.",
+      "sha256": "12f9de5eac31832efa5e42a5b115f0677988def6d4a5bf40bc546d9cd8e46bfd"
     },
     {
       "id": "tn-other-plugins",

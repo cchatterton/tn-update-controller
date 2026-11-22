@@ -53,7 +53,7 @@ route_assert(isset($items['fusion:disable-comments']) && $items['fusion:disable-
 route_assert(isset($items['other:custom-plugin/custom-plugin.php']) && $items['other:custom-plugin/custom-plugin.php']['update']['source'] === 'native', 'unclaimed installed plugin uses its native provider');
 route_assert(!isset($items['other:disable-comments/disable-comments.php']), 'subscribed plugin is excluded from Other');
 route_assert(isset($items['techn:tn-update-controller']), 'required Techn collection includes the controller');
-route_assert(isset($items['techn:tn-meeting-polls']) && $items['techn:tn-meeting-polls']['release']['version'] === '0.1.1', 'current Techn collection exposes TN Meeting Polls with its verified release');
+route_assert(isset($items['techn:tn-meeting-polls']) && $items['techn:tn-meeting-polls']['release']['version'] === $GLOBALS['techn_feed']['plugins']['tn-meeting-polls']['version'], 'current Techn collection exposes TN Meeting Polls with its verified release');
 route_assert(tnuc_hub_eligible($items['techn:tn-meeting-polls'], 'install'), 'verified TN Meeting Polls release enables Install');
 $verified_feed = $GLOBALS['techn_feed'];
 unset($GLOBALS['techn_feed']['plugins']['tn-meeting-polls']);

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T08:21:58.933207+00:00",
+  "published_at": "2026-11-22T08:34:36.213665+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.15",
-      "tag": "v0.1.15",
+      "version": "0.1.16",
+      "tag": "v0.1.16",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Remove browser confirmation dialogs from poll actions and contact removal. Align Cancel poll to the right below Individual votes.",
-      "sha256": "12f9de5eac31832efa5e42a5b115f0677988def6d4a5bf40bc546d9cd8e46bfd"
+      "body": "Add daily historical poll retention with a per-user setting and manual deletion; add meeting templates; move Add Contact into a modal; rename the navigation tabs.",
+      "sha256": "c878aede8e6fb10b6d12fd2746fad3c8c10fdd49c535cbe7eebd6afdaf5e1634"
     },
     {
       "id": "tn-other-plugins",

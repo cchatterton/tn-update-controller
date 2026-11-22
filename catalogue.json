@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T06:44:26.192616+00:00",
+  "published_at": "2026-11-22T07:10:51.436516+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.7",
-      "tag": "v0.1.7",
+      "version": "0.1.8",
+      "tag": "v0.1.8",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Open polls can now be edited from the Create a poll tab with existing details prefilled. Save changes to add or remove proposed times and invitees. Unchanged votes and calendar identities remain; removed placeholders are cancelled, new options are invited, and removed invitees lose access to the poll.",
-      "sha256": "f25da2c0c709beb53c6b83e0c6b12b753bc6d37fb163ece62bfa076bfb37728b"
+      "body": "Group attendee voting choices by local date. Each date is shown once with all proposed times and their Prefer, Yes, and No controls below it.",
+      "sha256": "cc15a02abfa34d6bd8a81583b8af2b442ac34ce5cb6c794e6713a687eb3c0d55"
     },
     {
       "id": "tn-other-plugins",

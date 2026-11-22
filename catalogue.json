@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T08:12:17.832634+00:00",
+  "published_at": "2026-11-22T08:13:43.898430+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.10",
-      "tag": "v0.1.10",
+      "version": "0.1.11",
+      "tag": "v0.1.11",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Public voting page cleanup, voter details in the verification card, and explicit ten-minute start-time choices.",
-      "sha256": "1b90af94187867f40c77a2be447cac1d06447d4718cf4e3b2b4cc225c12ae6d9"
+      "body": "Tentative calendar invitations and their cancellations use [Placeholder] Meeting Name. Confirmed meetings retain the ordinary title.",
+      "sha256": "c5e6ceaf8e132dee3c30bdee8641a84f23c31eaee374c6b9f7828bb7efea2229"
     },
     {
       "id": "tn-other-plugins",

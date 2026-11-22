@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T07:43:15.193825+00:00",
+  "published_at": "2026-11-22T08:12:17.832634+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.9",
-      "tag": "v0.1.9",
+      "version": "0.1.10",
+      "tag": "v0.1.10",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "Refine the attendee voting page: identity verification wording, one-row code entry, duration near the poll title, a time-and-vote row for each option, and no repeated end-time or placeholder explanation.",
-      "sha256": "a11a020a507bab24c3efc21e631320d9811986217acaff614b6d5b9e6b13057f"
+      "body": "Public voting page cleanup, voter details in the verification card, and explicit ten-minute start-time choices.",
+      "sha256": "1b90af94187867f40c77a2be447cac1d06447d4718cf4e3b2b4cc225c12ae6d9"
     },
     {
       "id": "tn-other-plugins",

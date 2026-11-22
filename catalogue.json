@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T05:01:13.327873+00:00",
+  "published_at": "2026-11-22T05:45:26.776410+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.3",
-      "tag": "v0.1.3",
+      "version": "0.1.4",
+      "tag": "v0.1.4",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "TN Meeting Polls 0.1.3\n\n- Send placeholder, confirmed and cancellation calendar messages as inline iCalendar requests without a separate ICS attachment. Placeholder and confirmed requests ask for RSVP.\n- Separate Create a poll, Open polls and History views.\n- Pick a date, add one or more start times on that date, and set each option's duration in minutes.\n\nCalendar client handling varies; test Accept, Decline and cancellation with the mail system used by your attendees.\n",
-      "sha256": "3b73d2e977e83ed41d58a0eed237853d312eb009be388e0f94b2d3ebe58ce734"
+      "body": "TN Meeting Polls 0.1.4\n\n- Send placeholder, confirmed, and cancellation calendar messages as primary text/calendar messages with the matching REQUEST or CANCEL method and no file attachment.\n- Default the poll timezone to the WordPress site setting, including fixed UTC offsets.\n- Use one meeting duration for every proposed date and time, and start with one attendee row.\n\nThe site mail transport still delivers the invitation. Confirm how your email and calendar clients present Accept, Decline, and cancellation before relying on them for live meetings.\n",
+      "sha256": "9d77b505531b093713cf1647bd54b62c9d9553a22a614d43f746fdb0e970e2d9"
     },
     {
       "id": "tn-other-plugins",

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T05:45:26.776410+00:00",
+  "published_at": "2026-11-22T06:24:41.053237+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -350,14 +350,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "0.1.4",
-      "tag": "v0.1.4",
+      "version": "0.1.5",
+      "tag": "v0.1.5",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "TN Meeting Polls 0.1.4\n\n- Send placeholder, confirmed, and cancellation calendar messages as primary text/calendar messages with the matching REQUEST or CANCEL method and no file attachment.\n- Default the poll timezone to the WordPress site setting, including fixed UTC offsets.\n- Use one meeting duration for every proposed date and time, and start with one attendee row.\n\nThe site mail transport still delivers the invitation. Confirm how your email and calendar clients present Accept, Decline, and cancellation before relying on them for live meetings.\n",
-      "sha256": "9d77b505531b093713cf1647bd54b62c9d9553a22a614d43f746fdb0e970e2d9"
+      "body": "Meeting start times now use 10-minute steps. Calendar requests sent through the SMTP2GO WordPress mail plugin use its MIME endpoint to preserve an Outlook-compatible invitation. The configured API key must permit /email/mime.",
+      "sha256": "22b6207e5fa71f19e36ca63bd5ea2fe7f5a5ef699f4d8dc136c022e6473df03b"
     },
     {
       "id": "tn-other-plugins",

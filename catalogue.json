@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-23T05:47:17.173005+00:00",
+  "published_at": "2026-11-23T06:07:56.122826+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -464,14 +464,14 @@
       "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "1.6.0",
-      "tag": "v1.6.0",
+      "version": "1.6.1",
+      "tag": "v1.6.1",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## Trackable QR codes\n\n- Add Tools > Trackable QR Codes to create a QR code for any HTTP or HTTPS destination.\n- Add UTM source, medium, campaign, term, content and ID, plus repeatable query parameters.\n- Save each tracking link and show its visit count and downloadable PNG. Each visit increments the counter before redirecting.\n\nRequires WordPress 7.0+ and PHP 7.4+.\n",
-      "sha256": "545902695e9491a911ea638b821bfe8456ac1eb13a34c3a2bfd3e56612c7eb2b"
+      "body": "## Trackable QR creator\n\n- Keep dedicated fields for UTM source, medium, and campaign.\n- Set the default medium for new codes to `trackable-qr`; it remains editable.\n\nRequires WordPress 7.0+ and PHP 7.4+.\n",
+      "sha256": "9193db6051a8fc9a77a0b60db8259c50a3897833f764e8f8414b6a2bbc636e37"
     },
     {
       "id": "tn-sentinel",

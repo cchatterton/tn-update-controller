@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-22T21:56:03.184651+00:00",
+  "published_at": "2026-11-23T05:47:17.173005+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -459,18 +459,19 @@
       "asset": "tn-qrcodes.zip",
       "author": "Techn",
       "name": "TN QR Codes",
-      "description": "Adds QR codes to public post types and allows tracked QR code downloads.",
+      "description": "Adds QR codes to public post types and creates trackable QR codes for any URL.",
       "beta": false,
+      "exclusive": false,
       "allowed_domains": [],
       "include_subdomains": false,
-      "version": "1.5.2",
-      "tag": "v1.5.2",
+      "version": "1.6.0",
+      "tag": "v1.6.0",
       "requires": "7.0",
       "requires_php": "7.4",
       "dependencies": [],
       "controller_api": 1,
-      "body": "## 1.5.2 - 2026-09-26\n\n- Lower the PHP requirement to 7.4, matching WordPress 7.0.\n- Allow the PHP 7.4-compatible TN Update Controller bootstrap.\n",
-      "sha256": "00e60d8e0c634073be0eaf89efd19d9815d8f4f39ae99df667b55bb1c7f169b0"
+      "body": "## Trackable QR codes\n\n- Add Tools > Trackable QR Codes to create a QR code for any HTTP or HTTPS destination.\n- Add UTM source, medium, campaign, term, content and ID, plus repeatable query parameters.\n- Save each tracking link and show its visit count and downloadable PNG. Each visit increments the counter before redirecting.\n\nRequires WordPress 7.0+ and PHP 7.4+.\n",
+      "sha256": "545902695e9491a911ea638b821bfe8456ac1eb13a34c3a2bfd3e56612c7eb2b"
     },
     {
       "id": "tn-sentinel",

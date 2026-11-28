@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "published_at": "2026-11-23T06:07:56.122826+00:00",
+  "published_at": "2026-11-28T04:52:32.243251+00:00",
   "plugins": [
     {
       "id": "TN-Exploitation-Audit",
@@ -247,6 +247,29 @@
       "controller_api": 1,
       "body": "## Changes\n\n- Keep every WordPress admin screen at native zoom, including the Site Editor, block editor, and WPIDE.\n- Remove admin calibration and preview controls while preserving previously saved admin values in the existing option.\n- Keep frontend display calibration, monitor detection, and frontend preview behaviour.\n\nFrontend CSS zoom remains in use. GoFullPage screenshot compatibility at calibrated zoom is not changed by this release.\n",
       "sha256": "544236830d8958560f032d1ac0f33c3e72fb9e60009058b54df8d394b221e6ef"
+    },
+    {
+      "id": "tn-echo",
+      "owner": "cchatterton",
+      "repo": "tn-echo",
+      "file": "tn-echo/tn-echo.php",
+      "slug": "tn-echo",
+      "asset": "tn-echo.zip",
+      "author": "Techn",
+      "name": "TN-Echo",
+      "description": "A callable expression engine for WordPress content, with no automatic content rewriting.",
+      "beta": true,
+      "exclusive": false,
+      "allowed_domains": [],
+      "include_subdomains": false,
+      "version": "0.1.0",
+      "tag": "v0.1.0",
+      "requires": "7.0",
+      "requires_php": "7.4",
+      "dependencies": [],
+      "controller_api": 1,
+      "body": "## TN-Echo 0.1.0\n\n- Added a callable Echo expression engine with `my`, `option`, and `cookie` branches.\n- Added ACF-aware post and term metadata lookup, array selectors, and output formats.\n- Added explicit adapters for supported legacy AlphaBlock, AlphaCard, and Magic Card tokens.\n- Added language and integration documentation and Techn Update Controller client integration.\n\nActivation does not rewrite content or change existing blocks. Existing AlphaBlock and Card renderers remain authoritative until separately migrated. The Magic Card adapter covers common scalar expressions; its richer gallery, content, and legacy CPT-onomies behaviour remains in Magic Card for now.\n",
+      "sha256": "b4d57b4f27c2a468d87bffcfccaa7a35a44d597e9fe2a95435deda93639e9d77"
     },
     {
       "id": "tn-environments",
